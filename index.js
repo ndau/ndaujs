@@ -5,8 +5,13 @@
  * @param {string} address ndau address to be truncatee
  * @returns {string} truncated string
  */
-module.exports = truncateAddress = address => {
-  return address
-    ? `${address.slice(0, 8)}...${address.slice(length - 8, length)}`
-    : null
+module.exports = {
+  truncateAddress: address => {
+    return address && address.length >= 17
+      ? `${address.slice(0, 8)}...${address.slice(
+        address.length - 8,
+        address.length
+      )}`
+      : null
+  }
 }

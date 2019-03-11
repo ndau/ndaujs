@@ -4,7 +4,7 @@
   "description": "A JavaScript common repository for ndau",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/oneiro-ndev/ndaujs/issues"
   },
-  "homepage": "https://github.com/oneiro-ndev/ndaujs#readme"
+  "homepage": "https://github.com/oneiro-ndev/ndaujs#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
 }
