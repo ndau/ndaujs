@@ -1,0 +1,26 @@
+{
+  "name": "ndaujs",
+  "version": "1.0.0",
+  "description": "A JavaScript common repository for ndau",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneiro-ndev/ndaujs.git"
+  },
+  "keywords": [
+    "ndau"
+  ],
+  "author": "Kristofer Pelchat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oneiro-ndev/ndaujs/issues"
+  },
+  "homepage": "https://github.com/oneiro-ndev/ndaujs#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
+}
