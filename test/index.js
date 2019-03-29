@@ -34,8 +34,8 @@ describe('ndau formatting', () => {
     it('should format 1.234 ndau with 0 as 1', () => {
       expect(ndaujs.formatNapuForDisplay(123400000, 0)).to.equal('1')
     })
-    it('should format 1.234 ndau with 1 as 1.2', () => {
-      expect(ndaujs.formatNapuForDisplay(123400000, 1)).to.equal('1.2')
+    it('should format -1.234 ndau with 1 as 1.2', () => {
+      expect(ndaujs.formatNapuForDisplay(-123400000, 1)).to.equal('-1.2')
     })
     it('should format 1.234 ndau with 3 as 1.234', () => {
       expect(ndaujs.formatNapuForDisplay(123400000, 3)).to.equal('1.234')
@@ -46,8 +46,8 @@ describe('ndau formatting', () => {
     it('should format 1.255 ndau with 1 as 1.3', () => {
       expect(ndaujs.formatNapuForDisplay(125500000, 1)).to.equal('1.3')
     })
-    it('should format 1.255 ndau with 2 as 1.26', () => {
-      expect(ndaujs.formatNapuForDisplay(125500000, 2)).to.equal('1.26')
+    it('should format -1.255 ndau with 2 as 1.26', () => {
+      expect(ndaujs.formatNapuForDisplay(-125500000, 2)).to.equal('-1.26')
     })
     it('should format 1.255 ndau with 3 as 1.255', () => {
       expect(ndaujs.formatNapuForDisplay(125500000, 3)).to.equal('1.255')
@@ -57,6 +57,9 @@ describe('ndau formatting', () => {
     })
     it('should format 1.99 ndau with 0 as 2', () => {
       expect(ndaujs.formatNapuForDisplay(199000000, 0)).to.equal('2')
+    })
+    it('should format -1.99 ndau with 0 as -2', () => {
+      expect(ndaujs.formatNapuForDisplay(-199000000, 0)).to.equal('-2')
     })
     it('should format 1.99 ndau with 1 as 2.0', () => {
       expect(ndaujs.formatNapuForDisplay(199000000, 1)).to.equal('2.0')
