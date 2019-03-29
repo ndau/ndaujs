@@ -29,6 +29,13 @@ module.exports = {
    * number of decimal digits. No floating point math is used.
    */
   formatNapuForDisplay: (napu, digits) => {
+    // trap for the unwary:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
+    // This function is being used here to say "is digits usable as a numeric value?"
+    // the default value is 3 digits.
+    if (isNaN(digits)) {
+      digits = 3
+    }
     // fix digits if it's out of range (only 0-8 are permitted)
     if (digits < 0) {
       digits = 0

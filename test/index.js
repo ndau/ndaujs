@@ -88,5 +88,8 @@ describe('ndau formatting', () => {
     it('should format 10 napu with -1 as 0', () => {
       expect(ndaujs.formatNapuForDisplay(10, -1)).to.equal('0')
     })
+    it('should format 1 ndau with no digits param as 1.000', () => {
+      expect(ndaujs.formatNapuForDisplay(100000000)).to.equal('1.000')
+    })
   })
 })
