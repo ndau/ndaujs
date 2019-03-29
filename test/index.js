@@ -93,3 +93,69 @@ describe('ndau formatting', () => {
     })
   })
 })
+
+const randomDigits = n => {
+  let s = ''
+  for (i = 0; i < n; i++) {
+    d = Math.floor(Math.random() * 10)
+    s += d
+  }
+  return s
+}
+
+describe('ndau parsing', () => {
+  describe('#parseNdau', () => {
+    it('should parse 1 correctly as 100000000', () => {
+      expect(ndaujs.parseNdau('1')).to.equal(100000000)
+    })
+    it('should parse 2. correctly as 200000000', () => {
+      expect(ndaujs.parseNdau('2.')).to.equal(200000000)
+    })
+    it('should parse "123  " correctly as 12300000000', () => {
+      expect(ndaujs.parseNdau('123  ')).to.equal(12300000000)
+    })
+    it('should parse " 987654321" correctly as 98765432100000000', () => {
+      expect(ndaujs.parseNdau(' 987654321')).to.equal(98765432100000000)
+    })
+    it('should parse .1 correctly as 10000000', () => {
+      expect(ndaujs.parseNdau('.1')).to.equal(10000000)
+    })
+    it('should parse 1.1 correctly as 110000000', () => {
+      expect(ndaujs.parseNdau('1.1')).to.equal(110000000)
+    })
+    it('should parse 0.00345 correctly as 345000', () => {
+      expect(ndaujs.parseNdau('0.00345')).to.equal(345000)
+    })
+    it('should parse 0.0000001 correctly as 10', () => {
+      expect(ndaujs.parseNdau('0.0000001')).to.equal(10)
+    })
+    it('should throw on "foo"', () => {
+      expect(() => ndaujs.parseNdau('foo')).to.throw(Error)
+    })
+    it('should throw on "."', () => {
+      expect(() => ndaujs.parseNdau('.')).to.throw(Error)
+    })
+  })
+  describe('#roundtrip fuzzing', () => {
+    for (let i = 0; i < 30; i++) {
+      // generate a random numberlike string
+      let w = randomDigits(Math.floor(Math.random() * 5))
+      let f = randomDigits(Math.floor(Math.random() * 8))
+      let s = Math.random() > 0.5 ? '-' : ''
+      let ndau1 = s + w + '.' + f
+      // throw away non-number values
+      if (ndau1 == '.' || ndau1 == '-.') {
+        continue
+      }
+      // parse it to napu
+      let napu1 = ndaujs.parseNdau(ndau1)
+      // go back to a string
+      let ndau2 = ndaujs.formatNapuForDisplay(napu1, 8)
+      // and parse it again -- the two parses should be the same
+      let napu2 = ndaujs.parseNdau(ndau2)
+      it('should roundtrip ' + ndau1 + ' correctly', () => {
+        expect(napu1).to.equal(napu2)
+      })
+    }
+  })
+})

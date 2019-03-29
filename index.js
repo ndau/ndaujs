@@ -48,8 +48,8 @@ module.exports = {
     // out of the way first and then work in positive numbers
     let sign = ''
     if (napu < 0) {
-      let napu = -napu
-      let sign = '-'
+      napu = -napu
+      sign = '-'
     }
 
     let ndau = Math.floor(napu / NAPU_PER_NDAU)
@@ -88,5 +88,43 @@ module.exports = {
 
     // we finally have all the bits
     return sign + ndau.toString() + '.' + fracs.toString()
+  },
+
+  // This parses a string intended to be a number of ndau and converts it
+  // safely to napu without using floating point. It returns the value of
+  // the input string in napu. It will throw a string explaining the problem
+  // if the value is unparseable.
+  parseNdau: s => {
+    // in order to have repeatable groupings, it's clearest to use multiple
+    // regexps to support both '1.' and '.1' as valid numbers.
+    const numpat1 = /^([-+]?)([0-9]+)(\.([0-9]*))?$/
+    const numpat2 = /^([-+]?)([0-9]*)?(\.([0-9]+))$/
+    // coerce it to a string and strip spaces
+    s = String(s).trim()
+    let parts = numpat1.exec(s)
+    if (parts == null) {
+      parts = numpat2.exec(s)
+    }
+    if (parts == null) {
+      // neither pattern matched
+      throw Error(s + ' is not a number')
+    }
+    // ok, we know all the parts are valid, put it together
+    sign = parts[1]
+    whole = parts[2]
+    frac = parts[4]
+
+    let napu = 0
+    if (whole) {
+      napu += parseInt(whole) * NAPU_PER_NDAU
+    }
+    if (frac) {
+      frac = (frac + '00000000').slice(0, 8)
+      napu += parseInt(frac)
+    }
+    if (sign == '-') {
+      napu = -napu
+    }
+    return napu
   }
 }
