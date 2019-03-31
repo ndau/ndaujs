@@ -55,9 +55,9 @@ module.exports = {
     let ndau = Math.floor(napu / NAPU_PER_NDAU)
     let frac = napu % NAPU_PER_NDAU
 
-    // if digits == 0 then we want a rounded number of ndau,
+    // if digits === 0 then we want a rounded number of ndau,
     // so let's do that before messing with frac
-    if (digits == 0) {
+    if (digits === 0) {
       if (frac >= NAPU_PER_NDAU / 2) {
         return sign + (ndau + 1).toString()
       } else {
@@ -102,10 +102,10 @@ module.exports = {
     // coerce it to a string and strip spaces
     s = String(s).trim()
     let parts = numpat1.exec(s)
-    if (parts == null) {
+    if (!parts) {
       parts = numpat2.exec(s)
     }
-    if (parts == null) {
+    if (!parts) {
       // neither pattern matched
       throw Error(s + ' is not a number')
     }
