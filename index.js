@@ -5,6 +5,16 @@ const setCharAt = (str, index, chr) => {
   return str.substr(0, index) + chr + str.substr(index + 1)
 }
 
+// helper routine to use complicated regex to
+// inject commas into a number at the right places.
+const commafy = (commas, n) => {
+  ns = n.toString()
+  if (commas) {
+    ns = ns.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+  return ns
+}
+
 module.exports = {
   /**
    * This function will take a string passed in and truncate
@@ -28,7 +38,7 @@ module.exports = {
    * which is the human-readable value in ndau, rounded to that
    * number of decimal digits. No floating point math is used.
    */
-  formatNapuForDisplay: (napu, digits) => {
+  formatNapuForDisplay: (napu, digits, commas) => {
     // trap for the unwary:
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
     // This function is being used here to say "is digits usable as a numeric value?"
@@ -55,14 +65,14 @@ module.exports = {
     let ndau = Math.floor(napu / NAPU_PER_NDAU)
     let frac = napu % NAPU_PER_NDAU
 
+    if (digits === 0 && frac >= NAPU_PER_NDAU / 2) {
+      ndau = ndau + 1
+    }
+
     // if digits === 0 then we want a rounded number of ndau,
     // so let's do that before messing with frac
     if (digits === 0) {
-      if (frac >= NAPU_PER_NDAU / 2) {
-        return sign + (ndau + 1).toString()
-      } else {
-        return sign + ndau.toString()
-      }
+      return sign + commafy(commas, ndau)
     }
 
     // now we have sign and ndau and decimal point
@@ -87,7 +97,7 @@ module.exports = {
     }
 
     // we finally have all the bits
-    return sign + ndau.toString() + '.' + fracs.toString()
+    return sign + commafy(commas, ndau) + '.' + fracs.toString()
   },
 
   // This parses a string intended to be a number of ndau and converts it
@@ -99,8 +109,10 @@ module.exports = {
     // regexps to support both '1.' and '.1' as valid numbers.
     const numpat1 = /^([-+]?)([0-9]+)(\.([0-9]*))?$/
     const numpat2 = /^([-+]?)([0-9]*)?(\.([0-9]+))$/
-    // coerce it to a string and strip spaces
-    s = String(s).trim()
+    // coerce it to a string and strip spaces and commas
+    s = String(s)
+      .trim()
+      .replace(/,/g, '')
     let parts = numpat1.exec(s)
     if (!parts) {
       parts = numpat2.exec(s)

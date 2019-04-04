@@ -94,6 +94,29 @@ describe('ndau formatting', () => {
     it('should format 1 ndau with no digits param as 1.000', () => {
       expect(ndaujs.formatNapuForDisplay(100000000)).to.equal('1.000')
     })
+    it('should format 1234 ndau with comma param as 1234.000', () => {
+      expect(ndaujs.formatNapuForDisplay(123400000000)).to.equal('1234.000')
+    })
+    it('should format 123 ndau with comma param as 123.0000', () => {
+      expect(ndaujs.formatNapuForDisplay(12300000000, 4, true)).to.equal(
+        '123.0000'
+      )
+    })
+    it('should format 1234 ndau with comma param as 1,234', () => {
+      expect(ndaujs.formatNapuForDisplay(123400000000, 0, true)).to.equal(
+        '1,234'
+      )
+    })
+    it('should format 12345 ndau with comma param as 12,345.0', () => {
+      expect(ndaujs.formatNapuForDisplay(1234500000000, 1, true)).to.equal(
+        '12,345.0'
+      )
+    })
+    it('should format 1234567.89 ndau with comma and 2 digits as 1,234,567.89', () => {
+      expect(ndaujs.formatNapuForDisplay(123456789000000, 2, true)).to.equal(
+        '1,234,567.89'
+      )
+    })
   })
 })
 
@@ -131,6 +154,12 @@ describe('ndau parsing', () => {
     })
     it('should parse 0.0000001 correctly as 10', () => {
       expect(ndaujs.parseNdau('0.0000001')).to.equal(10)
+    })
+    it('should parse 1,234 correctly as 123400000000', () => {
+      expect(ndaujs.parseNdau('1,234')).to.equal(123400000000)
+    })
+    it('should parse 1,234,567.89 correctly as 123456789000000', () => {
+      expect(ndaujs.parseNdau('1,234,567.89')).to.equal(123456789000000)
     })
     it('should throw on "foo"', () => {
       expect(() => ndaujs.parseNdau('foo')).to.throw(Error)
