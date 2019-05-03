@@ -70,6 +70,9 @@ describe('ndau formatting', () => {
     it('should format 1.99 ndau with 3 as 1.990', () => {
       expect(ndaujs.formatNapuForDisplay(199000000, 3)).to.equal('1.990')
     })
+    it('should format 7500000 napu with 1 as 0.08', () => {
+      expect(ndaujs.formatNapuForDisplay(7500000, 2)).to.equal('0.08')
+    })
     it('should format 1 napu with 0 as 0', () => {
       expect(ndaujs.formatNapuForDisplay(1, 0)).to.equal('0')
     })
@@ -115,6 +118,16 @@ describe('ndau formatting', () => {
     it('should format 1234567.89 ndau with comma and 2 digits as 1,234,567.89', () => {
       expect(ndaujs.formatNapuForDisplay(123456789000000, 2, true)).to.equal(
         '1,234,567.89'
+      )
+    })
+    it('should format 19999.999 ndau with comma and 2 digits as 20,000.00', () => {
+      expect(ndaujs.formatNapuForDisplay(1999999900000, 2, true)).to.equal(
+        '20,000.00'
+      )
+    })
+    it('should format -19999.999 ndau with comma and 2 digits as -20,000.00', () => {
+      expect(ndaujs.formatNapuForDisplay(-1999999900000, 2, true)).to.equal(
+        '-20,000.00'
       )
     })
   })

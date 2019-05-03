@@ -15,6 +15,36 @@ const commafy = (commas, n) => {
   return ns
 }
 
+// This function does a purely text-based rounding algorithm on things that look
+// like base-10 numbers (including signs, commas, and decimal points).
+// It will take a string and a carry flag.
+// If the carry was falsy, it returns the string unmodified.
+// If the carry was truthy, it will add 1 to the last digit; if the last digit
+// was 9 then it will call itself recursively on the portion to the left.
+// It has a couple of special cases for special characters.
+const roundUp = (n, carry) => {
+  if (!carry) {
+    return n
+  }
+  // if we got all the way to the end, we rounded 9 to 10 so just add the 1
+  if (n === '' || n === '-') {
+    return n + '1'
+  }
+  // get the last digit
+  let last = n[n.length - 1]
+  // handle decimals and commas by just rolling up one level
+  if (last === '.' || last === ',') {
+    return roundUp(n.slice(0, n.length - 1), true) + last
+  }
+  // only if it was a 9 do we have to do something special
+  // this is a way to get the "next" digit; we index into
+  // this string, add 1 to the index, and return the result.
+  // If we had started with 9, then we have to carry.
+  const digits = '01234567890'
+  let newlast = digits[digits.indexOf(last) + 1]
+  return roundUp(n.slice(0, n.length - 1), last === '9') + newlast
+}
+
 module.exports = {
   /**
    * This function will take a string passed in and truncate
@@ -81,23 +111,15 @@ module.exports = {
     let fs = ('00000000' + frac.toString()).slice(-8)
     // trim it to the right length
     let fracs = fs.slice(0, digits)
-    // see if we might have to round it
-    if (digits < 8) {
-      let nextdigit = fs[digits]
-      if ('56789'.indexOf(nextdigit) !== -1) {
-        let newfrac = (parseInt(fracs) + 1).toString()
-        // if that overflowed, we need to adjust ndau
-        // (we rounded, say, 999 to 1000)
-        if (newfrac.length != fracs.length) {
-          newfrac = newfrac.slice(-digits)
-          ndau = ndau + 1
-        }
-        fracs = newfrac
-      }
+    let result = sign + commafy(commas, ndau) + '.' + fracs.toString()
+    // if we need all 8 digits we're done, just return it
+    if (digits === 8) {
+      return result
     }
 
-    // we finally have all the bits
-    return sign + commafy(commas, ndau) + '.' + fracs.toString()
+    // otherwise, we need to try rounding it
+    let nextdigit = fs[digits]
+    return roundUp(result, nextdigit >= '5')
   },
 
   // This parses a string intended to be a number of ndau and converts it
