@@ -1,4 +1,4 @@
-const NAPU_PER_NDAU = 100000000
+const constants = require('../constants/constants')
 
 /**
  * This function will take a string passed in and truncate
@@ -76,10 +76,10 @@ module.exports.formatNapuForDisplay = (napu, digits, commas) => {
     sign = '-'
   }
 
-  let ndau = Math.floor(napu / NAPU_PER_NDAU)
-  let frac = napu % NAPU_PER_NDAU
+  let ndau = Math.floor(napu / constants.QUANTA_PER_UNIT)
+  let frac = napu % constants.QUANTA_PER_UNIT
 
-  if (digits === 0 && frac >= NAPU_PER_NDAU / 2) {
+  if (digits === 0 && frac >= constants.QUANTA_PER_UNIT / 2) {
     ndau = ndau + 1
   }
 
@@ -109,7 +109,7 @@ module.exports.formatNapuForDisplay = (napu, digits, commas) => {
 // helper routine to use complicated regex to
 // inject commas into a number at the right places.
 const commafy = (commas, n) => {
-  ns = n.toString()
+  let ns = n.toString()
   if (commas) {
     ns = ns.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
@@ -138,13 +138,13 @@ module.exports.parseNdau = s => {
     throw Error(s + ' is not a number')
   }
   // ok, we know all the parts are valid, put it together
-  sign = parts[1]
-  whole = parts[2]
-  frac = parts[4]
+  let sign = parts[1]
+  let whole = parts[2]
+  let frac = parts[4]
 
   let napu = 0
   if (whole) {
-    napu += parseInt(whole) * NAPU_PER_NDAU
+    napu += parseInt(whole) * constants.QUANTA_PER_UNIT
   }
   if (frac) {
     frac = (frac + '00000000').slice(0, 8)

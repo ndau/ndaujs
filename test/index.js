@@ -1,5 +1,5 @@
 const expect = require('chai').expect
-const ndaujs = require('../index')
+const ndaujs = require('../src/keyaddress/address')
 
 describe('Address related functions', () => {
   describe('#truncateAddress', () => {
@@ -134,9 +134,9 @@ describe('ndau formatting', () => {
 })
 
 const randomDigits = n => {
-  let s = ''
-  for (i = 0; i < n; i++) {
-    d = Math.floor(Math.random() * 10)
+  let s = 0
+  for (let i = 0; i < n; i++) {
+    let d = Math.floor(Math.random() * 10)
     s += d
   }
   return s

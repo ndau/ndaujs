@@ -1,4 +1,4 @@
-const address = require('./src/address')
+const address = require('./src/keyaddress/address')
 
 module.exports = {
   truncateAddress: address.truncateAddress,
