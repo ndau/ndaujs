@@ -6,7 +6,7 @@ describe('...testing ServiceDiscovery', () => {
   it('getBlockchainServiceNodeURL should return something back', async () => {
     MockHelper.mockServiceDiscovery()
 
-    const serverUrl = await ServiceDiscovery.getBlockchainServiceNodeURL()
+    const serverUrl = await ServiceDiscovery.getBlockchainServiceNode()
 
     // its testnet because that is what we pull in within MockHelper
     expect(serverUrl.includes('api.ndau.tech:31300')).to.be.true
@@ -15,7 +15,7 @@ describe('...testing ServiceDiscovery', () => {
   it('getRecoverServiceNodeURL should return something back', async () => {
     MockHelper.mockServiceDiscovery()
 
-    const serverUrl = await ServiceDiscovery.getRecoveryServiceNodeURL()
+    const serverUrl = await ServiceDiscovery.getRecoveryServiceNode()
 
     // its testnet because that is what we pull in within MockHelper
     expect(serverUrl.includes('recovery.ndau.tech')).to.be.true

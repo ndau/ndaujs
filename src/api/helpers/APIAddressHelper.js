@@ -6,11 +6,11 @@ const BLOCKCHAIN = 1
 const RECOVERY = 2
 
 const getBlockchainNode = async () => {
-  return await ServiceDiscovery.getBlockchainServiceNodeURL()
+  return await ServiceDiscovery.getBlockchainServiceNode()
 }
 
 const getRecoveryNode = async () => {
-  const node = await ServiceDiscovery.getRecoveryServiceNodeURL()
+  const node = await ServiceDiscovery.getRecoveryServiceNode()
   return node
 }
 

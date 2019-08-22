@@ -3,16 +3,14 @@ This is a common JavaScript repository. This will contain any code that can be s
 
 To use this repository you must add is as a private repository within your `package.json`. To do that simply run this command:
 
-`npm install -S oneiro/ndaujs#master`
+`npm install oneiro-ndev/ndaujs#master`
 
 This will add the repo to your `package.json`. See below for the available functions.
 
-## JavaScript Utilities
-Here is a list of all the utilities present within this archive.
+## Testing
+Testing is the only way to run these functions so there should be as many tests as you can think of for your functions in this repo. When you run the test command below the code is transpiled with babel into the bin folder and then run there. This is to make sure that a ES5 consumer would like to use this code, they can.
 
-### `truncateAddress`
-Truncate the address to a readable string within the application
-#### Parameters
-`address` Address to be truncated
-#### Return Values
-The 16 character truncated address
+`yarn test`
+
+## Functions Availble
+Please check the top level `index.js` for all functions available and how to add your own.

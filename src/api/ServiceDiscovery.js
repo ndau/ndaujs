@@ -24,7 +24,7 @@ const recoveryCache = {
   nodes: []
 }
 
-const getBlockchainServiceNodeURL = async (
+const getBlockchainServiceNode = async (
   logger = console,
   environment = TESTNET
 ) => {
@@ -51,7 +51,7 @@ const getBlockchainServiceNodeURL = async (
   }
 }
 
-const getRecoveryServiceNodeURL = async (
+const getRecoveryServiceNode = async (
   logger = console,
   environment = TESTNET
 ) => {
@@ -107,7 +107,7 @@ const _parseServicesForNodes = async (
 }
 
 export default {
-  getBlockchainServiceNodeURL,
-  getRecoveryServiceNodeURL,
+  getBlockchainServiceNode,
+  getRecoveryServiceNode,
   invalidateCache
 }
