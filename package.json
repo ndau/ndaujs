@@ -4,8 +4,7 @@
   "description": "A JavaScript common repository for ndau",
   "main": "index.js",
   "scripts": {
-    "test": "npm run compile && cd lib && mocha --recursive",
-    "compile": "rm -rf lib && npx babel src --out-dir lib/src && npx babel test --out-dir lib/test --ignore test/index.js && cp -f test/*.js* lib/test"
+    "test": "npx mocha --require @babel/register"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,6 @@
   "homepage": "https://github.com/oneiro-ndev/ndaujs#readme",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "@babel/plugin-transform-runtime": "^7.5.5",
     "axios": "^0.19.0",
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
@@ -31,7 +29,10 @@
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
     "axios-mock-adapter": "^1.17.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3"
