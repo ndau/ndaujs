@@ -8,7 +8,7 @@ To use this repository you must add is as a private repository within your `pack
 This will add the repo to your `package.json`. See below for the available functions.
 
 ## Testing
-Testing is the only way to run these functions so there should be as many tests as you can think of for your functions in this repo. When you run the test command below the code is transpiled with babel into the bin folder and then run there. This is to make sure that a ES5 consumer would like to use this code, they can.
+Testing is the only way to run these functions so there should be as many tests as you can think of for your functions in this repo. When you run the test command below, the code is transpiled with babel into the bin folder and then run there. This is to make this library consumable in ES5.
 
 `yarn test`
 
