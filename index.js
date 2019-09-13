@@ -1,5 +1,7 @@
 const address = require('./src/keyaddress/address')
 const APIAddressHelper = require('./src/api/helpers/APIAddressHelper')
+const WalletStore = require('./src/stores/WalletStore')
+const UserStore = require('./src/stores/UserStore')
 
 module.exports = {
   // These functions existed in the first release of ndaujs.
@@ -24,5 +26,7 @@ module.exports = {
   // we only support ES6 consumers as the code pooped down is not
   // transpiled yet. There is an issue in oneiro-ndev/ndaujs which is
   // issue #12.
-  APIAddressHelper
+  APIAddressHelper,
+  WalletStore,
+  UserStore
 }
