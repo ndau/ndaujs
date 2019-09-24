@@ -1,5 +1,5 @@
-import UserStore from '../src/stores/UserStore'
-import KeyPathHelper from '../src/api/helpers/KeyPathHelper'
+import UserStore from '../../src/stores/UserStore'
+import KeyPathHelper from '../../src/api/helpers/KeyPathHelper'
 import { expect } from 'chai'
 
 const testUser1 = {

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import WalletStore from '../src/stores/WalletStore'
-import KeyPathHelper from '../src/api/helpers/KeyPathHelper'
+import WalletStore from '../../src/stores/WalletStore'
+import KeyPathHelper from '../../src/api/helpers/KeyPathHelper'
 
 const wallet1 = {
   '7MP-4FV': {
