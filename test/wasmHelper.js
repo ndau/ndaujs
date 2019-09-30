@@ -1,6 +1,7 @@
+import { expect } from 'chai'
 import fs from 'fs'
 import { promisify } from 'util'
-require('/Users/josh/dev/go/src/github.com/oneiro-ndev/ndaumath/cmd/keyaddr/wasm_exec')
+require('./wasm_exec')
 const readFile = promisify(fs.readFile)
 
 const toUint8Array = b => {
@@ -26,18 +27,25 @@ const instantiateStreaming = (source, importObject) => {
     })
 }
 
-console.log('DECLARED HERE')
 before(done => {
-  console.log('STARTING THE LOADER')
   const go = new Go()
-  instantiateStreaming(
-    readFile(
-      '/Users/josh/dev/go/src/github.com/oneiro-ndev/ndaumath/cmd/keyaddr/keyaddr.wasm'
-    ),
-    go.importObject
-  )
+  instantiateStreaming(readFile(`${__dirname}/keyaddr.wasm`), go.importObject)
     .then(function (result) {
       go.run(result.instance)
+    })
+    .then(() => {
+      global.Keyaddr = {
+        newKey: promisify(KeyaddrNS.newKey),
+        wordsToBytes: promisify(KeyaddrNS.wordsToBytes),
+        deriveFrom: promisify(KeyaddrNS.deriveFrom),
+        ndauAddress: promisify(KeyaddrNS.ndauAddress),
+        toPublic: promisify(KeyaddrNS.toPublic),
+        child: promisify(KeyaddrNS.child),
+        sign: promisify(KeyaddrNS.sign),
+        hardenedChild: promisify(KeyaddrNS.hardenedChild),
+        newKey: promisify(KeyaddrNS.newKey),
+        exit: promisify(KeyaddrNS.exit)
+      }
     })
     .then(done)
 })

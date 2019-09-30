@@ -22,14 +22,17 @@ const DEV_NET = 'devnet'
  * @param {string} lastAccountData
  */
 const setLastAccountData = async lastAccountData => {
-  await GeneralStore.setItem(LAST_ACCOUNT_DATA, JSON.stringify(lastAccountData))
+  await GeneralStore.store.setItem(
+    LAST_ACCOUNT_DATA,
+    JSON.stringify(lastAccountData)
+  )
 }
 
 /**
  * Get the cached last account data out of GeneralStore
  */
 const getLastAccountData = async () => {
-  const lastAccountData = await GeneralStore.getItem(LAST_ACCOUNT_DATA)
+  const lastAccountData = await GeneralStore.store.getItem(LAST_ACCOUNT_DATA)
   return JSON.parse(lastAccountData)
 }
 
@@ -39,7 +42,7 @@ const getLastAccountData = async () => {
 const useMainNet = async () => {
   ServiceDiscovery.invalidateCache()
   SettingsStore.setApplicationNetwork(MAIN_NET)
-  await GeneralStore.setItem(APPLICATION_NETWORK, MAIN_NET)
+  await GeneralStore.store.setItem(APPLICATION_NETWORK, MAIN_NET)
 }
 
 /**
@@ -48,7 +51,7 @@ const useMainNet = async () => {
 const useTestNet = async () => {
   ServiceDiscovery.invalidateCache()
   SettingsStore.setApplicationNetwork(TEST_NET)
-  await GeneralStore.setItem(APPLICATION_NETWORK, TEST_NET)
+  await GeneralStore.store.setItem(APPLICATION_NETWORK, TEST_NET)
 }
 
 /**
@@ -57,14 +60,14 @@ const useTestNet = async () => {
 const useDevNet = async () => {
   ServiceDiscovery.invalidateCache()
   SettingsStore.setApplicationNetwork(DEV_NET)
-  await GeneralStore.setItem(APPLICATION_NETWORK, DEV_NET)
+  await GeneralStore.store.setItem(APPLICATION_NETWORK, DEV_NET)
 }
 
 const _ifNetworkNotSetDefaultIt = async () => {
-  let network = await GeneralStore.getItem(APPLICATION_NETWORK)
+  let network = await GeneralStore.store.getItem(APPLICATION_NETWORK)
   if (!network) {
     await useMainNet()
-    network = await GeneralStore.getItem(APPLICATION_NETWORK)
+    network = await GeneralStore.store.getItem(APPLICATION_NETWORK)
   }
 
   // This is to change the 1.8.1 version of ndau wallet to the newest format
@@ -83,7 +86,9 @@ const _ifNetworkNotSetDefaultIt = async () => {
 const isMainNet = async () => {
   await _ifNetworkNotSetDefaultIt()
 
-  const applicationNetwork = await GeneralStore.getItem(APPLICATION_NETWORK)
+  const applicationNetwork = await GeneralStore.store.getItem(
+    APPLICATION_NETWORK
+  )
   return applicationNetwork && applicationNetwork.toLowerCase() === MAIN_NET
 }
 
@@ -93,7 +98,9 @@ const isMainNet = async () => {
 const isTestNet = async () => {
   await _ifNetworkNotSetDefaultIt()
 
-  const applicationNetwork = await GeneralStore.getItem(APPLICATION_NETWORK)
+  const applicationNetwork = await GeneralStore.store.getItem(
+    APPLICATION_NETWORK
+  )
   return applicationNetwork && applicationNetwork.toLowerCase() === TEST_NET
 }
 
@@ -103,7 +110,9 @@ const isTestNet = async () => {
 const isDevNet = async () => {
   await _ifNetworkNotSetDefaultIt()
 
-  const applicationNetwork = await GeneralStore.getItem(APPLICATION_NETWORK)
+  const applicationNetwork = await GeneralStore.store.getItem(
+    APPLICATION_NETWORK
+  )
   return applicationNetwork && applicationNetwork.toLowerCase() === DEV_NET
 }
 
@@ -113,7 +122,9 @@ const isDevNet = async () => {
 const getNetwork = async () => {
   await _ifNetworkNotSetDefaultIt()
 
-  const applicationNetwork = await GeneralStore.getItem(APPLICATION_NETWORK)
+  const applicationNetwork = await GeneralStore.store.getItem(
+    APPLICATION_NETWORK
+  )
   return applicationNetwork
 }
 
@@ -124,7 +135,7 @@ const getNetwork = async () => {
  */
 const getAllKeys = async () => {
   try {
-    const keys = await GeneralStore.getAllKeys()
+    const keys = await GeneralStore.store.getAllKeys()
     const newKeys = keys
       .map(key => {
         return key.replace(STORAGE_KEY_PREFIX, '')

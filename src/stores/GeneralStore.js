@@ -9,19 +9,17 @@ class GeneralStore {
     if (!GeneralStore.instance) {
       GeneralStore.instance = this
     }
+    this.store = {}
 
     return GeneralStore.instance
   }
 
   setStore (store) {
-    GeneralStore.prototype = Object.assign(
-      GeneralStore.prototype,
-      store.prototype
-    )
+    this.store = store
   }
 }
 
 const instance = new GeneralStore()
-Object.freeze(instance)
+// Object.freeze(instance)
 
 export default instance

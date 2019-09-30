@@ -16,7 +16,7 @@ const PASSWORD_INDEX = 'PasswordIndex'
 class MultiSafe {
   // a MultiSafe is created with the constructor but may not be used until it
   // is initialized with create(), which is an async function because of
-  // GeneralStore.
+  // GeneralStore.store.
   constructor () {
     this.storageKey = ''
   }
@@ -55,7 +55,7 @@ class MultiSafe {
 
   async _getMultisafeKeys () {
     try {
-      const keys = await GeneralStore.getAllKeys()
+      const keys = await GeneralStore.store.getAllKeys()
       const newKeys = keys.filter(
         key => key.slice(0, MULTISAFE_PREFIX.length) == MULTISAFE_PREFIX
       )
@@ -73,7 +73,7 @@ class MultiSafe {
 
   // _storeString stores a string in GeneralStore
   async _storeString (key, value) {
-    await GeneralStore.setItem(key, value)
+    await GeneralStore.store.setItem(key, value)
   }
 
   // _storeObject stores an object in GeneralStore by
@@ -96,7 +96,7 @@ class MultiSafe {
   // _retrieveString retrieves a string from GeneralStore
   async _retrieveString (key) {
     try {
-      let item = await GeneralStore.getItem(key)
+      let item = await GeneralStore.store.getItem(key)
       return item
     } catch (err) {
       throw err
@@ -253,7 +253,7 @@ class MultiSafe {
    */
   async getStorageKeys () {
     try {
-      const keys = await GeneralStore.getAllKeys()
+      const keys = await GeneralStore.store.getAllKeys()
       const newKeys = keys
         .filter(key => key.indexOf(MULTISAFE_DATA_PREFIX) !== -1)
         .map(key => {
@@ -298,7 +298,7 @@ class MultiSafe {
    */
   static async isAMultiSafePresent () {
     try {
-      const keys = await GeneralStore.getAllKeys()
+      const keys = await GeneralStore.store.getAllKeys()
       for (let key of keys) {
         if (
           key.substring(0, MULTISAFE_META_PREFIX.length) ===
