@@ -69,13 +69,13 @@ const getBIP44Addresses = async (rootPrivateKey, startIndex, endIndex) => {
       const derivedKey = await Keyaddr.deriveFrom(
         rootPrivateKey,
         '/',
-        KeyPathHelper.accountCreationKeyPath() + `/${i}`
+        KeyPathHelper.accountCreationKeyPath + `/${i}`
       )
 
       const address = await Keyaddr.ndauAddress(derivedKey)
 
       if (address) {
-        addresses[address] = KeyPathHelper.accountCreationKeyPath() + `/${i}`
+        addresses[address] = KeyPathHelper.accountCreationKeyPath + `/${i}`
       }
     }
   } catch (error) {
@@ -188,7 +188,7 @@ const createWallet = async (
       numberOfAccounts,
       rootDerivedPath === ''
         ? rootDerivedPath
-        : KeyPathHelper.accountCreationKeyPath(),
+        : KeyPathHelper.accountCreationKeyPath,
       chainId,
       recoveryBytes
     )
@@ -258,7 +258,7 @@ const createNewAccount = async (wallet, numberOfAccounts = 1) => {
     wallet.keys[wallet.accountCreationKeyHash].privateKey
   const pathIndexIncrementor = DataFormatHelper.getNextPathIndex(
     wallet,
-    KeyPathHelper.accountCreationKeyPath()
+    KeyPathHelper.accountCreationKeyPath
   )
 
   for (let i = 0; i < numberOfAccounts; i++) {
@@ -298,17 +298,19 @@ const _createAccountCreationKey = async recoveryBytes => {
   const accountCreationKey = await Keyaddr.deriveFrom(
     rootPrivateKey,
     '/',
-    KeyPathHelper.accountCreationKeyPath()
+    KeyPathHelper.accountCreationKeyPath
   )
+  console.log('ACCT', KeyPathHelper.accountCreationKeyPath)
   return accountCreationKey
 }
 
 const _createInitialKeys = async (wallet, accountCreationKey) => {
+  console.log('creating initial keys', accountCreationKey)
   const accountCreationPublicKey = await Keyaddr.toPublic(accountCreationKey)
   wallet.keys[DataFormatHelper.create8CharHash(accountCreationKey)] = createKey(
     accountCreationKey,
     accountCreationPublicKey,
-    KeyPathHelper.accountCreationKeyPath()
+    KeyPathHelper.accountCreationKeyPath
   )
 }
 
@@ -318,6 +320,7 @@ const createKey = (privateKey, publicKey, path) => {
   if (publicKey) newKey.publicKey = publicKey
   newKey.derivedFromRoot = AppConstants.DERIVED_ROOT_YES
   newKey.path = path
+  console.log('Doing this new key', newKey)
   return newKey.toJSON()
 }
 
@@ -325,7 +328,7 @@ const _createAccount = async (
   accountCreationKey,
   childIndex,
   wallet,
-  rootDerivedPath = KeyPathHelper.accountCreationKeyPath(),
+  rootDerivedPath = KeyPathHelper.accountCreationKeyPath,
   chainId = AppConstants.MAINNET_ADDRESS,
   recoveryPhraseBytes
 ) => {
@@ -426,7 +429,7 @@ const _createAccounts = async (
   numberOfAccounts,
   accountCreationKey,
   wallet,
-  rootDerivedPath = KeyPathHelper.accountCreationKeyPath(),
+  rootDerivedPath = KeyPathHelper.accountCreationKeyPath,
   chainId = AppConstants.MAINNET_ADDRESS,
   recoveryPhraseBytes
 ) => {

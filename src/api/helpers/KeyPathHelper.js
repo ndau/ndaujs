@@ -1,47 +1,21 @@
 import constants from '../../constants/constants'
 import DataFormatHelper from './DataFormatHelper'
 
-const accountCreationKeyPath = () => {
-  return (
-    '/' +
-    constants.HARDENED_CHILD_BIP_44 +
-    "'" +
-    '/' +
-    constants.NDAU_CONSTANT +
-    "'" +
-    '/' +
-    constants.ACCOUNT_CREATION_KEY_CHILD
-  )
-}
+const accountCreationKeyPath = `/${constants.HARDENED_CHILD_BIP_44}'/${
+  constants.NDAU_CONSTANT
+}'/${constants.ACCOUNT_CREATION_KEY_CHILD}`
 
-const validationKeyPath = () => {
-  return accountCreationKeyPath() + '/' + constants.VALIDATION_KEY + "'"
-}
+const validationKeyPath = `${accountCreationKeyPath}/${
+  constants.VALIDATION_KEY
+}'`
 
-const legacyValidationKeyPath1 = () => {
-  return (
-    '/' +
-    constants.HARDENED_CHILD_BIP_44 +
-    "'" +
-    '/' +
-    constants.NDAU_CONSTANT +
-    "'" +
-    '/' +
-    constants.LEGACY_VALIDATION_KEY
-  )
-}
+const legacyValidationKeyPath1 = `/${constants.HARDENED_CHILD_BIP_44}'/${
+  constants.NDAU_CONSTANT
+}'/${constants.LEGACY_VALIDATION_KEY}`
 
-const legacyValidationKeyPath2 = () => {
-  return accountCreationKeyPath() + '/' + constants.VALIDATION_KEY
-}
-
-const legacyValidationKeyPath3 = () => {
-  return legacyValidationKeyPath2()
-}
-
-const legacyValidationKeyPath4 = () => {
-  return legacyValidationKeyPath2()
-}
+const legacyValidationKeyPath2 = `${accountCreationKeyPath}/${
+  constants.VALIDATION_KEY
+}`
 
 const isBIP44 = address => {
   return address.startsWith('/44')
@@ -52,7 +26,7 @@ const getRootAccountValidationKeyPath = (wallet, account) => {
   let accountChildIndex = ''
   if (isBIP44(accountPath)) {
     accountChildIndex = accountPath.substring(
-      accountCreationKeyPath().length + 1,
+      accountCreationKeyPath.length + 1,
       accountPath.length
     )
   } else {
@@ -61,7 +35,7 @@ const getRootAccountValidationKeyPath = (wallet, account) => {
     accountChildIndex = accountPath.substring(1, accountPath.length)
   }
 
-  return `${validationKeyPath()}/${accountChildIndex}'`
+  return `${validationKeyPath}/${accountChildIndex}'`
 }
 
 const getLegacy2Thru4RootAccountValidationKeyPath = (wallet, account) => {
@@ -69,7 +43,7 @@ const getLegacy2Thru4RootAccountValidationKeyPath = (wallet, account) => {
   let accountChildIndex = ''
   if (isBIP44(accountPath)) {
     accountChildIndex = accountPath.substring(
-      accountCreationKeyPath().length + 1,
+      accountCreationKeyPath.length + 1,
       accountPath.length
     )
   } else {
@@ -78,7 +52,7 @@ const getLegacy2Thru4RootAccountValidationKeyPath = (wallet, account) => {
     accountChildIndex = accountPath.substring(1, accountPath.length)
   }
 
-  return `${legacyValidationKeyPath2()}/${accountChildIndex}`
+  return `${legacyValidationKeyPath2}/${accountChildIndex}`
 }
 
 const getLegacy2Thru4AccountValidationKeyPath = (wallet, account, index) => {
@@ -87,7 +61,7 @@ const getLegacy2Thru4AccountValidationKeyPath = (wallet, account, index) => {
     account
   )
   if (!index) {
-    index = DataFormatHelper.getNextPathIndex(wallet, validationKeyPath())
+    index = DataFormatHelper.getNextPathIndex(wallet, validationKeyPath)
   }
   return `${rootAccountValidationPath}/${index}`
 }
@@ -110,8 +84,6 @@ export default {
   getLegacy2Thru4AccountValidationKeyPath,
   legacyValidationKeyPath1,
   legacyValidationKeyPath2,
-  legacyValidationKeyPath3,
-  legacyValidationKeyPath4,
   getAccountValidationKeyPath,
   getRootAccountValidationKeyPath
 }

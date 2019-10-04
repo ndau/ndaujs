@@ -32,7 +32,7 @@ describe('...testing DataFormatHelper', () => {
             'npubaard3952aaaaaetmg8gtxb6g75n9i3fxi8y3465qgjb7mmfv47nupz5kgettw7tpkazt5utca85h8ri4qquegqs8byaqhwx66uhnxx8xz4dqfzbgavvs4jkbj446',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6nq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmidzkjbfrw628y7c5zit8vcz6x7hjuxgfeu4kqaqx6',
-          path: KeyPathHelper.accountCreationKeyPath() + '/1',
+          path: KeyPathHelper.accountCreationKeyPath + '/1',
           derivedFromRoot: 'yes'
         },
         '1e12ca49': {
@@ -40,14 +40,14 @@ describe('...testing DataFormatHelper', () => {
             'npubaard3952aaaaaetmg8gtxb6g75n9i3fxi8y3465qgjb7mmfv47nupz5kgettw7tpkazt5utca85h8ri4qquegqs8byaqhwx66uhnxx8xz4dqfzbgavvs4jkbj447',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6nq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmidzkjbfrw628y7c5zit8vcz6x7hjuxgfeu4kqaqx7',
-          path: KeyPathHelper.accountCreationKeyPath() + '/10000',
+          path: KeyPathHelper.accountCreationKeyPath + '/10000',
           derivedFromRoot: 'yes'
         },
         '1e48ba8c': {
           publicKey: '',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6sq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmid3kjbfrw628y7c5zit8vcz6x7hjuxgfeu4kasdf4',
-          path: KeyPathHelper.accountCreationKeyPath(),
+          path: KeyPathHelper.accountCreationKeyPath,
           derivedFromRoot: 'yes'
         }
       }
@@ -55,7 +55,7 @@ describe('...testing DataFormatHelper', () => {
 
     const nextPathIndex = DataFormatHelper.getNextPathIndex(
       wallet,
-      KeyPathHelper.accountCreationKeyPath()
+      KeyPathHelper.accountCreationKeyPath
     )
     expect(nextPathIndex).to.equal(10001)
   })
@@ -88,7 +88,7 @@ describe('...testing DataFormatHelper', () => {
             'npubaard3952aaaaaetmg8gtxb6g75n9i3fxi8y3465qgjb7mmfv47nupz5kgettw7tpkazt5utca85h8ri4qquegqs8byaqhwx66uhnxx8xz4dqfzbgavvs4jkbj446',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6nq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmidzkjbfrw628y7c5zit8vcz6x7hjuxgfeu4kqaqx6',
-          path: KeyPathHelper.accountCreationKeyPath() + '/1',
+          path: KeyPathHelper.accountCreationKeyPath + '/1',
           derivedFromRoot: 'yes'
         },
         '1e12ca49': {
@@ -96,14 +96,14 @@ describe('...testing DataFormatHelper', () => {
             'npubaard3952aaaaaetmg8gtxb6g75n9i3fxi8y3465qgjb7mmfv47nupz5kgettw7tpkazt5utca85h8ri4qquegqs8byaqhwx66uhnxx8xz4dqfzbgavvs4jkbj447',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6nq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmidzkjbfrw628y7c5zit8vcz6x7hjuxgfeu4kqaqx7',
-          path: KeyPathHelper.accountCreationKeyPath() + '/2',
+          path: KeyPathHelper.accountCreationKeyPath + '/2',
           derivedFromRoot: 'yes'
         },
         '1e48ba8c': {
           publicKey: '',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6sq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmid3kjbfrw628y7c5zit8vcz6x7hjuxgfeu4kasdf4',
-          path: KeyPathHelper.accountCreationKeyPath(),
+          path: KeyPathHelper.accountCreationKeyPath,
           derivedFromRoot: 'yes'
         }
       }
@@ -111,7 +111,7 @@ describe('...testing DataFormatHelper', () => {
 
     const nextPathIndex = DataFormatHelper.getNextPathIndex(
       wallet,
-      KeyPathHelper.accountCreationKeyPath()
+      KeyPathHelper.accountCreationKeyPath
     )
     expect(nextPathIndex).to.equal(3)
   })
@@ -218,7 +218,7 @@ describe('...testing DataFormatHelper', () => {
     expect(
       DataFormatHelper.getNextPathIndex(
         wallet,
-        KeyPathHelper.accountCreationKeyPath()
+        KeyPathHelper.accountCreationKeyPath
       )
     ).to.equal(10001)
     expect(
@@ -323,7 +323,7 @@ describe('...testing DataFormatHelper', () => {
             'npubaard3952aaaaaetmg8gtxb6g75n9i3fxi8y3465qgjb7mmfv47nupz5kgettw7tpkazt5utca85h8ri4qquegqs8byaqhwx66uhnxx8xz4dqfzbgavvs4jkbj446',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6nq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmidzkjbfrw628y7c5zit8vcz6x7hjuxgfeu4kqaqx6',
-          path: KeyPathHelper.accountCreationKeyPath() + '/3000',
+          path: KeyPathHelper.accountCreationKeyPath + '/3000',
           derivedFromRoot: 'yes'
         },
         '1e12ca49': {
@@ -379,7 +379,7 @@ describe('...testing DataFormatHelper', () => {
             'npubaard3952aaaaaetmg8gtxb6g75n9i3fxi8y3465qgjb7mmfv47nupz5kgettw7tpkazt5utca85h8ri4qquegqs8byaqhwx66uhnxx8xz4dqfzbgavvs4jkbj446',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6nq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmidzkjbfrw628y7c5zit8vcz6x7hjuxgfeu4kqaqx6',
-          path: KeyPathHelper.accountCreationKeyPath() + '/3000',
+          path: KeyPathHelper.accountCreationKeyPath + '/3000',
           derivedFromRoot: 'yes'
         },
         '1e12ca49': {
@@ -402,7 +402,7 @@ describe('...testing DataFormatHelper', () => {
 
     const nextPathIndex = DataFormatHelper.getNextPathIndex(
       wallet,
-      KeyPathHelper.accountCreationKeyPath()
+      KeyPathHelper.accountCreationKeyPath
     )
     expect(nextPathIndex).to.equal(3001)
   })
@@ -435,7 +435,7 @@ describe('...testing DataFormatHelper', () => {
             'npubaard3952aaaaaetmg8gtxb6g75n9i3fxi8y3465qgjb7mmfv47nupz5kgettw7tpkazt5utca85h8ri4qquegqs8byaqhwx66uhnxx8xz4dqfzbgavvs4jkbj446',
           privateKey:
             'npvt8ard395saaaaafnu25p694rkaxkir29ux5quru9b6nq4m3au4gugm2riue5xuqyyeabkkdcz9mc688665xmidzkjbfrw628y7c5zit8vcz6x7hjuxgfeu4kqaqx6',
-          path: KeyPathHelper.accountCreationKeyPath() + '/3000',
+          path: KeyPathHelper.accountCreationKeyPath + '/3000',
           derivedFromRoot: 'yes'
         },
         '1e12ca49': {

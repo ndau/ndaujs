@@ -64,8 +64,8 @@ const _generateLegacy1ValidationKey = async (wallet, account, index) => {
 const _generateLegacy2ValidationKey = async (wallet, account, index) => {
   const privateValidationRootKey = await Keyaddr.deriveFrom(
     wallet.keys[wallet.accountCreationKeyHash].privateKey,
-    KeyPathHelper.accountCreationKeyPath(),
-    KeyPathHelper.legacyValidationKeyPath2()
+    KeyPathHelper.accountCreationKeyPath,
+    KeyPathHelper.legacyValidationKeyPath2
   )
 
   const keyPath = KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(
@@ -86,84 +86,6 @@ const _generateLegacy2ValidationKey = async (wallet, account, index) => {
 }
 
 /**
- * This is the correct method to use for creating the third generation of
- * validation keys. This is a variation of the first and was the correct way
- * to do the former validation key. The path for a validation key is as follows:
- *
- * /44'/20036'/100/10000/x/y
- * or
- * /x/10000/x/y (for root accounts)
- *
- * where x is the accounts index and y will be the validation key index
- *
- * @param {Wallet} wallet
- * @param {Account} account
- * @param {number} index
- */
-const _generateLegacy3ValidationKey = async (wallet, account, index) => {
-  const privateValidationRootKey = await Keyaddr.deriveFrom(
-    wallet.keys[wallet.accountCreationKeyHash].privateKey,
-    KeyPathHelper.accountCreationKeyPath(),
-    KeyPathHelper.legacyValidationKeyPath3()
-  )
-
-  const keyPath = KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(
-    wallet,
-    account,
-    index
-  )
-
-  const validationPrivateKey = await Keyaddr.deriveFrom(
-    privateValidationRootKey,
-    KeyPathHelper.legacyValidationKeyPath3(),
-    keyPath
-  )
-
-  const validationPublicKey = await Keyaddr.toPublic(validationPrivateKey)
-
-  return KeyMaster.createKey(validationPrivateKey, validationPublicKey, keyPath)
-}
-
-/**
- * This is the correct method to use for creating a forth generation
- * validation key. This is to address a ndautool bug that was present.
- * It is a variation of the ndau bug generated in the first generation.
- *
- * /44'/20036'/100/x/44'/20036'/100/10000/x/y
- * or
- * /x/44'/20036'/100/10000/x/y (for root accounts)
- *
- * where x is the accounts index and y will be the validation key
- * index.
- *
- * @param {Wallet} wallet
- * @param {Account} account
- * @param {number} index
- */
-const _generateLegacy4ValidationKey = async (wallet, account, index) => {
-  const keyPath = KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(
-    wallet,
-    account,
-    index
-  )
-
-  const validationPrivateKey = await Keyaddr.deriveFrom(
-    wallet.keys[account.ownershipKey].privateKey,
-    '/',
-    keyPath
-  )
-
-  const validationPublicKey = await Keyaddr.toPublic(validationPrivateKey)
-
-  const actualPath = wallet.keys[account.ownershipKey].path + keyPath
-  return KeyMaster.createKey(
-    validationPrivateKey,
-    validationPublicKey,
-    actualPath
-  )
-}
-
-/**
  * This is the correct method to use for generating validation keys.
  * The path for a validation key is as follows:
  *
@@ -180,8 +102,8 @@ const _generateLegacy4ValidationKey = async (wallet, account, index) => {
 const _generateValidationKey = async (wallet, account, index) => {
   const privateValidationRootKey = await Keyaddr.deriveFrom(
     wallet.keys[wallet.accountCreationKeyHash].privateKey,
-    KeyPathHelper.accountCreationKeyPath(),
-    KeyPathHelper.validationKeyPath()
+    KeyPathHelper.accountCreationKeyPath,
+    KeyPathHelper.validationKeyPath
   )
 
   const keyPath = KeyPathHelper.getAccountValidationKeyPath(
@@ -192,7 +114,7 @@ const _generateValidationKey = async (wallet, account, index) => {
 
   const validationPrivateKey = await Keyaddr.deriveFrom(
     privateValidationRootKey,
-    KeyPathHelper.validationKeyPath(),
+    KeyPathHelper.validationKeyPath,
     keyPath
   )
 
@@ -261,12 +183,6 @@ const getValidationKeys = async (wallet, account, startIndex, endIndex) => {
     for (let i = startIndex; i <= endIndex; i++) {
       const currentKey = await _generateValidationKey(wallet, account, i)
       keys[currentKey.publicKey] = currentKey
-
-      const legacyKey4 = await _generateLegacy4ValidationKey(wallet, account, i)
-      keys[legacyKey4.publicKey] = legacyKey4
-
-      const legacyKey3 = await _generateLegacy3ValidationKey(wallet, account, i)
-      keys[legacyKey3.publicKey] = legacyKey3
 
       const legacyKey2 = await _generateLegacy2ValidationKey(wallet, account, i)
       keys[legacyKey2.publicKey] = legacyKey2
