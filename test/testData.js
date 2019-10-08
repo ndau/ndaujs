@@ -685,7 +685,7 @@ const testUser = {
           publicKey: '',
           privateKey:
             'npvta8jaftcjed7stf8bkz3nnipyqahdau5vexjr52ez4wvcuusgimc7fjac52pbwa4fdissaaaanv2qizmsubdetvqmqys8fwvj4pw2b9vg9jire7cd3xm9cg74sc75yu44tbkhh23s',
-          path: KeyPathHelper.accountCreationKeyPath(),
+          path: KeyPathHelper.accountCreationKeyPath,
           derivedFromRoot: 'yes'
         },
         b32d1dfb: {
