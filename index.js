@@ -3,6 +3,8 @@ const APIAddressHelper = require('./src/api/helpers/APIAddressHelper')
 const WalletStore = require('./src/stores/WalletStore')
 const UserStore = require('./src/stores/UserStore')
 const GeneralStore = require('./src/stores/GeneralStore')
+const DataFormatHelper = require('./src/api/helpers/DataFormatHelper')
+const RecoveryPhraseHelper = require('./src/api/helpers/RecoveryPhraseHelper')
 module.exports = {
   // These functions existed in the first release of ndaujs.
   // These methods are deprecated as of version 1.3.0 in place
@@ -29,6 +31,7 @@ module.exports = {
   APIAddressHelper,
   WalletStore,
   UserStore,
-
-  GeneralStore
+  GeneralStore,
+  DataFormatHelper,
+  RecoveryPhraseHelper
 }

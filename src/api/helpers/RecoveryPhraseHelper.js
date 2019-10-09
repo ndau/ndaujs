@@ -3,7 +3,6 @@ import AccountAPI from '../AccountAPI'
 import Constants from '../../constants/constants'
 import Config from '../../constants/config'
 import DataFormatHelper from './DataFormatHelper'
-import LogStore from '../../stores/LogStore'
 import UserStore from '../../stores/UserStore'
 import UserData from '../../model/UserData'
 
@@ -41,7 +40,7 @@ const recoverUser = async (recoveryPhraseString, user) => {
   const rootPrivateKey = await Keyaddr.newKey(recoveryPhraseBytes)
 
   const bip44Accounts = await checkAddresses(rootPrivateKey)
-  LogStore.log(`BIP44 accounts found: ${JSON.stringify(bip44Accounts)}`)
+  console.log(`BIP44 accounts found: ${JSON.stringify(bip44Accounts)}`)
   if (bip44Accounts && Object.keys(bip44Accounts).length > 0) {
     for (const accountPath in bip44Accounts) {
       await KeyMaster.createAccountFromPath(
@@ -50,13 +49,13 @@ const recoverUser = async (recoveryPhraseString, user) => {
         bip44Accounts[accountPath]
       )
     }
-    LogStore.log(
+    console.log(
       `Recovered user containing BIP44 accounts: ${JSON.stringify(user)}`
     )
   }
 
   const rootAccounts = await checkAddresses(rootPrivateKey, true)
-  LogStore.log(`root accounts found: ${JSON.stringify(rootAccounts)}`)
+  console.log(`root accounts found: ${JSON.stringify(rootAccounts)}`)
   if (rootAccounts && Object.keys(rootAccounts).length > 0) {
     for (const accountPath in rootAccounts) {
       await KeyMaster.createAccountFromPath(
@@ -66,7 +65,7 @@ const recoverUser = async (recoveryPhraseString, user) => {
         rootPrivateKey
       )
     }
-    LogStore.log(
+    console.log(
       `Recovered user containing root accounts now: ${JSON.stringify(user)}`
     )
   }
@@ -94,10 +93,10 @@ const accountScan = async () => {
     try {
       bip44Accounts = await checkAddresses(rootPrivateKey)
     } catch (e) {
-      LogStore.log(`could not check non-root addresses: ${e}`)
+      console.log(`could not check non-root addresses: ${e}`)
     }
 
-    LogStore.log(`BIP44 accounts found: ${JSON.stringify(bip44Accounts)}`)
+    console.log(`BIP44 accounts found: ${JSON.stringify(bip44Accounts)}`)
     if (bip44Accounts && Object.keys(bip44Accounts).length > 0) {
       for (const accountPath in bip44Accounts) {
         try {
@@ -107,10 +106,10 @@ const accountScan = async () => {
             bip44Accounts[accountPath]
           )
         } catch (e) {
-          LogStore.log(`could not create account from path: ${e}`)
+          console.log(`could not create account from path: ${e}`)
         }
       }
-      LogStore.log(
+      console.log(
         `Recovered user containing BIP44 accounts: ${JSON.stringify(user)}`
       )
     }
@@ -119,9 +118,9 @@ const accountScan = async () => {
     try {
       rootAccounts = await checkAddresses(rootPrivateKey, true)
     } catch (e) {
-      LogStore.log(`could not get root accounts ${e}`)
+      console.log(`could not get root accounts ${e}`)
     }
-    LogStore.log(`root accounts found: ${JSON.stringify(rootAccounts)}`)
+    console.log(`root accounts found: ${JSON.stringify(rootAccounts)}`)
     if (rootAccounts && Object.keys(rootAccounts).length > 0) {
       for (const accountPath in rootAccounts) {
         try {
@@ -135,7 +134,7 @@ const accountScan = async () => {
           console.log('could not createAccountFromPath', e)
         }
       }
-      LogStore.log(
+      console.log(
         `Recovered user containing root accounts now: ${JSON.stringify(user)}`
       )
     }
@@ -161,6 +160,7 @@ const checkAddresses = async (rootPrivateKey, root = false) => {
   let addresses = []
   let startIndex = 1
   let endIndex = Config.NUMBER_OF_KEYS_TO_GRAB_ON_RECOVERY
+  let counter = 0
 
   do {
     accountDataFromBlockchain = {}
@@ -170,7 +170,7 @@ const checkAddresses = async (rootPrivateKey, root = false) => {
         startIndex,
         endIndex
       )
-      LogStore.log(
+      console.log(
         `KeyMaster.getRootAddresses found: ${JSON.stringify(addresses)}`
       )
     } else {
@@ -179,7 +179,7 @@ const checkAddresses = async (rootPrivateKey, root = false) => {
         startIndex,
         endIndex
       )
-      LogStore.log(
+      console.log(
         `KeyMaster.getBIP44Addresses found: ${JSON.stringify(addresses)}`
       )
     }
@@ -188,11 +188,12 @@ const checkAddresses = async (rootPrivateKey, root = false) => {
       Object.keys(addresses)
     )
 
-    const addressKeys = Object.keys(addresses)
-    for (const address in accountDataFromBlockchain) {
-      const foundElement = addressKeys.find(element => {
+    for (const address of Object.keys(accountDataFromBlockchain)) {
+      const foundElement = Object.keys(addresses).find(element => {
+        console.log('ELEMENT: ', element, ' ADDRESS: ', address)
         return element === address
       })
+
       if (foundElement) {
         accountData[addresses[address]] = accountDataFromBlockchain[address]
       }
@@ -201,8 +202,13 @@ const checkAddresses = async (rootPrivateKey, root = false) => {
     // now move ahead in the address indexs to get the next batch
     startIndex += Config.NUMBER_OF_KEYS_TO_GRAB_ON_RECOVERY
     endIndex += Config.NUMBER_OF_KEYS_TO_GRAB_ON_RECOVERY
-  } while (Object.keys(accountDataFromBlockchain).length > 0)
+    counter++
+  } while (
+    Object.keys(accountDataFromBlockchain).length > 0 &&
+    counter < Config.ADDRESS_SEARCH_MAX
+  )
 
+  console.log('ACCOUNT DATA', accountData)
   return accountData
 }
 
