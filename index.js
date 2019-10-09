@@ -2,7 +2,7 @@ const address = require('./src/keyaddress/address')
 const APIAddressHelper = require('./src/api/helpers/APIAddressHelper')
 const WalletStore = require('./src/stores/WalletStore')
 const UserStore = require('./src/stores/UserStore')
-const GeneralStore = require('./src/stores/GeneralStorage')
+const GeneralStore = require('./src/stores/GeneralStore')
 module.exports = {
   // These functions existed in the first release of ndaujs.
   // These methods are deprecated as of version 1.3.0 in place
