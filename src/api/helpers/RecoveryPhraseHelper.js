@@ -15,12 +15,15 @@ import UserData from '../../model/UserData'
  * is incorrect. However, if either one of them do...we have a correct phrase and
  * we can then build a user from that information. The user build is passed back.
  *
- * @param  {string} recoveryPhraseString as a string of words, a sentence
+ * @param  {Array} recoveryPhrase as a array of words, a sentence
  * @param  {string} user there is a possibility the user has already been created
  * @return {User} we either pass back null if nothing is found or a populated
  * user if we find information.
  */
-const recoverUser = async (recoveryPhraseString, user) => {
+const recoverUser = async (recoveryPhrase, user) => {
+  const recoveryPhraseString = DataFormatHelper.convertRecoveryArrayToString(
+    recoveryPhrase
+  )
   const recoveryPhraseBytes = await _getRecoveryStringAsBytes(
     recoveryPhraseString
   )
