@@ -1,7 +1,9 @@
 import SetupStore from '../stores/SetupStore'
 import Base64 from 'base-64'
-import crypto from 'crypto'
-// import { generateSecureRandom } from 'react-native-securerandom'
+import randomBytes from 'randombytes'
+import { promisify } from 'es6-promisify'
+
+const cryptoRandomBytes = promisify(randomBytes)
 
 /**
  * This method will generate entropy and both return the value
@@ -11,10 +13,13 @@ import crypto from 'crypto'
  * pass in.
  *
  * @param {number} byteCount amount of bytes of entropy to generate, default is 16
+ * @param {Object} cryptoGenerateRandom a library of your choice that will
+ * generate a random string given a byteCount. It is assumed this function
+ * will pass back a promise.
  * @returns {string} Base64 version of entropy
  */
-const generateEntropy = async (byteCount = 16) => {
-  const secureRandom = await crypto.randomBytes(byteCount)
+const generateEntropy = async (byteCount = 16, cryptoGenerateRandom) => {
+  const secureRandom = await cryptoRandomBytes(byteCount)
   const secureRandomString = String.fromCharCode.apply(null, secureRandom)
   const base64Value = Base64.encode(secureRandomString)
 
