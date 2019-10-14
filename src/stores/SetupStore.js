@@ -1,5 +1,3 @@
-import AppConstants from '../constants/constants'
-
 // This class allows listeners to replace an earlier call to react-native's alerts.
 // In order to use the alert, add a listener function to this class by calling `setupStore.addListener(yourFunction)` and handle the alert inside the body of `yourFunction`.
 class SetupStore {
@@ -8,11 +6,10 @@ class SetupStore {
       SetupStore.instance = this
     }
 
-    this._user = null
-    this._encryptionPassword = null
-    this._walletName = null
+    this.reset()
 
-    this.listeners = new Set()
+    this.funcs = new Set()
+    return SetupStore.instance
   }
 
   addListener (func) {
