@@ -4,6 +4,7 @@ const WalletStore = require('./src/stores/WalletStore')
 const UserStore = require('./src/stores/UserStore')
 const GeneralStore = require('./src/stores/GeneralStore')
 const CryptoStore = require('./src/stores/CryptoStore')
+const SetupStore = require('./src/stores/SetupStore')
 const RecoveryPhraseHelper = require('./src/api/helpers/RecoveryPhraseHelper')
 module.exports = {
   // These functions existed in the first release of ndaujs.
@@ -33,5 +34,6 @@ module.exports = {
   UserStore,
   GeneralStore,
   CryptoStore,
+  SetupStore,
   RecoveryPhraseHelper
 }
