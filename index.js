@@ -6,6 +6,9 @@ const GeneralStore = require('./src/stores/GeneralStore')
 const CryptoStore = require('./src/stores/CryptoStore')
 const SetupStore = require('./src/stores/SetupStore')
 const RecoveryPhraseHelper = require('./src/api/helpers/RecoveryPhraseHelper')
+const DataFormatHelper = require('./src/api/helpers/DataFormatHelper')
+const MultiSafeHelper = require('./src/helpers/MultiSafeHelper')
+
 module.exports = {
   // These functions existed in the first release of ndaujs.
   // These methods are deprecated as of version 1.3.0 in place
@@ -35,5 +38,7 @@ module.exports = {
   GeneralStore,
   CryptoStore,
   SetupStore,
-  RecoveryPhraseHelper
+  RecoveryPhraseHelper,
+  DataFormatHelper,
+  MultiSafeHelper
 }

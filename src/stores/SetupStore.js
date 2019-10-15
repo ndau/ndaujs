@@ -45,13 +45,22 @@ class SetupStore {
   }
 
   get walletName () {
-    this._walletName
+    return this._walletName
+  }
+
+  set recoveryPhrase (recoveryPhrase) {
+    this._recoveryPhrase = recoveryPhrase
+  }
+
+  get recoveryPhrase () {
+    return this._recoveryPhrase
   }
 
   reset () {
     this._user = null
     this._encryptionPassword = null
     this._walletName = null
+    this._recoveryPhrase = null
   }
 }
 
