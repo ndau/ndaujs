@@ -1,5 +1,3 @@
-import AppConstants from '../constants/constants'
-
 // This class allows listeners to replace an earlier call to react-native's alerts.
 // In order to use the alert, add a listener function to this class by calling `setupStore.addListener(yourFunction)` and handle the alert inside the body of `yourFunction`.
 class SetupStore {
@@ -8,19 +6,10 @@ class SetupStore {
       SetupStore.instance = this
     }
 
-    this._userId = ''
-    // Default to 1 account created
-    this._numberOfAccounts = 1
-    this._qrCode = ''
-    this._encryptionPassword = ''
-    this._entropy = ''
-    this._recoveryPhrase = ''
-    this._shuffledMap = []
-    this._shuffledWord = []
-    this._addressType = AppConstants.MAINNET_ADDRESS
-    this._walletId = ''
+    this.reset()
 
-    this.listeners = new Set()
+    this.funcs = new Set()
+    return SetupStore.instance
   }
 
   addListener (func) {
@@ -35,28 +24,12 @@ class SetupStore {
     this.funcs.forEach(func => func(msg))
   }
 
-  set userId (userId) {
-    this._userId = userId
+  set user (user) {
+    this._user = user
   }
 
-  get userId () {
-    return this._userId
-  }
-
-  set numberOfAccounts (numberOfAccounts) {
-    this._numberOfAccounts = numberOfAccounts
-  }
-
-  get numberOfAccounts () {
-    return this._numberOfAccounts
-  }
-
-  set qrCode (qrCode) {
-    this._qrCode = qrCode
-  }
-
-  get qrCode () {
-    return this._qrCode
+  get user () {
+    return this._user
   }
 
   set encryptionPassword (encryptionPassword) {
@@ -67,84 +40,27 @@ class SetupStore {
     return this._encryptionPassword
   }
 
-  set entropy (entropy) {
-    this._entropy = entropy
+  set walletName (walletName) {
+    this._walletName = walletName
   }
 
-  get entropy () {
-    return this._entropy
+  get walletName () {
+    return this._walletName
   }
 
   set recoveryPhrase (recoveryPhrase) {
-    this._recoveryPhrase = recoveryPhrase.slice()
+    this._recoveryPhrase = recoveryPhrase
   }
 
   get recoveryPhrase () {
     return this._recoveryPhrase
   }
 
-  set shuffledWords (shuffledWords) {
-    this._shuffledWords = shuffledWords.slice()
-  }
-
-  get shuffledWords () {
-    return this._shuffledWords
-  }
-
-  set shuffledMap (shuffledMap) {
-    this._shuffledMap = shuffledMap.slice()
-  }
-
-  get shuffledMap () {
-    return this._shuffledMap
-  }
-
-  toggleAddressType () {
-    const oldAddressType = this._addressType
-    const newAddressType =
-      this._addressType === AppConstants.MAINNET_ADDRESS
-        ? AppConstants.TESTNET_ADDRESS
-        : AppConstants.MAINNET_ADDRESS
-
-    alert(
-      `Old address type was ${oldAddressType} which has been moved to ${newAddressType}`
-    )
-
-    this._addressType = newAddressType
-  }
-
-  get addressType () {
-    return this._addressType
-  }
-
-  set walletId (walletId) {
-    this._walletId = walletId
-  }
-
-  get walletId () {
-    return this._walletId
-  }
-
-  printData () {
-    console.log(`SetupStore.userId ${this._userId}`)
-    console.log(`SetupStore.numberOfAccounts ${this._numberOfAccounts}`)
-    console.log(`SetupStore.qrCode ${this._qrCode}`)
-    console.log(`SetupStore.entropy ${this._entropy}`)
-    console.log(`SetupStore.walletId ${this._walletId}`)
-    console.log(`SetupStore.addressType ${this._addressType}`)
-  }
-
   reset () {
-    this._userId = ''
-    this._numberOfAccounts = 0
-    this._qrCode = ''
-    this._encryptionPassword = ''
-    this._entropy = ''
-    this._recoveryPhrase = ''
-    this._shuffledMap = []
-    this._shuffledWord = []
-    this._addressType = AppConstants.MAINNET_ADDRESS
-    this._walletId = ''
+    this._user = null
+    this._encryptionPassword = null
+    this._walletName = null
+    this._recoveryPhrase = null
   }
 }
 
