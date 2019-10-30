@@ -1,29 +1,28 @@
 import AccountAPIHelper from '../api/helpers/AccountAPIHelper'
 import AppConfig from '../constants/config'
 import KeyMaster from '../helpers/KeyMaster'
+import Transaction from './Transaction'
 
-export class SetValidationTransaction {
+export class SetValidationTransaction extends Transaction {
   constructor (wallet, account, sendType) {
-    this._wallet = wallet
-    this._account = account
-    this._sendType = sendType
+    super(wallet, account, 'SetValidation')
 
-    this._keys = wallet.keys
-    this._jsonTransaction = {}
-    this._submitAddress = ''
-    this._prevalidateAddress = ''
-
-    if (!this._wallet || !this._account) {
-      throw new Error('You must pass wallet and account')
+    // This argument is optional
+    if (sendType !== undefined && sendType.constructor !== Number) {
+      throw new Error(
+        `sendType argument must be a number to construct a ${
+          this.transactionType
+        } tx`
+      )
     }
-
-    this.transactionType = 'SetValidation'
+    this._sendType = sendType
   }
 
   addToJsonTransaction () {
     this._jsonTransaction.target = this._account.address
 
     const validationKeys = []
+    // Adds all validation keys to this account
     this._account.validationKeys.forEach(validationKeyHash => {
       validationKeys.push(this._keys[validationKeyHash].publicKey)
     })
@@ -43,29 +42,5 @@ export class SetValidationTransaction {
 
   addSignatureToJsonTransaction (signature) {
     this._jsonTransaction.signature = signature
-  }
-
-  getSignature () {
-    return this._jsonTransaction.signature
-  }
-
-  async createSignPrevalidateSubmit () {
-    await this.create()
-    await this.sign()
-    try {
-      await this.prevalidate()
-      await this.submit()
-    } catch (error) {
-      const spendableNapu = AccountAPIHelper.spendableNapu(
-        this._account.addressData,
-        true,
-        AppConfig.NDAU_DETAIL_PRECISION
-      )
-      const data = error.getData()
-      if (data && spendableNapu > data.fee_napu) {
-        this.handleError(error)
-        throw error
-      }
-    }
   }
 }

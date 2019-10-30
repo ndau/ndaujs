@@ -6,16 +6,57 @@ import AccountAPI from '../api/AccountAPI'
 import { ErrorsByMessage, Messages } from '../api/errors/BlockchainAPIError'
 import APIAddressHelper from '../api/helpers/APIAddressHelper'
 
-export const Transaction = {
+class PermissionError extends Error {
+  constructor (message) {
+    super(message)
+    this.name = 'PermissionError'
+    this.message = message
+  }
+}
+
+export default class Transaction {
+  constructor (wallet, account, transactionType) {
+    if (!transactionType || transactionType.constructor !== String) {
+      throw new Error(
+        `transactionType (string) argument required to construct a tx`
+      )
+    }
+    if (!wallet || wallet.constructor !== Object) {
+      throw new Error(
+        `wallet (object) argument required to construct a ${transactionType} tx`
+      )
+    }
+    if (!account || account.constructor !== Object) {
+      throw new Error(
+        `account (object) argument required to construct a ${transactionType} tx`
+      )
+    }
+
+    this.transactionType = transactionType
+    this._wallet = wallet
+    this._account = account
+
+    this._keys = wallet.keys
+    this._jsonTransaction = {}
+    this._submitAddress = ''
+    this._prevalidateAddress = ''
+  }
+
   /**
    * Create a transaction and store information internally
    */
   async create () {
     try {
-      // Create the prevalidate and submission addresses
       await this.createPrevalidateAddress()
+    } catch (err) {
+      throw new Error(`could not create prevalidate address: ${err}`)
+    }
+    try {
       await this.createSubmissionAddress()
-
+    } catch (err) {
+      throw new Error(`could not create submission address: ${err}`)
+    }
+    try {
       // ok...if we got here we can assume we do NOT have a validation
       // key, so we need that to call KeyaddrManager.sign...so create it
       // but only if there are none present. This business logic may
@@ -29,7 +70,6 @@ export const Transaction = {
       ) {
         await ValidationKeyMaster.addValidationKey(this._wallet, this._account)
       }
-
       if (
         !this._account.validationKeys ||
         this._account.validationKeys.length === 0
@@ -39,7 +79,6 @@ export const Transaction = {
       if (isNaN(this._account.addressData.sequence)) {
         throw ErrorsByMessage[Messages.SRC_NO_HISTORY]
       }
-
       // If we have already done a create we have generated
       // a sequence. If this object is sent again we do not
       // want to genereate a new sequence as it will try to perform
@@ -56,14 +95,12 @@ export const Transaction = {
           sequence
         }
       }
-
       this.addToJsonTransaction()
-
       return this._jsonTransaction
     } catch (error) {
       this.handleError(error)
     }
-  },
+  }
 
   handleError (msgOrErr) {
     console.log(`Error from blockchain: ${msgOrErr}`)
@@ -80,47 +117,44 @@ export const Transaction = {
     } else {
       throw new Error(msgOrErr)
     }
-  },
+  }
 
   /**
    * Sign the transaction for prevalidation and submission. You must
    * call `create` first before you call this method.
    */
   async sign () {
+    // Here we get the ownership key to sign for SetValidation. This is
+    // the ONLY time we use the ownershipKey. Any subsequent/other
+    // transactions use the validationKey within the account
+    const privateKeyFromHash = this.privateKeyForSigning()
+
+    // Use the TxSignPrep to get it ready to send
+    const preparedTransaction = new TxSignPrep().prepare(this._jsonTransaction)
+    const base64EncodedPrepTx = preparedTransaction.b64encode()
+
     try {
-      // Here we get the ownership key to sign for SetValidation. This is
-      // the ONLY time we use the ownershipKey. Any subsequent/other
-      // transactions use the validationKey within the account
-      const privateKeyFromHash = this.privateKeyForSigning()
-
-      // Use the TxSignPrep to get it ready to send
-      const preparedTransaction = new TxSignPrep().prepare(
-        this._jsonTransaction
-      )
-      const base64EncodedPrepTx = preparedTransaction.b64encode()
-
       // Get the signature to use in the transaction
       const signature = await Keyaddr.sign(
         privateKeyFromHash,
         base64EncodedPrepTx
       )
-
       this.addSignatureToJsonTransaction(signature)
     } catch (error) {
       this.handleError(error.message)
     }
-  },
+  }
 
   privateKeyForSigning () {
     return KeyMaster.getPrivateKeyFromHash(
       this._wallet,
       this._account.validationKeys[0]
     )
-  },
+  }
 
   addSignatureToJsonTransaction (signature) {
     this._jsonTransaction.signatures = [signature]
-  },
+  }
 
   /**
    * Send this transaction to the blockchain to see if all is well.
@@ -132,12 +166,22 @@ export const Transaction = {
       this._prevalidateAddress,
       this._jsonTransaction
     )
+
     if (response.err) {
-      this.handleError(response.err)
-    } else {
-      return response
+      // If there's an error, check to see if we have enough to cover the fee
+      const spendableNapu = AccountAPIHelper.spendableNapu(
+        this._account.addressData,
+        true,
+        AppConfig.NDAU_DETAIL_PRECISION
+      )
+      const data = response.err.getData()
+      if (spendableNapu < data.fee_napu) {
+        throw new BlockchainAPIError(response.err)
+      }
+      return this.handleError(response.err)
     }
-  },
+    return response
+  }
 
   /**
    * This is the last call that you should make. You must call
@@ -161,7 +205,7 @@ export const Transaction = {
     } catch (error) {
       this.handleError(error)
     }
-  },
+  }
 
   async createSubmissionAddress () {
     const submitAddressPre = await APIAddressHelper.getTransactionSubmitAPIAddress(
@@ -171,7 +215,7 @@ export const Transaction = {
 
     console.log(`Submit address is ${this._submitAddress}`)
     console.log(`Send type is ${this._sendType}`)
-  },
+  }
 
   async createPrevalidateAddress () {
     const prevalidateAddressPre = await APIAddressHelper.getTransactionPrevalidateAPIAddress(
@@ -183,4 +227,25 @@ export const Transaction = {
     console.log(`Prevalidate address is ${this._prevalidateAddress}`)
     console.log(`Send type is ${this._sendType}`)
   }
+
+  getSignature () {
+    return this._jsonTransaction.signature
+  }
+
+  async createSignPrevalidateSubmit () {
+    try {
+      await this.create()
+      await this.sign()
+      await this.prevalidate()
+      await this.submit()
+    } catch (error) {
+      this.handleError(error)
+    }
+  }
+
+  // This is meant to be overridden if transactions require specific error handling.
+  handleSubmitError () {}
+
+  // This is meant to be overridden to include the properties of the transaction to be signed.
+  addToJsonTransaction () {}
 }

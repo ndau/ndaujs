@@ -12,26 +12,31 @@ const addresses = [
 ]
 
 const testSingleAddressData = {
-  tnaq9cjf54ct59bmua78iuv6gtpjtdunc78q8jebwgmxyacb: {
-    balance: 200000000002,
+  ndanvhryh4i5ftpykqkji6sm6ykvivru4eeavf3jd87q8auf: {
+    balance: 501002680000,
     validationKeys: [
-      'npuba8jadtbbedhhdcad42tysymzpi5ec77vpi4exabh3unu2yem8wn4wv22kvvt24kpm3ghikst'
+      'npuba4jaftckeeb6z8hgwwyh7dxvdkxujzv2qed4wemcfi5cettptqkuk44gs66b5eiefnyn4aaaaaa7s8ercwyfx2qeat3aa3hztqfwkwnxce4cy2yv98xafvd3ahn243y6yn2hexdq'
     ],
-    rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun',
+    validationScript: null,
+    rewardsTarget: null,
     incomingRewardsFrom: null,
     delegationNode: null,
-    lock: {
-      noticePeriod: 2592000000000,
-      unlocksOn: null
-    },
-    stake: null,
-    lastEAIUpdate: 589991567000000,
-    lastWAAUpdate: 589991567000000,
-    weightedAverageAge: 0,
-    sequence: 3830689464,
+    lock: null,
+    lastEAIUpdate: '2019-10-03T08:31:23.976783Z',
+    lastWAAUpdate: '2019-10-03T08:31:38.318230Z',
+    weightedAverageAge: '16dt16h14m21s361198us',
+    sequence: 0,
+    stake_rules: null,
+    costakers: {},
     holds: null,
-    recourseSettings: { period: 0, changesAt: null, next: null },
-    validationScript: null
+    recourseSettings: {
+      period: 't1h',
+      changes_at: null,
+      next: null
+    },
+    currencySeatDate: '2019-09-27T19:11:47.591504Z',
+    parent: null,
+    progenitor: null
   }
 }
 
@@ -793,6 +798,10 @@ const delegateTxRes = {
   fee_napu: 0
 }
 
+const delegateTxResHighFee = {
+  fee_napu: Number.MAX_SAFE_INTEGER
+}
+
 const setRewardsDestinationTxRes = {
   fee_napu: 0
 }
@@ -834,7 +843,7 @@ const transactionByHashRes = {
 }
 
 const testAddressData20Items = {
-  ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zc11: {
+  ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun: {
     balance: 420000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -850,7 +859,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm3822: {
+  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm38vz: {
     balance: 200000000002,
     validationKeys: null,
     rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun',
@@ -869,7 +878,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf33: {
+  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55: {
     balance: 4000000000054,
     validationKeys: null,
     rewardsTarget: null,
@@ -888,7 +897,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f644: {
+  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f67g: {
     balance: 760000000003,
     validationKeys: null,
     rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55',
@@ -907,7 +916,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv7nipgc5zjyp65: {
+  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv7nipgc5zjyp5c: {
     balance: 4000000000087,
     validationKeys: null,
     rewardsTarget: null,
@@ -923,7 +932,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndap34mk6yzyiru49ivfitgzybkfqxnejcr9qvtnd3ychb66: {
+  ndap34mk6yzyiru49ivfitgzybkfqxnejcr9qvtnd3ychbfq: {
     balance: 1240000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -942,7 +951,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaq9euuwf83yds7f3bwcfqdqsx43x5v4vjbcctkndy2fk77: {
+  ndaq9euuwf83yds7f3bwcfqdqsx43x5v4vjbcctkndy2fk98: {
     balance: 515000000000,
     validationKeys: null,
     rewardsTarget: null,
@@ -958,7 +967,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcu8: {
+  ndaepy5ehv4fqqqpxhirwssr9xv45yf3n8mua4tyiqb3ek6s: {
     balance: 420000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -974,7 +983,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm38v9: {
+  ndan84n2us8ngsp9tjzuwq854amesitr9zspe8g9ddqn8u8h: {
     balance: 200000000002,
     validationKeys: null,
     rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun',
@@ -993,7 +1002,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf10: {
+  ndagdk9zcsmdusfxx3wp8hw8xpyi3g8tq8kfi68je3fv45a8: {
     balance: 4000000000054,
     validationKeys: null,
     rewardsTarget: null,
@@ -1012,7 +1021,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f611: {
+  ndadk667xw332g73h69qu6zj9upbc872ebwbnkwcn3yg7jyr: {
     balance: 760000000003,
     validationKeys: null,
     rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55',
@@ -1031,7 +1040,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv7nipgc5zjyp12: {
+  ndaqphegctz9tcj42zcjew7m2frjxd8hk8krzmnuym457wpw: {
     balance: 4000000000087,
     validationKeys: null,
     rewardsTarget: null,
@@ -1047,7 +1056,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndap34mk6yzyiru49ivfitgzybkfqxnejcr9qvtnd3ychb13: {
+  ndagyqzgb3yz4rb8hd922r29f97p4npz9jux47sc8vp8fcjw: {
     balance: 1240000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1066,7 +1075,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaq9euuwf83yds7f3bwcfqdqsx43x5v4vjbcctkndy2fk14: {
+  ndahy38pbbbnkfxsg8mv9bhbr2pwvzn3tmtjwgwt4723ay93: {
     balance: 515000000000,
     validationKeys: null,
     rewardsTarget: null,
@@ -1082,7 +1091,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zc15: {
+  ndaen54hhhhtbytjkdaj29wx9kvhrmva4ragsk3f6cmrwfbt: {
     balance: 420000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1098,7 +1107,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm3816: {
+  ndabet44rp5b2afdpxtxisc7nz9q5exehq56vu6rgdh6yjuh: {
     balance: 200000000002,
     validationKeys: null,
     rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun',
@@ -1117,7 +1126,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf17: {
+  ndadketzehkx2skuuue4u2qbmszutswer67gap59hmxibypv: {
     balance: 4000000000054,
     validationKeys: null,
     rewardsTarget: null,
@@ -1136,7 +1145,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f618: {
+  ndaj77ngukgrbc3s8kt9mn85cgmaqjzqw5hgtbjmcyvpjgyk: {
     balance: 760000000003,
     validationKeys: null,
     rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55',
@@ -1155,7 +1164,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv7nipgc5zjyp519: {
+  ndam993hqxndcpngs2s7y9dvjcdmav4rgarkggndd8wwdcr3: {
     balance: 4000000000087,
     validationKeys: null,
     rewardsTarget: null,
@@ -1171,7 +1180,7 @@ const testAddressData20Items = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndap34mk6yzyiru49ivfitgzybkfqxnejcr9qvtnd3ychb20: {
+  ndabnwmc9z47sdf284xs9n2e76yekum2jnwekqduqcr8zwfc: {
     balance: 1240000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1192,8 +1201,372 @@ const testAddressData20Items = {
   }
 }
 
+
+
+
+const testAddressData20Items2 = {
+  ndakj49v6nnbdq3yhnf8f2j6ivfzicedvfwtunckivfsw9qt: {
+    balance: 420000000023,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: ['ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm38vz'],
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndae227gbzcj764d9zqsqfccbucpj8r6arc6jz8bpir5jpav: {
+    balance: 200000000002,
+    validationKeys: null,
+    rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun',
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: 2592000000000,
+      unlocksOn: null
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndaczic4mzjpesqsqa5gtvcfc3gut3pat7jpre4qpgn2zj7n: {
+    balance: 4000000000054,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: ['ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f67g'],
+    delegationNode: null,
+    lock: {
+      noticePeriod: null,
+      unlocksOn: 1585886400000
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndad7dv3mmddt7ay6mr3jqi4er4vgdrspex4p5dxbyh98un3: {
+    balance: 760000000003,
+    validationKeys: null,
+    rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55',
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: null,
+      unlocksOn: 1585886400000
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndahvq399xmyh65d6gj2i9ccyh7zi9y3r4zrpsjdifwi27jh: {
+    balance: 4000000000087,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndahsdd3fp6fp6rahhav8ypfnmrcrm2kqt8i4kdkfmy9pizv: {
+    balance: 1240000000023,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: 7776000000000,
+      unlocksOn: null
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndahbgdeceymfk5prge25t3n8b9me2v59g2t3t7x423uhcnf: {
+    balance: 515000000000,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndap2i87whwpfmp4genf8udn8fiacuy6k9wwyv2edics76rj: {
+    balance: 420000000023,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: ['ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm38vz'],
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndaqnhnyenf3yqs532zra5zpgj4kuznr7a569txw35tbzcuv: {
+    balance: 200000000002,
+    validationKeys: null,
+    rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun',
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: 2592000000000,
+      unlocksOn: null
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndaq6z7wcac2yewmhpnu8vc4ugrk67r8hacqahmr4xxgs3bw: {
+    balance: 4000000000054,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: ['ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f67g'],
+    delegationNode: null,
+    lock: {
+      noticePeriod: null,
+      unlocksOn: 1585886400000
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndardrhp2ia5n2hwvaevfc6be6mgx7pyqfwzq4uarrzfdx5d: {
+    balance: 760000000003,
+    validationKeys: null,
+    rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55',
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: null,
+      unlocksOn: 1585886400000
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndafyrhu6aqej8q6gp5a7bnnja4jybzradghv3hqmy5parcp: {
+    balance: 4000000000087,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndaka7yph4es5upyp4v2bq42phyz53s8cnzeec9p4dcsqfti: {
+    balance: 1240000000023,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: 7776000000000,
+      unlocksOn: null
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndapggci7zafe2m2xj8tegadj3ewt683tcdbu9y55a3avxat: {
+    balance: 515000000000,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndapz8djh2mf5qs6ccy4d9ibkydzvj5e2354fjjxtttmig68: {
+    balance: 420000000023,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: ['ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm38vz'],
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndagrehndydstfru9izy3cqd9xtetqm59icy5qenmm7kys8h: {
+    balance: 200000000002,
+    validationKeys: null,
+    rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun',
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: 2592000000000,
+      unlocksOn: null
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndab78da7wcg6j48pujd65fbrj96fpce4di4tft6w3gp6zf4: {
+    balance: 4000000000054,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: ['ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f67g'],
+    delegationNode: null,
+    lock: {
+      noticePeriod: null,
+      unlocksOn: 1585886400000
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndajegsqmca8kcy5kgt55jf8cm365kj24yykzztfrvvscgak: {
+    balance: 760000000003,
+    validationKeys: null,
+    rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55',
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: null,
+      unlocksOn: 1585886400000
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndaiwduxiry232f8zcijnxeraquvdjpj82xntk4jmuiz6mnz: {
+    balance: 4000000000087,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: null,
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  },
+  ndaa5jym2btrx9fgc9rybjked32d6x2n5h52x6t6day4z9rz: {
+    balance: 1240000000023,
+    validationKeys: null,
+    rewardsTarget: null,
+    incomingRewardsFrom: null,
+    delegationNode: null,
+    lock: {
+      noticePeriod: 7776000000000,
+      unlocksOn: null
+    },
+    stake: null,
+    lastEAIUpdate: 589991567000000,
+    lastWAAUpdate: 589991567000000,
+    weightedAverageAge: 0,
+    sequence: 0,
+    holds: null,
+    recourseSettings: { period: 0, changesAt: null, next: null },
+    validationScript: null
+  }
+}
+
+
+
 const testAddressData20ItemsRoot = {
-  ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbt18root: {
+  ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8zcun: {
     balance: 420000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1209,7 +1582,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9m2mroot: {
+  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr9mcm38vz: {
     balance: 200000000002,
     validationKeys: null,
     rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8root',
@@ -1228,7 +1601,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiu3croot: {
+  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcjf55: {
     balance: 4000000000054,
     validationKeys: null,
     rewardsTarget: null,
@@ -1247,7 +1620,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk48root: {
+  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7nnzk68f67g: {
     balance: 760000000003,
     validationKeys: null,
     rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcroot',
@@ -1266,7 +1639,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv7nipgc55jroot: {
+  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv7nipgc5zjyp5c: {
     balance: 4000000000087,
     validationKeys: null,
     rewardsTarget: null,
@@ -1282,7 +1655,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndap34mk6yzyiru49ivfitgzybkfqxnejcr9qvtnd36croot: {
+  ndap34mk6yzyiru49ivfitgzybkfqxnejcr9qvtnd3ychbfq: {
     balance: 1240000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1301,7 +1674,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaq9euuwf83yds7f3bwcfqdqsx43x5v4vjbcctknd72root: {
+  ndaq9euuwf83yds7f3bwcfqdqsx43x5v4vjbcctkndy2fk98: {
     balance: 515000000000,
     validationKeys: null,
     rewardsTarget: null,
@@ -1317,7 +1690,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbt88root: {
+  ndaepy5ehv4fqqqpxhirwssr9xv45yf3n8mua4tyiqb3ek6s: {
     balance: 420000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1333,7 +1706,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997hr99cmroot: {
+  ndan84n2us8ngsp9tjzuwq854amesitr9zspe8g9ddqn8u8h: {
     balance: 200000000002,
     validationKeys: null,
     rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8root',
@@ -1352,7 +1725,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfh10ufcroot: {
+  ndagdk9zcsmdusfxx3wp8hw8xpyi3g8tq8kfi68je3fv45a8: {
     balance: 4000000000054,
     validationKeys: null,
     rewardsTarget: null,
@@ -1371,7 +1744,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i711zk68f611: {
+  ndadk667xw332g73h69qu6zj9upbc872ebwbnkwcn3yg7jyr: {
     balance: 760000000003,
     validationKeys: null,
     rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcroot',
@@ -1390,7 +1763,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv712pgc5zjroot: {
+  ndaqphegctz9tcj42zcjew7m2frjxd8hk8krzmnuym457wpw: {
     balance: 4000000000087,
     validationKeys: null,
     rewardsTarget: null,
@@ -1406,7 +1779,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndap34mk6yzyiru49ivfitgzybkfqxnejcr913tnd3ycroot: {
+  ndagyqzgb3yz4rb8hd922r29f97p4npz9jux47sc8vp8fcjw: {
     balance: 1240000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1425,7 +1798,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaq9euuwf83yds7f3bwcfqdqsx43x5v4vjb14tkndy2root: {
+  ndahy38pbbbnkfxsg8mv9bhbr2pwvzn3tmtjwgwt4723ay93: {
     balance: 515000000000,
     validationKeys: null,
     rewardsTarget: null,
@@ -1441,7 +1814,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndarc8etbkidm5ewytxhvzida94sgg9mvr3a15ufbty8root: {
+  ndaen54hhhhtbytjkdaj29wx9kvhrmva4ragsk3f6cmrwfbt: {
     balance: 420000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1457,7 +1830,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndaiap4q2me85dtnp5naifa5d8xtmrimm4b997169mcmroot: {
+  ndabet44rp5b2afdpxtxisc7nz9q5exehq56vu6rgdh6yjuh: {
     balance: 200000000002,
     validationKeys: null,
     rewardsTarget: 'ndarc8etbkidm5ewytxhvzida94sgg9mvr3aswufbty8root',
@@ -1476,7 +1849,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhj17fcroot: {
+  ndadketzehkx2skuuue4u2qbmszutswer67gap59hmxibypv: {
     balance: 4000000000054,
     validationKeys: null,
     rewardsTarget: null,
@@ -1495,7 +1868,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndanhgm5avd68gj9ufiwq7ttcsshxciupgz5i7n18k68root: {
+  ndaj77ngukgrbc3s8kt9mn85cgmaqjzqw5hgtbjmcyvpjgyk: {
     balance: 760000000003,
     validationKeys: null,
     rewardsTarget: 'ndamm8kxzf9754axd24wrkh3agvj2cidx75wdfhjiufcroot',
@@ -1514,7 +1887,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndafwi9munvx8uhgg3pmaw7m6p22ixp5mpv7nipgc19jyroot: {
+  ndam993hqxndcpngs2s7y9dvjcdmav4rgarkggndd8wwdcr3: {
     balance: 4000000000087,
     validationKeys: null,
     rewardsTarget: null,
@@ -1530,7 +1903,7 @@ const testAddressData20ItemsRoot = {
     recourseSettings: { period: 0, changesAt: null, next: null },
     validationScript: null
   },
-  ndap34mk6yzyiru49ivfitgzybkfqxnejcr9qvtnd320root: {
+  ndabnwmc9z47sdf284xs9n2e76yekum2jnwekqduqcr8zwfc: {
     balance: 1240000000023,
     validationKeys: null,
     rewardsTarget: null,
@@ -1565,10 +1938,12 @@ export default {
   transactionByHashRes,
   addresses,
   delegateTxRes,
+  delegateTxResHighFee,
   testSingleAddressData,
   test7MP4FVUserData,
   test7MP4FVAddressData,
   testAddressData20Items,
+  testAddressData20Items2,
   testAddressData20ItemsRoot,
   testAddressDataRoot,
   setRewardsDestinationTxRes

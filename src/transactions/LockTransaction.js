@@ -1,40 +1,21 @@
-export class LockTransaction {
+import Transaction from './Transaction'
+
+export class LockTransaction extends Transaction {
   constructor (wallet, account, period) {
-    this._wallet = wallet
-    this._account = account
-    this._period = period
+    super(wallet, account, 'Lock')
 
-    this._keys = wallet.keys
-    this._jsonTransaction = {}
-    this._submitAddress = ''
-    this._prevalidateAddress = ''
-
-    if (!this._wallet || !this._account) {
-      throw new Error('You must pass wallet and account')
+    if (!period || period.constructor !== String) {
+      throw new Error(
+        `period (string) argument required to construct a ${
+          this.transactionType
+        } tx`
+      )
     }
-
     this._period = period
-    this.transactionType = 'Lock'
   }
 
   addToJsonTransaction () {
     this._jsonTransaction.period = this._period
     this._jsonTransaction.target = this._account.address
-  }
-
-  getSignature () {
-    return this._jsonTransaction.signatures
-  }
-
-  async createSignPrevalidateSubmit () {
-    try {
-      await this.create()
-      await this.sign()
-      await this.prevalidate()
-      await this.submit()
-    } catch (error) {
-      this.handleError(error)
-      throw error
-    }
   }
 }

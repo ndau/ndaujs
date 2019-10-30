@@ -1,5 +1,11 @@
+import GeneralStore from '../src/stores/GeneralStore'
+import MockAsyncStorage from 'mock-async-storage'
 const expect = require('chai').expect
 const ndaujs = require('../src/keyaddress/address')
+
+// Do not remove this line. The class is initailized here
+// but it is used in other files.
+GeneralStore.setStore(new MockAsyncStorage())
 
 describe('Address related functions', () => {
   describe('#truncateAddress', () => {

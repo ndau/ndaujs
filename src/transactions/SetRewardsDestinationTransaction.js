@@ -1,39 +1,21 @@
-export class SetRewardsDestinationTransaction {
+import Transaction from './Transaction'
+
+export class SetRewardsDestinationTransaction extends Transaction {
   constructor (wallet, account, destination) {
-    this._wallet = wallet
-    this._account = account
+    super(wallet, account, 'SetRewardsDestination')
 
-    this._destination = destination
-    this._keys = wallet.keys
-    this._jsonTransaction = {}
-    this._submitAddress = ''
-    this._prevalidateAddress = ''
-
-    if (!this._wallet || !this._account) {
-      throw new Error('You must pass wallet and account')
+    if (!destination || destination.constructor !== String) {
+      throw new Error(
+        `destination (string) argument required to construct a ${
+          this.transactionType
+        } tx`
+      )
     }
-
-    this.transactionType = 'SetRewardsDestination'
+    this._destination = destination
   }
 
   addToJsonTransaction () {
     this._jsonTransaction.target = this._account.address
     this._jsonTransaction.destination = this._destination
-  }
-
-  getSignature () {
-    return this._jsonTransaction.signatures
-  }
-
-  async createSignPrevalidateSubmit () {
-    try {
-      await this.create()
-      await this.sign()
-      await this.prevalidate()
-      await this.submit()
-    } catch (error) {
-      this.handleError(error)
-      throw error
-    }
   }
 }
