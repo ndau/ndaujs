@@ -5,6 +5,11 @@ const UserStore = require('./src/stores/UserStore')
 const GeneralStore = require('./src/stores/GeneralStore')
 const i18next = require('i18next')
 const enLng = require('./src/i18n/en')
+const CryptoStore = require('./src/stores/CryptoStore')
+const SetupStore = require('./src/stores/SetupStore')
+const RecoveryPhraseHelper = require('./src/api/helpers/RecoveryPhraseHelper')
+const DataFormatHelper = require('./src/api/helpers/DataFormatHelper')
+const MultiSafeHelper = require('./src/helpers/MultiSafeHelper')
 
 // i18next is loaded asynchronously. Any code that requires i18next should wait
 // for the i18next event 'initialized' before running.
@@ -42,6 +47,10 @@ module.exports = {
   APIAddressHelper,
   WalletStore,
   UserStore,
-
-  GeneralStore
+  GeneralStore,
+  CryptoStore,
+  SetupStore,
+  RecoveryPhraseHelper,
+  DataFormatHelper,
+  MultiSafeHelper
 }
