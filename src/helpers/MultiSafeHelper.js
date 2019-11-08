@@ -9,6 +9,13 @@ import DataFormatHelper from '../api/helpers/DataFormatHelper'
 // import UserTestData from './UserTestData'
 
 /**
+ * Is a MultiSafe present on the device
+ */
+const isAMultiSafePresent = async () => {
+  return await MultiSafe.isAMultiSafePresent()
+}
+
+/**
  * This function will persist the user information after any setup is
  * complete. If there is an existing user it should be passed to this
  * function so appropriate information can be gathered from it.
@@ -209,5 +216,6 @@ export default {
   saveUser,
   resetPassword,
   addNewWallet,
-  recoveryPhraseAlreadyExists
+  recoveryPhraseAlreadyExists,
+  isAMultiSafePresent
 }

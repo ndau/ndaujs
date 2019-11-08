@@ -1,7 +1,6 @@
 import SetupStore from '../stores/SetupStore'
 import Base64 from 'base-64'
-import crypto from 'crypto'
-// import { generateSecureRandom } from 'react-native-securerandom'
+import CryptoStore from '../stores/CryptoStore'
 
 /**
  * This method will generate entropy and both return the value
@@ -14,7 +13,7 @@ import crypto from 'crypto'
  * @returns {string} Base64 version of entropy
  */
 const generateEntropy = async (byteCount = 16) => {
-  const secureRandom = await crypto.randomBytes(byteCount)
+  const secureRandom = await CryptoStore.generateRandom(byteCount)
   const secureRandomString = String.fromCharCode.apply(null, secureRandom)
   const base64Value = Base64.encode(secureRandomString)
 
