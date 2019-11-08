@@ -1,7 +1,7 @@
 import BlockchainAPIError from '../errors/BlockchainAPIError'
 import axios from 'axios'
 import config from '../../constants/config'
-import LoggerHelper from 'src/helpers/LoggerHelper'
+import LoggerHelper from '../../helpers/LoggerHelper'
 const l = LoggerHelper.curryLogger('APICommunicationHelper')
 /**
  * This method will post data to a specified URL.

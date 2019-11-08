@@ -1,4 +1,4 @@
-import Wallet from 'src/model/Wallet'
+import Wallet from '../src/model/Wallet'
 import { expect } from 'chai'
 
 describe('Wallet', () => {

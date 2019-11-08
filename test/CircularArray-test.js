@@ -1,4 +1,4 @@
-import CircularArray from 'src/Helpers/CircularArray'
+import CircularArray from '../src/Helpers/CircularArray'
 import { expect } from 'chai'
 
 describe('CircularArray', () => {

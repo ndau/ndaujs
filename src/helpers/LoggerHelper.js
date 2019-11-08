@@ -1,5 +1,5 @@
-import CircularArray from 'src/helpers/CircularArray'
-import Config from 'src/constants/config'
+import CircularArray from './CircularArray'
+import Config from '../constants/config'
 /*
 This is a singleton but it generates loggers.
 Use it by instantiating and configuring it early in your code like so:

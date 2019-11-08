@@ -4,7 +4,7 @@
   "description": "A JavaScript common repository for ndau",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=. nyc --reporter=lcov --reporter=text mocha --check-coverage --recursive --require @babel/register"
+    "test": "nyc --reporter=lcov --reporter=text mocha --check-coverage --recursive --require @babel/register"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
-import KeyMaster from 'src/helpers/KeyMaster'
-import ValidationKeyMaster from 'src/helpers/ValidationKeyMaster'
+import KeyMaster from '../src/helpers/KeyMaster'
+import ValidationKeyMaster from '../src/helpers/ValidationKeyMaster'
 import util from 'util'
 require('./wasmHelper.js')
 // This is a test helper used to create mocks. It does not assert anything. Which is fine. It's a helper.

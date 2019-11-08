@@ -1,11 +1,11 @@
-import User from 'src/model/User'
-import Key from 'src/model/Key'
-import Account from 'src/model/Account'
-import AppConstants from 'src/constants/constants'
-import Wallet from 'src/model/Wallet'
-import DataFormatHelper from 'src/api/helpers/DataFormatHelper'
-import KeyPathHelper from 'src/api/helpers/KeyPathHelper'
-import LoggerHelper from '../helpers/LoggerHelper'
+import User from '../model/User'
+import Key from '../model/Key'
+import Account from '../model/Account'
+import AppConstants from '../constants/constants'
+import Wallet from '../model/Wallet'
+import DataFormatHelper from '../api/helpers/DataFormatHelper'
+import KeyPathHelper from '../api/helpers/KeyPathHelper'
+import LoggerHelper from './LoggerHelper'
 const l = LoggerHelper.curryLogger('KeyMaster')
 
 /**

@@ -1,4 +1,4 @@
-import AccountAPI from 'src/api/AccountAPI'
+import AccountAPI from '../api/AccountAPI'
 import LoggerHelper from '../helpers/LoggerHelper'
 const l = LoggerHelper.curryLogger('Wallet')
 
