@@ -11,3 +11,23 @@ module.exports.NDAU_CONSTANT = 20036 // which is 0x4e44 in hex, which are the tw
 module.exports.QUANTA_PER_UNIT = 100000000
 
 module.exports.TEMP_ID = 'temp-id'
+
+module.exports.DERIVED_ROOT_YES = 'yes'
+module.exports.DERIVED_ROOT_NO = 'no'
+module.exports.DERIVED_ROOT_UNKNOWN = 'unknown'
+
+module.exports.LOCK_ACCOUNT_POSSIBLE_TIMEFRAMES = {
+  '3m': '3 months',
+  '6m': '6 months',
+  '1y': '1 year',
+  '2y': '2 years',
+  '3y': '3 years'
+}
+
+module.exports.NDAU_EPOCH = '2000-01-01T00:00:00Z'
+
+module.exports.TESTNET_ADDRESS = 'tn'
+module.exports.MAINNET_ADDRESS = 'nd'
+module.exports.APP_LANGUAGE = 'en'
+
+module.exports.RATE_DENOMINATOR = module.exports.QUANTA_PER_UNIT * 10000

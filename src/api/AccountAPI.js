@@ -62,7 +62,7 @@ const getNextSequence = async address => {
     return accountData[address].sequence ? accountData[address].sequence + 1 : 1
   } catch (error) {
     console.log(error)
-    return 1
+    return 1 // @TODO How do we get to this path? Is this necessary?
   }
 }
 

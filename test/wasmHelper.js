@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import fs from 'fs'
 import { promisify } from 'util'
 require('./wasm_exec')
@@ -12,40 +11,48 @@ const toUint8Array = b => {
   return u
 }
 
-const instantiateStreaming = (source, importObject) => {
-  importObject = importObject || {}
-  return source
-    .then(response => Promise.resolve(toUint8Array(response)))
-    .then(arrayBuffer => Promise.resolve(new WebAssembly.Module(arrayBuffer)))
-    .then(mod => {
-      return WebAssembly.instantiate(mod, importObject).then(instance => {
-        return {
-          module: mod,
-          instance: instance
+const root = global || window
+if (!root.Keyaddr) {
+  const instantiateStreaming = (source, importObject) => {
+    importObject = importObject || {}
+    return source
+      .then(response => Promise.resolve(toUint8Array(response)))
+      .then(arrayBuffer => Promise.resolve(new WebAssembly.Module(arrayBuffer)))
+      .then(mod => {
+        return WebAssembly.instantiate(mod, importObject).then(instance => {
+          return {
+            module: mod,
+            instance: instance
+          }
+        })
+      })
+  }
+
+  before(async () => {
+    const go = new Go()
+    return instantiateStreaming(
+      readFile(`${__dirname}/keyaddr.wasm`),
+      go.importObject
+    )
+      .then(function (result) {
+        go.run(result.instance)
+      })
+      .then(() => {
+        root.Keyaddr = {
+          newKey: promisify(KeyaddrNS.newKey),
+          wordsToBytes: promisify(KeyaddrNS.wordsToBytes),
+          deriveFrom: promisify(KeyaddrNS.deriveFrom),
+          ndauAddress: promisify(KeyaddrNS.ndauAddress),
+          toPublic: promisify(KeyaddrNS.toPublic),
+          child: promisify(KeyaddrNS.child),
+          sign: promisify(KeyaddrNS.sign),
+          hardenedChild: promisify(KeyaddrNS.hardenedChild),
+          newKey: promisify(KeyaddrNS.newKey),
+          exit: promisify(KeyaddrNS.exit)
         }
       })
-    })
+      .catch(err => {
+        console.error('Error loading WASM', err)
+      })
+  })
 }
-
-before(done => {
-  const go = new Go()
-  instantiateStreaming(readFile(`${__dirname}/keyaddr.wasm`), go.importObject)
-    .then(function (result) {
-      go.run(result.instance)
-    })
-    .then(() => {
-      global.Keyaddr = {
-        newKey: promisify(KeyaddrNS.newKey),
-        wordsToBytes: promisify(KeyaddrNS.wordsToBytes),
-        deriveFrom: promisify(KeyaddrNS.deriveFrom),
-        ndauAddress: promisify(KeyaddrNS.ndauAddress),
-        toPublic: promisify(KeyaddrNS.toPublic),
-        child: promisify(KeyaddrNS.child),
-        sign: promisify(KeyaddrNS.sign),
-        hardenedChild: promisify(KeyaddrNS.hardenedChild),
-        newKey: promisify(KeyaddrNS.newKey),
-        exit: promisify(KeyaddrNS.exit)
-      }
-    })
-    .then(done)
-})

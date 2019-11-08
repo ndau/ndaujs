@@ -1,6 +1,6 @@
-import APIAddressHelper from './helpers/APIAddressHelper'
-import APICommunicationHelper from './helpers/APICommunicationHelper'
-import DataFormatHelper from './helpers/DataFormatHelper'
+import APIAddressHelper from '../api/helpers/APIAddressHelper'
+import APICommunicationHelper from '../api/helpers/APICommunicationHelper'
+import DataFormatHelper from '../api/helpers/DataFormatHelper'
 
 const getMarketPrice = async user => {
   const marketPriceAPI = await APIAddressHelper.getMarketPriceAPIAddress()

@@ -1,11 +1,10 @@
-import User from '../model/User'
-import Key from '../model/Key'
-import Account from '../model/Account'
-import AppConstants from '../constants/constants'
-import AccountAPIHelper from '../api/helpers/AccountAPIHelper'
-import Wallet from '../model/Wallet'
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import KeyPathHelper from '../api/helpers/KeyPathHelper'
+import User from 'src/model/User'
+import Key from 'src/model/Key'
+import Account from 'src/model/Account'
+import AppConstants from 'src/constants/constants'
+import Wallet from 'src/model/Wallet'
+import DataFormatHelper from 'src/api/helpers/DataFormatHelper'
+import KeyPathHelper from 'src/api/helpers/KeyPathHelper'
 
 /**
  * This function will return an array of addresses that can be
@@ -30,9 +29,7 @@ const getRootAddresses = async (rootPrivateKey, startIndex, endIndex) => {
   try {
     for (let i = startIndex; i <= endIndex; i++) {
       const derivedKey = await Keyaddr.deriveFrom(rootPrivateKey, '/', `/${i}`)
-
       const address = await Keyaddr.ndauAddress(derivedKey)
-
       if (address) {
         addresses[address] = `/${i}`
       }
@@ -71,9 +68,7 @@ const getBIP44Addresses = async (rootPrivateKey, startIndex, endIndex) => {
         '/',
         KeyPathHelper.accountCreationKeyPath + `/${i}`
       )
-
       const address = await Keyaddr.ndauAddress(derivedKey)
-
       if (address) {
         addresses[address] = KeyPathHelper.accountCreationKeyPath + `/${i}`
       }
@@ -104,7 +99,7 @@ const createFirstTimeUser = async (
   numberOfAccounts = 0
 ) => {
   if (!recoveryBytes) {
-    throw new Error('you MUST pass recoveryPhrase to this method')
+    throw new Error('you MUST pass recoveryBytes to this method')
   }
 
   const user = new User()
@@ -266,9 +261,10 @@ const createNewAccount = async (wallet, numberOfAccounts = 1) => {
     await _createAccount(accountCreationKey, pathIndex, wallet)
   }
 
-  await AccountAPIHelper.populateWalletWithAddressData(wallet)
+  const w = new Wallet().fromObject(wallet)
+  await w.populateWalletWithAddressData()
 
-  return wallet
+  return w
 }
 
 /**
@@ -300,12 +296,10 @@ const _createAccountCreationKey = async recoveryBytes => {
     '/',
     KeyPathHelper.accountCreationKeyPath
   )
-  console.log('ACCT', KeyPathHelper.accountCreationKeyPath)
   return accountCreationKey
 }
 
 const _createInitialKeys = async (wallet, accountCreationKey) => {
-  console.log('creating initial keys', accountCreationKey)
   const accountCreationPublicKey = await Keyaddr.toPublic(accountCreationKey)
   wallet.keys[DataFormatHelper.create8CharHash(accountCreationKey)] = createKey(
     accountCreationKey,
@@ -320,7 +314,6 @@ const createKey = (privateKey, publicKey, path) => {
   if (publicKey) newKey.publicKey = publicKey
   newKey.derivedFromRoot = AppConstants.DERIVED_ROOT_YES
   newKey.path = path
-  console.log('Doing this new key', newKey)
   return newKey.toJSON()
 }
 
@@ -443,7 +436,7 @@ const _createAccounts = async (
       recoveryPhraseBytes
     )
   }
-  console.log(`Accounts created: ${wallet.accounts}`)
+  console.log(`Accounts created: ${JSON.stringify(wallet.accounts)}`)
 }
 
 export default {
