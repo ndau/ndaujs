@@ -1,6 +1,8 @@
 import GeneralStore from '../stores/GeneralStore'
 import ServiceDiscovery from '../api/ServiceDiscovery'
 import SettingsStore from '../stores/SettingsStore'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('AsyncStorageHelper')
 
 const STORAGE_KEY_PREFIX = '@NdauGeneralStore:'
 const CURRENT_USER_KEY = '@CurrentUserKey'
@@ -149,7 +151,8 @@ const getAllKeys = async () => {
           key !== LAST_ACCOUNT_DATA
       )
     return newKeys
-  } catch (error) {
+  } catch (e) {
+    l.debug('could not get all keys: ${e.message}')
     return []
   }
 }

@@ -1,5 +1,6 @@
 import GeneralStore from '../src/stores/GeneralStore'
 import MockAsyncStorage from 'mock-async-storage'
+import LoggerHelper from '../src/helpers/LoggerHelper'
 const expect = require('chai').expect
 const ndaujs = require('../src/keyaddress/address')
 
@@ -7,7 +8,11 @@ const ndaujs = require('../src/keyaddress/address')
 // but it is used in other files.
 GeneralStore.setStore(new MockAsyncStorage())
 
-describe('Address related functions', () => {
+// Sets the log level to errors only
+LoggerHelper.setLevel(LoggerHelper.LEVEL_INFO)
+LoggerHelper.setLogger(console)
+
+global.NDAUJS_LOG_LEVEL = describe('Address related functions', () => {
   describe('#truncateAddress', () => {
     it('should return the string back if less than 19 characters', () => {
       expect(ndaujs.truncateAddress('123asd')).to.equal('123asd')

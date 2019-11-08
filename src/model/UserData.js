@@ -3,6 +3,9 @@ import OrderAPI from '../api/OrderAPI'
 import MultiSafeHelper from '../helpers/MultiSafeHelper'
 import UserStore from '../stores/UserStore'
 import NdauStore from '../stores/NdauStore'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('UserData')
+
 // ATTENTION - DO NOT REMOVE THIS COMMENTED CODE!
 // IF YOU WOULD LIKE TO TEST LOG USER DATA UNCOMMENT THIS
 // import UserTestData from '../helpers/UserTestData'

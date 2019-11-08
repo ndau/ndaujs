@@ -3,6 +3,8 @@ import KeyMaster from './KeyMaster'
 import AppConstants from '../constants/constants'
 import MultiSafe from '../model/MultiSafe'
 import DataFormatHelper from '../api/helpers/DataFormatHelper'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('MultiSafeHelper')
 
 // ATTENTION - DO NOT REMOVE THIS COMMENTED CODE!
 // IF YOU WOULD LIKE TO TEST LOG USER DATA UNCOMMENT THIS
@@ -29,7 +31,7 @@ const setupNewUser = async (
   addressType = AppConstants.MAINNET_ADDRESS
 ) => {
   if (!user) {
-    console.log('Generating all keys from phrase given...')
+    l.info('no user, generating all keys from phrase given')
     const recoveryPhraseAsBytes = await Keyaddr.wordsToBytes(
       AppConstants.APP_LANGUAGE,
       recoveryPhraseString
@@ -65,7 +67,10 @@ const recoveryPhraseAlreadyExists = async (userId, recoveryPhrase) => {
       userId.replace(/\s+/g, ''),
       recoveryPhrase
     )
-  } catch (error) {}
+  } catch (e) {
+    // This error was previously swallowed. Now it simply logs.
+    l.debug(`could not verify multisafe exists: ${e.message}`)
+  }
   return false
 }
 
@@ -120,9 +125,8 @@ const _internalSaveUser = async (
 ) => {
   const multiSafe = new MultiSafe()
 
-  console.log(
-    `Persisting key ${walletId} into MultiSafe: ${JSON.stringify(user)}`
-  )
+  l.info(`multisafe saving to ${walletId}`)
+  l.info(`user: ${JSON.stringify(user)}`)
 
   // create a multisafe
   await multiSafe.create(walletId.replace(/\s+/g, ''), encryptionPassword)

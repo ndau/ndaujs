@@ -3,6 +3,8 @@ import DataFormatHelper from './DataFormatHelper'
 import AppConstants from '../../constants/constants'
 import AppConfig from '../../constants/config'
 import moment from 'moment'
+import LoggerHelper from '../../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('AccountAPIHelper')
 
 const getEaiValueForDisplay = account => {
   return account && account.eaiValueForDisplay
@@ -220,7 +222,7 @@ const getTotalNdauForSend = (
 }
 
 const currentPrice = (marketPrice, totalNdau) => {
-  console.log(`marketPrice is ${marketPrice} totalNdau is ${totalNdau}`)
+  l.debug(`marketPrice is ${marketPrice} totalNdau is ${totalNdau}`)
 
   // why not use .toLocaleString you ask...here is why:
   // https://github.com/facebook/react-native/issues/15717
@@ -231,7 +233,7 @@ const currentPrice = (marketPrice, totalNdau) => {
         2
       )
     : '$0.00'
-  console.log(`currentPrice: ${currentPrice}`)
+  l.info(`currentPrice: ${currentPrice}`)
 
   return currentPrice
 }

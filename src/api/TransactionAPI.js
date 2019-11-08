@@ -1,10 +1,12 @@
 import APIAddressHelper from './helpers/APIAddressHelper'
 import BlockchainAPIError from './errors/BlockchainAPIError'
 import APICommunicationHelper from '../api/helpers/APICommunicationHelper'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('TransactionAPI')
 
 const _postTransaction = async (submitAddress, transaction) => {
-  console.log(
-    `TransactionAPI._postTransaction submitAddress: ${submitAddress} transaction: ${JSON.stringify(
+  l.debug(
+    `_postTransaction submitAddress: ${submitAddress} transaction: ${JSON.stringify(
       transaction
     )}`
   )
@@ -13,9 +15,9 @@ const _postTransaction = async (submitAddress, transaction) => {
       submitAddress,
       JSON.stringify(transaction)
     )
-  } catch (error) {
-    console.log(`TransactionAPI._postTransaction ${JSON.stringify(error)}`)
-    throw error
+  } catch (e) {
+    l.debug(`could not post: ${e.message}`)
+    throw e
   }
 }
 
@@ -28,17 +30,15 @@ const submit = async (submitAddress, transaction) => {
 }
 
 const transactionByHash = async transactionHash => {
-  console.log(
-    `TransactionAPI.transactionByHash ${JSON.stringify(transactionHash)}`
-  )
+  l.debug(`transactionByHash ${JSON.stringify(transactionHash)}`)
   try {
     const transactionByHashAddress = await APIAddressHelper.getTransactionByHashAPIAddress(
       transactionHash
     )
     return await APICommunicationHelper.get(transactionByHashAddress)
-  } catch (error) {
-    console.log(`TransactionAPI.transactionByHash ${JSON.stringify(error)}`)
-    throw new BlockchainAPIError(error)
+  } catch (e) {
+    l.debug(`could not get transaction by hash ${e.message}`)
+    throw new BlockchainAPIError(e)
   }
 }
 

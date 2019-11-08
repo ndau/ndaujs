@@ -1,4 +1,6 @@
 import AppConstants from '../constants/constants'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('SetupStore')
 
 // This class allows listeners to replace an earlier call to react-native's alerts.
 // In order to use the alert, add a listener function to this class by calling `setupStore.addListener(yourFunction)` and handle the alert inside the body of `yourFunction`.
@@ -126,12 +128,12 @@ class SetupStore {
   }
 
   printData () {
-    console.log(`SetupStore.userId ${this._userId}`)
-    console.log(`SetupStore.numberOfAccounts ${this._numberOfAccounts}`)
-    console.log(`SetupStore.qrCode ${this._qrCode}`)
-    console.log(`SetupStore.entropy ${this._entropy}`)
-    console.log(`SetupStore.walletId ${this._walletId}`)
-    console.log(`SetupStore.addressType ${this._addressType}`)
+    l.info(`SetupStore.userId ${this._userId}`)
+    l.info(`SetupStore.numberOfAccounts ${this._numberOfAccounts}`)
+    l.info(`SetupStore.qrCode ${this._qrCode}`)
+    l.info(`SetupStore.entropy ${this._entropy}`)
+    l.info(`SetupStore.walletId ${this._walletId}`)
+    l.info(`SetupStore.addressType ${this._addressType}`)
   }
 
   reset () {

@@ -2,7 +2,7 @@ import KeyMaster from 'src/helpers/KeyMaster'
 import ValidationKeyMaster from 'src/helpers/ValidationKeyMaster'
 import util from 'util'
 require('./wasmHelper.js')
-// This is a test helper used to create mocks. It does not assert anything. Which is fine. It's a helper
+// This is a test helper used to create mocks. It does not assert anything. Which is fine. It's a helper.
 describe('making a mock', () => {
   it('creates everything', async () => {
     const bytes = await Keyaddr.wordsToBytes(
@@ -26,9 +26,9 @@ describe('making a mock', () => {
     await ValidationKeyMaster.addValidationKey(w, acc)
     await ValidationKeyMaster.addValidationKey(w, acc)
 
-    console.log(
+    /* console.log(
       'User now',
-      util.inspect(w, false, null, true /* enable colors */)
-    )
+      util.inspect(w, false, null, true)
+    ) */
   })
 })

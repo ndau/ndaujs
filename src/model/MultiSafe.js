@@ -1,6 +1,8 @@
 import GeneralStore from '../stores/GeneralStore'
 import CryptoJS from 'crypto-js'
 import EntropyHelper from '../helpers/EntropyHelper'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('MultiSafe')
 
 // we put these things on either end of the combination to make sure we know that we
 // have decrypted it properly
@@ -37,7 +39,8 @@ class MultiSafe {
     // if the password was wrong, it may not even convert to a string; test for that
     try {
       decrypted = decrypted.toString(CryptoJS.enc.Utf8)
-    } catch (err) {
+    } catch (e) {
+      l.debug(`could not decrypt string: ${e.message}`)
       return null
     }
 
@@ -60,8 +63,8 @@ class MultiSafe {
         key => key.slice(0, MULTISAFE_PREFIX.length) == MULTISAFE_PREFIX
       )
       return newKeys
-    } catch (error) {
-      console.log('GetAllKeys failed', error)
+    } catch (e) {
+      l.debug(`getAllKeys failed: ${e.message}`)
       return []
     }
   }
@@ -98,8 +101,9 @@ class MultiSafe {
     try {
       let item = await GeneralStore.store.getItem(key)
       return item
-    } catch (err) {
-      throw err
+    } catch (e) {
+      l.debug(`could not get item for ${key}: ${e.message}`)
+      throw e
     }
   }
 
@@ -262,7 +266,8 @@ class MultiSafe {
           }
         })
       return newKeys
-    } catch (error) {
+    } catch (e) {
+      l.debug(`could not get storage keys: ${e.message}`)
       return []
     }
   }
@@ -283,7 +288,8 @@ class MultiSafe {
     if (await this._keyExists(metaKey)) {
       try {
         await this.verify(combo)
-      } catch (error) {
+      } catch (e) {
+        l.debug('multisafe combo verification: ${e.message}')
         return false
       }
       return true
@@ -307,7 +313,11 @@ class MultiSafe {
           return true
         }
       }
-    } catch (error) {}
+    } catch (e) {
+      l.error(
+        'could not get all keys for multisafe existence check: ${e.message}'
+      )
+    }
 
     return false
   }

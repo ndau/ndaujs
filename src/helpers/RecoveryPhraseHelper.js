@@ -5,6 +5,8 @@ import DataFormatHelper from '../api/helpers/DataFormatHelper'
 import UserStore from '../stores/UserStore'
 import AppConfig from '../constants/config'
 import UserData from '../model/UserData'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('RecoveryPhraseHelper')
 
 /**
  * First we check to see if there are a variable number of accounts existent
@@ -48,13 +50,11 @@ const recoverUser = async (recoveryPhraseString, user) => {
         bip44Accounts[accountPath]
       )
     }
-    console.log(
-      `Recovered user containing BIP44 accounts: ${JSON.stringify(user)}`
-    )
+    l.info(`Recovered user containing BIP44 accounts: ${JSON.stringify(user)}`)
   }
 
   const rootAccounts = await checkAddresses(rootPrivateKey, true)
-  console.log(`root accounts found: ${JSON.stringify(rootAccounts)}`)
+  l.info(`root accounts found: ${JSON.stringify(rootAccounts)}`)
   if (rootAccounts && Object.keys(rootAccounts).length > 0) {
     for (const accountPath in rootAccounts) {
       await KeyMaster.createAccountFromPath(
@@ -64,7 +64,7 @@ const recoverUser = async (recoveryPhraseString, user) => {
         rootPrivateKey
       )
     }
-    console.log(
+    l.info(
       `Recovered user containing root accounts now: ${JSON.stringify(user)}`
     )
   }
@@ -92,10 +92,10 @@ const accountScan = async () => {
     try {
       bip44Accounts = await checkAddresses(rootPrivateKey)
     } catch (e) {
-      console.log(`could not check non-root addresses: ${e}`)
+      l.error(`could not check non-root addresses: ${e.message}`)
     }
 
-    console.log(`BIP44 accounts found: ${JSON.stringify(bip44Accounts)}`)
+    l.info(`BIP44 accounts found: ${JSON.stringify(bip44Accounts)}`)
     if (bip44Accounts && Object.keys(bip44Accounts).length > 0) {
       for (const accountPath in bip44Accounts) {
         try {
@@ -105,10 +105,10 @@ const accountScan = async () => {
             bip44Accounts[accountPath]
           )
         } catch (e) {
-          console.log(`could not create account from path: ${e}`)
+          l.error(`could not create account from path: ${e.message}`)
         }
       }
-      console.log(
+      l.info(
         `Recovered user containing BIP44 accounts: ${JSON.stringify(user)}`
       )
     }
@@ -117,9 +117,9 @@ const accountScan = async () => {
     try {
       rootAccounts = await checkAddresses(rootPrivateKey, true)
     } catch (e) {
-      console.log(`Error: could not get root accounts ${e}`)
+      l.error(`Error: could not get root accounts ${e.message}`)
     }
-    console.log(`root accounts found: ${JSON.stringify(rootAccounts)}`)
+    l.info(`root accounts found: ${JSON.stringify(rootAccounts)}`)
     if (rootAccounts && Object.keys(rootAccounts).length > 0) {
       for (const accountPath in rootAccounts) {
         try {
@@ -130,10 +130,10 @@ const accountScan = async () => {
             rootPrivateKey
           )
         } catch (e) {
-          console.log('could not createAccountFromPath', e)
+          l.error(`could not createAccountFromPath ${e.message}`)
         }
       }
-      console.log(
+      l.info(
         `Recovered user containing root accounts now: ${JSON.stringify(user)}`
       )
     }
@@ -171,18 +171,14 @@ const checkAddresses = async (rootPrivateKey, root = false) => {
         startIndex,
         endIndex
       )
-      console.log(
-        `KeyMaster.getRootAddresses found: ${JSON.stringify(addresses)}`
-      )
+      l.info(`KeyMaster.getRootAddresses found: ${JSON.stringify(addresses)}`)
     } else {
       addresses = await KeyMaster.getBIP44Addresses(
         rootPrivateKey,
         startIndex,
         endIndex
       )
-      console.log(
-        `KeyMaster.getBIP44Addresses found: ${JSON.stringify(addresses)}`
-      )
+      l.info(`KeyMaster.getBIP44Addresses found: ${JSON.stringify(addresses)}`)
     }
 
     accountDataFromBlockchain = await AccountAPI.getAddressData(

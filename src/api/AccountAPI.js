@@ -4,6 +4,8 @@ import BlockchainAPIError from '../api/errors/BlockchainAPIError'
 import APICommunicationHelper from '../api/helpers/APICommunicationHelper'
 import AsyncStorageHelper from '../helpers/AsyncStorageHelper'
 import WalletStore from '../stores/WalletStore'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('AccountAPI')
 
 const _ = require('lodash')
 
@@ -16,8 +18,8 @@ const getAddressData = async addresses => {
     )
     await AsyncStorageHelper.setLastAccountData(accountData)
     return accountData
-  } catch (error) {
-    console.log(error)
+  } catch (e) {
+    l.debug(`could not get address data: ${e.message}`)
     throw error
   }
 }
@@ -47,8 +49,10 @@ const isAddressDataNew = async addresses => {
       JSON.stringify(addresses)
     )
     return !_.isEqual(lastAccountData, accountData)
-  } catch (error) {
-    console.log(error)
+  } catch (e) {
+    l.debug(
+      `could get new address data with post to ${accountAPI}: ${e.message}`
+    )
     throw new BlockchainAPIError(error)
   }
 }
@@ -60,8 +64,8 @@ const getNextSequence = async address => {
       accountAPI + '/' + address
     )
     return accountData[address].sequence ? accountData[address].sequence + 1 : 1
-  } catch (error) {
-    console.log(error)
+  } catch (e) {
+    l.debug(`could not get next sequence: ${e.message}`)
     return 1 // @TODO How do we get to this path? Is this necessary?
   }
 }
@@ -77,9 +81,9 @@ const getEaiRate = async addressData => {
       eaiRateAddress,
       JSON.stringify(accountEaiRateRequestData)
     )
-  } catch (error) {
-    console.log(error)
-    throw new BlockchainAPIError(error)
+  } catch (e) {
+    l.debug(`could not get EAI rate: ${e.message}`)
+    throw new BlockchainAPIError(e)
   }
 }
 
@@ -94,9 +98,9 @@ const getLockRates = async account => {
       eaiRateAddress,
       JSON.stringify(accountEaiRateRequestData)
     )
-  } catch (error) {
-    console.log(error)
-    throw new BlockchainAPIError(error)
+  } catch (e) {
+    l.debug(`could not get lock rates: ${e.message}`)
+    throw new BlockchainAPIError(e)
   }
 }
 
@@ -106,9 +110,9 @@ const accountHistory = async address => {
   )
   try {
     return await APICommunicationHelper.get(accountHistoryAddress)
-  } catch (error) {
-    console.log(error)
-    throw new BlockchainAPIError(error)
+  } catch (e) {
+    l.debug(`could not get account history: ${e.message}`)
+    throw new BlockchainAPIError(e)
   }
 }
 

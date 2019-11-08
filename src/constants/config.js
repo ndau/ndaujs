@@ -19,3 +19,5 @@ module.exports.NODE_ADDRESSES = [
 module.exports.NUMBER_OF_KEYS_TO_GRAB_ON_RECOVERY = 30
 
 module.exports.VALIDATION_KEY_SEARCH_START_INDEX = 1
+
+module.exports.MAX_LOG_ENTRIES = 101
