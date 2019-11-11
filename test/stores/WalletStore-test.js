@@ -198,18 +198,20 @@ const wallet2 = {
   }
 }
 
-it('Makes sure we get back falsy if nothing set', async () => {
-  expect(WalletStore.getWallet()).to.be.undefined
-})
+describe('WalletStore', () => {
+  it('Makes sure we get back falsy if nothing set', async () => {
+    expect(WalletStore.getWallet()).to.be.undefined
+  })
 
-it('Makes sure we can set and reset a wallet', async () => {
-  WalletStore.setWallet(wallet1)
-  expect(WalletStore.getWallet()).to.equal(wallet1)
-  WalletStore.setWallet(wallet2)
-  expect(WalletStore.getWallet()).to.equal(wallet2)
-  WalletStore.setWallet(wallet1)
-  expect(WalletStore.getWallet()).to.equal(wallet1)
-  WalletStore.setWallet(wallet2)
-  expect(WalletStore.getWallet()).to.equal(wallet2)
-  expect(WalletStore.getWallet()).to.not.equal(wallet1)
+  it('Makes sure we can set and reset a wallet', async () => {
+    WalletStore.setWallet(wallet1)
+    expect(WalletStore.getWallet()).to.deep.equal(wallet1)
+    WalletStore.setWallet(wallet2)
+    expect(WalletStore.getWallet()).to.deep.equal(wallet2)
+    WalletStore.setWallet(wallet1)
+    expect(WalletStore.getWallet()).to.deep.equal(wallet1)
+    WalletStore.setWallet(wallet2)
+    expect(WalletStore.getWallet()).to.deep.equal(wallet2)
+    expect(WalletStore.getWallet()).to.not.deep.equal(wallet1)
+  })
 })

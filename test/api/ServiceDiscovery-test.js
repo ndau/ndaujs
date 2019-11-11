@@ -2,7 +2,7 @@ import ServiceDiscovery from '../../src/api/ServiceDiscovery'
 import MockHelper from './helpers/MockHelper'
 import { expect } from 'chai'
 
-describe('...testing ServiceDiscovery', () => {
+describe('ServiceDiscovery', () => {
   it('getBlockchainServiceNodeURL should return something back', async () => {
     MockHelper.mockServiceDiscovery()
 

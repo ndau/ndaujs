@@ -207,7 +207,7 @@ const testUser2 = {
 const password1 = '1234asdf'
 const password2 = ';lkj-098'
 
-it('Makes sure we get back falsy if nothing set for user', async () => {
+it('Makes sure we get back falsy if nothing set for user', () => {
   expect(UserStore.getUser()).to.be.undefined
 })
 

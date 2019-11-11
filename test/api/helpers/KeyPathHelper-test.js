@@ -457,7 +457,7 @@ const user = {
   }
 }
 
-describe('...testing KeyPathHelper', () => {
+describe('KeyPathHelper', () => {
   it('test getLegacy2Thru4RootAccountValidationKeyPath', async () => {
     const wallet = user.wallets['2c963f83']
     const account1 =

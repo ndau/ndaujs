@@ -133,7 +133,6 @@ const _generateValidationKey = async (wallet, account, index) => {
  */
 const addValidationKey = async (wallet, account) => {
   const key = await _generateValidationKey(wallet, account)
-
   addThisValidationKey(account, wallet, key.privateKey, key.publicKey, key.path)
 }
 

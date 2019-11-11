@@ -1,5 +1,14 @@
+import GeneralStore from '../src/stores/GeneralStore'
+import CryptoStore from '../src/stores/CryptoStore'
+import MockAsyncStorage from 'mock-async-storage'
+import crypto from 'crypto'
 const expect = require('chai').expect
 const ndaujs = require('../src/keyaddress/address')
+
+// Do not remove this line. The class is initailized here
+// but it is used in other files.
+GeneralStore.setStore(new MockAsyncStorage())
+CryptoStore.setStore(crypto.randomBytes)
 
 describe('Address related functions', () => {
   describe('#truncateAddress', () => {
