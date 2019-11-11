@@ -1,4 +1,4 @@
-import CircularArray from './CircularArray'
+import CircularArray from '../api/helpers/CircularArray'
 import Config from '../constants/config'
 /*
 This is a singleton but it generates loggers.
