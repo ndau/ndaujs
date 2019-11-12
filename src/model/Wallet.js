@@ -2,6 +2,7 @@ import AccountAPI from '../api/AccountAPI'
 import LoggerHelper from '../helpers/LoggerHelper'
 const l = LoggerHelper.curryLogger('Wallet')
 
+
 // Please be aware that to remain backwards compatible we must
 // always add to or deprecate items. We CANNOT remove anything
 // from this class. If you feel it shuold be removed please check

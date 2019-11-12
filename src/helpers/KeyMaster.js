@@ -8,6 +8,7 @@ import KeyPathHelper from '../api/helpers/KeyPathHelper'
 import LoggerHelper from './LoggerHelper'
 const l = LoggerHelper.curryLogger('KeyMaster')
 
+
 /**
  * This function will return an array of addresses that can be
  * used to check the blockchain. Please keep in mind that this method
