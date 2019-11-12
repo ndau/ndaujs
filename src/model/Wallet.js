@@ -1,9 +1,4 @@
-import DataFormatHelper from 'src/api/helpers/DataFormatHelper'
-import KeyPathHelper from 'src/api/helpers/KeyPathHelper'
-import AccountAPI from 'src/api/AccountAPI'
-import Account from 'src/model/Account'
-import KeyMaster from 'src/helpers/KeyMaster'
-import AppConstants from 'src/constants/constants'
+import AccountAPI from '../api/AccountAPI'
 
 // Please be aware that to remain backwards compatible we must
 // always add to or deprecate items. We CANNOT remove anything
