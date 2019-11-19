@@ -10,6 +10,7 @@ const SetupStore = require('./src/stores/SetupStore')
 const RecoveryPhraseHelper = require('./src/api/helpers/RecoveryPhraseHelper')
 const DataFormatHelper = require('./src/api/helpers/DataFormatHelper')
 const MultiSafeHelper = require('./src/helpers/MultiSafeHelper')
+const LoggerHelper = require('./src/helpers/LoggerHelper')
 
 // i18next is loaded asynchronously. Any code that requires i18next should wait
 // for the i18next event 'initialized' before running.
@@ -52,5 +53,6 @@ module.exports = {
   SetupStore,
   RecoveryPhraseHelper,
   DataFormatHelper,
-  MultiSafeHelper
+  MultiSafeHelper,
+  LoggerHelper
 }
