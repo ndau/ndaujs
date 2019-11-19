@@ -95,6 +95,11 @@ class LoggerHelper {
       }
     }
   }
+
+  // return the local this._logData back to the caller
+  getData () {
+    return this._logData
+  }
 }
 
 export default new LoggerHelper()
