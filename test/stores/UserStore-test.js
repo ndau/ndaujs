@@ -206,35 +206,36 @@ const testUser2 = {
 
 const password1 = '1234asdf'
 const password2 = ';lkj-098'
+describe('UserStore', () => {
+  it('Makes sure we get back falsy if nothing set for user', () => {
+    expect(UserStore.getUser()).to.be.undefined
+  })
 
-it('Makes sure we get back falsy if nothing set for user', () => {
-  expect(UserStore.getUser()).to.be.undefined
-})
+  it('Makes sure we can set and reset a user', async () => {
+    UserStore.setUser(testUser1)
+    expect(UserStore.getUser()).to.equal(testUser1)
+    UserStore.setUser(testUser2)
+    expect(UserStore.getUser()).to.equal(testUser2)
+    UserStore.setUser(testUser1)
+    expect(UserStore.getUser()).to.equal(testUser1)
+    UserStore.setUser(testUser2)
+    expect(UserStore.getUser()).to.equal(testUser2)
+    expect(UserStore.getUser()).to.not.equal(testUser1)
+  })
 
-it('Makes sure we can set and reset a user', async () => {
-  UserStore.setUser(testUser1)
-  expect(UserStore.getUser()).to.equal(testUser1)
-  UserStore.setUser(testUser2)
-  expect(UserStore.getUser()).to.equal(testUser2)
-  UserStore.setUser(testUser1)
-  expect(UserStore.getUser()).to.equal(testUser1)
-  UserStore.setUser(testUser2)
-  expect(UserStore.getUser()).to.equal(testUser2)
-  expect(UserStore.getUser()).to.not.equal(testUser1)
-})
+  it('Makes sure we get back falsy if nothing set for password', async () => {
+    expect(UserStore.getPassword()).to.be.undefined
+  })
 
-it('Makes sure we get back falsy if nothing set for password', async () => {
-  expect(UserStore.getPassword()).to.be.undefined
-})
-
-it('Makes sure we can set and reset a password', async () => {
-  UserStore.setPassword(password1)
-  expect(UserStore.getPassword()).to.equal(password1)
-  UserStore.setPassword(password2)
-  expect(UserStore.getPassword()).to.equal(password2)
-  UserStore.setPassword(password1)
-  expect(UserStore.getPassword()).to.equal(password1)
-  UserStore.setPassword(password2)
-  expect(UserStore.getPassword()).to.equal(password2)
-  expect(UserStore.getPassword()).to.not.equal(password1)
+  it('Makes sure we can set and reset a password', async () => {
+    UserStore.setPassword(password1)
+    expect(UserStore.getPassword()).to.equal(password1)
+    UserStore.setPassword(password2)
+    expect(UserStore.getPassword()).to.equal(password2)
+    UserStore.setPassword(password1)
+    expect(UserStore.getPassword()).to.equal(password1)
+    UserStore.setPassword(password2)
+    expect(UserStore.getPassword()).to.equal(password2)
+    expect(UserStore.getPassword()).to.not.equal(password1)
+  })
 })

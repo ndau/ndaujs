@@ -457,66 +457,85 @@ const user = {
   }
 }
 
-it('test getLegacy2Thru4RootAccountValidationKeyPath', async () => {
-  const wallet = user.wallets['2c963f83']
-  const account1 =
-    wallet.accounts['ndaabymd5p86e5bixjzh7zm45uin4yv64dmtqhzfpepvw922']
-  const account2 =
-    wallet.accounts['ndamiu8mr8s4taux33r8eacmc9ahd6fz9wjf95shr7bedjrv']
-  const account3 =
-    wallet.accounts['ndanai5i3atctzm4w5mxjp24zxyk6aeihtf297i23rc3hs54']
+describe('KeyPathHelper', () => {
+  it('test getLegacy2Thru4RootAccountValidationKeyPath', async () => {
+    const wallet = user.wallets['2c963f83']
+    const account1 =
+      wallet.accounts['ndaabymd5p86e5bixjzh7zm45uin4yv64dmtqhzfpepvw922']
+    const account2 =
+      wallet.accounts['ndamiu8mr8s4taux33r8eacmc9ahd6fz9wjf95shr7bedjrv']
+    const account3 =
+      wallet.accounts['ndanai5i3atctzm4w5mxjp24zxyk6aeihtf297i23rc3hs54']
 
-  expect(
-    KeyPathHelper.getLegacy2Thru4RootAccountValidationKeyPath(wallet, account1)
-  ).to.equal(`/44'/20036'/100/10000/7`)
-  expect(
-    KeyPathHelper.getLegacy2Thru4RootAccountValidationKeyPath(wallet, account2)
-  ).to.equal(`/44'/20036'/100/10000/8`)
-  expect(
-    KeyPathHelper.getLegacy2Thru4RootAccountValidationKeyPath(wallet, account3)
-  ).to.equal(`/44'/20036'/100/10000/12`)
-})
+    expect(
+      KeyPathHelper.getLegacy2Thru4RootAccountValidationKeyPath(
+        wallet,
+        account1
+      )
+    ).to.equal(`/44'/20036'/100/10000/7`)
+    expect(
+      KeyPathHelper.getLegacy2Thru4RootAccountValidationKeyPath(
+        wallet,
+        account2
+      )
+    ).to.equal(`/44'/20036'/100/10000/8`)
+    expect(
+      KeyPathHelper.getLegacy2Thru4RootAccountValidationKeyPath(
+        wallet,
+        account3
+      )
+    ).to.equal(`/44'/20036'/100/10000/12`)
+  })
 
-it('test getLegacy2Thru4AccountValidationKeyPath', async () => {
-  const wallet = user.wallets['2c963f83']
-  const account1 =
-    wallet.accounts['ndaabymd5p86e5bixjzh7zm45uin4yv64dmtqhzfpepvw922']
-  const account2 =
-    wallet.accounts['ndamiu8mr8s4taux33r8eacmc9ahd6fz9wjf95shr7bedjrv']
-  const account3 =
-    wallet.accounts['ndanai5i3atctzm4w5mxjp24zxyk6aeihtf297i23rc3hs54']
+  it('test getLegacy2Thru4AccountValidationKeyPath', async () => {
+    const wallet = user.wallets['2c963f83']
+    const account1 =
+      wallet.accounts['ndaabymd5p86e5bixjzh7zm45uin4yv64dmtqhzfpepvw922']
+    const account2 =
+      wallet.accounts['ndamiu8mr8s4taux33r8eacmc9ahd6fz9wjf95shr7bedjrv']
+    const account3 =
+      wallet.accounts['ndanai5i3atctzm4w5mxjp24zxyk6aeihtf297i23rc3hs54']
 
-  expect(
-    KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account1)
-  ).to.equal(`/44'/20036'/100/10000/7/1`)
-  expect(
-    KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account2)
-  ).to.equal(`/44'/20036'/100/10000/8/1`)
-  expect(
-    KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account3)
-  ).to.equal(`/44'/20036'/100/10000/12/1`)
-})
+    expect(
+      KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account1)
+    ).to.equal(`/44'/20036'/100/10000/7/1`)
+    expect(
+      KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account2)
+    ).to.equal(`/44'/20036'/100/10000/8/1`)
+    expect(
+      KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account3)
+    ).to.equal(`/44'/20036'/100/10000/12/1`)
+  })
 
-it('test getLegacy2Thru4AccountValidationKeyPath with index', async () => {
-  const wallet = user.wallets['2c963f83']
-  const account1 =
-    wallet.accounts['ndaabymd5p86e5bixjzh7zm45uin4yv64dmtqhzfpepvw922']
-  const account2 =
-    wallet.accounts['ndamiu8mr8s4taux33r8eacmc9ahd6fz9wjf95shr7bedjrv']
-  const account3 =
-    wallet.accounts['ndanai5i3atctzm4w5mxjp24zxyk6aeihtf297i23rc3hs54']
+  it('test getLegacy2Thru4AccountValidationKeyPath with index', async () => {
+    const wallet = user.wallets['2c963f83']
+    const account1 =
+      wallet.accounts['ndaabymd5p86e5bixjzh7zm45uin4yv64dmtqhzfpepvw922']
+    const account2 =
+      wallet.accounts['ndamiu8mr8s4taux33r8eacmc9ahd6fz9wjf95shr7bedjrv']
+    const account3 =
+      wallet.accounts['ndanai5i3atctzm4w5mxjp24zxyk6aeihtf297i23rc3hs54']
 
-  expect(
-    KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account1, 23)
-  ).to.equal(`/44'/20036'/100/10000/7/23`)
-  expect(
-    KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(wallet, account2, 500)
-  ).to.equal(`/44'/20036'/100/10000/8/500`)
-  expect(
-    KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(
-      wallet,
-      account3,
-      10000000
-    )
-  ).to.equal(`/44'/20036'/100/10000/12/10000000`)
+    expect(
+      KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(
+        wallet,
+        account1,
+        23
+      )
+    ).to.equal(`/44'/20036'/100/10000/7/23`)
+    expect(
+      KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(
+        wallet,
+        account2,
+        500
+      )
+    ).to.equal(`/44'/20036'/100/10000/8/500`)
+    expect(
+      KeyPathHelper.getLegacy2Thru4AccountValidationKeyPath(
+        wallet,
+        account3,
+        10000000
+      )
+    ).to.equal(`/44'/20036'/100/10000/12/10000000`)
+  })
 })
