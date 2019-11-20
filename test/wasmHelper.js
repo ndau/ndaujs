@@ -28,7 +28,7 @@ if (!root.Keyaddr) {
       })
   }
 
-  before(async () => {
+  before(() => {
     const go = new Go()
     return instantiateStreaming(
       readFile(`${__dirname}/keyaddr.wasm`),
