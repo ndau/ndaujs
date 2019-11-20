@@ -5,14 +5,8 @@ import TxSignPrep from '../model/TxSignPrep'
 import AccountAPI from '../api/AccountAPI'
 import { ErrorsByMessage, Messages } from '../api/errors/BlockchainAPIError'
 import APIAddressHelper from '../api/helpers/APIAddressHelper'
-
-class PermissionError extends Error {
-  constructor (message) {
-    super(message)
-    this.name = 'PermissionError'
-    this.message = message
-  }
-}
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('Transaction')
 
 export default class Transaction {
   constructor (wallet, account, transactionType) {
@@ -48,13 +42,13 @@ export default class Transaction {
   async create () {
     try {
       await this.createPrevalidateAddress()
-    } catch (err) {
-      throw new Error(`could not create prevalidate address: ${err}`)
+    } catch (e) {
+      throw new Error(`could not create prevalidate address: ${e.message}`)
     }
     try {
       await this.createSubmissionAddress()
-    } catch (err) {
-      throw new Error(`could not create submission address: ${err}`)
+    } catch (e) {
+      throw new Error(`could not create submission address: ${e.message}`)
     }
     try {
       // ok...if we got here we can assume we do NOT have a validation
@@ -97,26 +91,19 @@ export default class Transaction {
       }
       this.addToJsonTransaction()
       return this._jsonTransaction
-    } catch (error) {
-      this.handleError(error)
+    } catch (e) {
+      this.handleError(e)
     }
   }
 
-  handleError (msgOrErr) {
-    console.log(`Error from blockchain: ${msgOrErr}`)
-    let msg = `Problem occurred sending a ${this.transactionType} for ${
-      this._account.addressData.nickname
-    }`
-    if (msgOrErr instanceof Error) {
-      // If it was an error, append the message to the flash message
-      msg += `: ${msgOrErr.message}`
-    }
-    console.log(msg)
-    if (msgOrErr instanceof Error) {
-      throw msgOrErr
-    } else {
-      throw new Error(msgOrErr)
-    }
+  handleError (e) {
+    let msg = i18next.t('transaction problem', {
+      type: this.transactionType,
+      nickname: this._account.addressData.nickname,
+      error: e.message
+    })
+    l.error(`error from blockchain: ${e.message}`)
+    throw new Error(msg)
   }
 
   /**
@@ -140,8 +127,8 @@ export default class Transaction {
         base64EncodedPrepTx
       )
       this.addSignatureToJsonTransaction(signature)
-    } catch (error) {
-      this.handleError(error.message)
+    } catch (e) {
+      this.handleError(e)
     }
   }
 
@@ -202,8 +189,8 @@ export default class Transaction {
         this._account.addressData.sequence = this._jsonTransaction.sequence
         return response
       }
-    } catch (error) {
-      this.handleError(error)
+    } catch (e) {
+      this.handleError(e)
     }
   }
 
@@ -213,8 +200,11 @@ export default class Transaction {
     )
     this._submitAddress = submitAddressPre + '/' + this.transactionType
 
-    console.log(`Submit address is ${this._submitAddress}`)
-    console.log(`Send type is ${this._sendType}`)
+    l.debug(
+      `submission address: ${this._submitAddress} with send type: ${
+        this._sendType
+      }`
+    )
   }
 
   async createPrevalidateAddress () {
@@ -224,8 +214,11 @@ export default class Transaction {
     this._prevalidateAddress =
       prevalidateAddressPre + '/' + this.transactionType
 
-    console.log(`Prevalidate address is ${this._prevalidateAddress}`)
-    console.log(`Send type is ${this._sendType}`)
+    l.debug(
+      `prevalidate address: ${this._prevalidateAddress} send type ${
+        this._sendType
+      }`
+    )
   }
 
   getSignature () {
@@ -238,8 +231,8 @@ export default class Transaction {
       await this.sign()
       await this.prevalidate()
       await this.submit()
-    } catch (error) {
-      this.handleError(error)
+    } catch (e) {
+      this.handleError(e)
     }
   }
 

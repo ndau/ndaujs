@@ -1,53 +1,69 @@
+import i18next from 'i18next'
+
 const GENERIC_ERROR_CODE = 1001
 const SUCCESS_CODE = 0
 
-export const Messages = {
-  INSUFFICIENT_BALANCE_FOR_TX: 'Insufficient balance in account to pay for transaction',
-  INSUFFICIENT_BALANCE: 'Insufficient balance in account',
-  TX_ALREAD_COMMITTED: 'Transaction is already on the blockchain',
-  SRC_NO_HISTORY: 'Source account has no history and no balance',
-  SRC_DEST_SAME: 'Cannot send and receive from the same account',
-  NOTIFIED_TRANSFER:
-    'Transfers into an account with an active countdown timer are invalid.'
-}
-const APIErrors = [
-  {
+export const Messages = {}
+export let MessagesByCode
+const APIErrors = []
+
+i18next.on('initialized', () => {
+  Messages['INSUFFICIENT_BALANCE_FOR_TX'] = i18next.t(
+    'Insufficient balance in account to pay for transaction'
+  )
+  Messages['INSUFFICIENT_BALANCE'] = i18next.t(
+    'Insufficient balance in account'
+  )
+  Messages['TX_ALREAD_COMMITTED'] = i18next.t(
+    'Transaction is already on the blockchain'
+  )
+  Messages['SRC_NO_HISTORY'] = i18next.t(
+    'Source account has no history and no balance'
+  )
+  Messages['SRC_DEST_SAME'] = i18next.t(
+    'Cannot send and receive from the same account'
+  )
+  Messages['NOTIFIED_TRANSFER'] = i18next.t(
+    'Transfers into an account with an active countdown timer are invalid'
+  )
+
+  APIErrors.push({
     // Code 1002 is in the backend
     code: 1002,
     message: Messages.TX_ALREAD_COMMITTED,
     re: new RegExp('tx already committed', 'i')
-  },
-  {
+  })
+  APIErrors.push({
     code: 1003,
     message: Messages.SRC_NO_HISTORY,
     re: new RegExp('no sequence found', 'i')
-  },
-  {
+  })
+  APIErrors.push({
     code: 1004,
     message: Messages.SRC_DEST_SAME,
     re: new RegExp('source == destination', 'i')
-  },
-  {
+  })
+  APIErrors.push({
     code: 1005,
     message: Messages.INSUFFICIENT_BALANCE_FOR_TX,
     re: new RegExp('insufficient available balance to pay for tx', 'i')
-  },
-  {
+  })
+  APIErrors.push({
     code: 1006,
     message: Messages.INSUFFICIENT_BALANCE,
     re: new RegExp('insufficient available balance', 'i')
-  },
-  {
+  })
+  APIErrors.push({
     code: 1007,
     message: Messages.NOTIFIED_TRANSFER,
     re: new RegExp('transfers into notified addresses are invalid', 'i')
-  }
-]
+  })
 
-export const MessagesByCode = APIErrors.reduce((a, c, i, s) => {
-  a[c.code] = c.message
-  return a
-}, {})
+  MessagesByCode = APIErrors.reduce((a, c, i, s) => {
+    a[c.code] = c.message
+    return a
+  }, {})
+})
 
 // codeFromMessage should return an error code based on
 // returns null if not found
@@ -68,7 +84,11 @@ function codeFromMessage (msg) {
 const _getError = axiosErr => {
   if (axiosErr && axiosErr.response && axiosErr.response.data) {
     const data = axiosErr.response.data
-    if (data.code && data.code !== GENERIC_ERROR_CODE && data.code !== SUCCESS_CODE ) {
+    if (
+      data.code &&
+      data.code !== GENERIC_ERROR_CODE &&
+      data.code !== SUCCESS_CODE
+    ) {
       return data.code
     } else if (data.err_code && data.err_code !== -1) {
       return data.err_code // return a code, BlockchainAPIError's constructor will use it to look up a message

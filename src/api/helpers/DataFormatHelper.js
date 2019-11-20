@@ -257,7 +257,7 @@ const formatUSDollarValue = number => {
   let numberToAddCommas = number
   try {
     numberToAddCommas = number.toFixed(2)
-  } catch (error) {
+  } catch (e) {
     // we swallow this up, if we can't do this then we assume you have passed in a string
   }
 

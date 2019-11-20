@@ -1,6 +1,8 @@
 import APIAddressHelper from '../api/helpers/APIAddressHelper'
 import APICommunicationHelper from '../api/helpers/APICommunicationHelper'
 import DataFormatHelper from '../api/helpers/DataFormatHelper'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('OrderAPI')
 
 const getMarketPrice = async user => {
   const marketPriceAPI = await APIAddressHelper.getMarketPriceAPIAddress()
@@ -18,11 +20,8 @@ const getMarketPrice = async user => {
     }
 
     return dollars
-  } catch (error) {
-    console.log(
-      `Something went wrong geting market price: ${JSON.stringify(error)}`
-    )
-
+  } catch (e) {
+    l.debug(`could not fetch market price: ${e.message}`)
     if (user.defaults && user.defaults.marketPrice) {
       return user.defaults.marketPrice
     }

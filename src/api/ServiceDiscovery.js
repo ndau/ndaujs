@@ -1,6 +1,8 @@
 import ServiceDiscoveryError from './errors/ServiceDiscoveryError'
 import APICommunicationHelper from './helpers/APICommunicationHelper'
 import moment from 'moment'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('ServiceDiscovery')
 
 const AWS_S3_SERVICE_JSON =
   'https://s3.us-east-2.amazonaws.com/ndau-json/services.json'
@@ -24,11 +26,8 @@ const recoveryCache = {
   nodes: []
 }
 
-const getBlockchainServiceNode = async (
-  logger = console,
-  environment = TESTNET
-) => {
-  logger.log(`Blockchain Service Discovery URL: ${AWS_S3_SERVICE_JSON}`)
+const getBlockchainServiceNode = async (environment = TESTNET) => {
+  l.debug(`Blockchain Service Discovery URL: ${AWS_S3_SERVICE_JSON}`)
 
   try {
     if (moment().diff(blockchainCache.lastChecked) > CACHE_TTL) {
@@ -45,17 +44,14 @@ const getBlockchainServiceNode = async (
     return blockchainCache.nodes[
       Math.floor(Math.random() * blockchainCache.nodes.length)
     ]
-  } catch (error) {
-    logger.log(error)
+  } catch (e) {
+    l.debug(`could not get blockchain service node: ${e.message}`)
     throw new ServiceDiscoveryError()
   }
 }
 
-const getRecoveryServiceNode = async (
-  logger = console,
-  environment = TESTNET
-) => {
-  logger.log(`Recovery Service Discovery URL: ${AWS_S3_SERVICE_JSON}`)
+const getRecoveryServiceNode = async (environment = TESTNET) => {
+  l.debug(`Recovery Service Discovery URL: ${AWS_S3_SERVICE_JSON}`)
 
   try {
     if (moment().diff(recoveryCache.lastChecked) > CACHE_TTL) {
@@ -72,8 +68,8 @@ const getRecoveryServiceNode = async (
     return recoveryCache.nodes[
       Math.floor(Math.random() * recoveryCache.nodes.length)
     ]
-  } catch (error) {
-    logger.log(error)
+  } catch (e) {
+    l.debug(`could not get recovery service node ${e.message}`)
     throw new ServiceDiscoveryError()
   }
 }

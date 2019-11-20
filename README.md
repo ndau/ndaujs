@@ -14,3 +14,9 @@ Testing is the only way to run these functions so there should be as many tests 
 
 ## Functions Availble
 Please check the top level `index.js` for all functions available and how to add your own.
+
+## Code styles
+
+### Error messages and logging
+
+When errors are caught but no action is performed, they are simply logged at the `error` level. When an action is performed or expected, caught errors are logged with the `debug` level. Error messages, unless specifically meant for app users are lowercase with minimal punctuation for ease of concatenation. They laregly follow the format `could not X: ${e.message}`. All error messages should be unique so they are easy to search for in the code. Avoid error messages like `throw new Error('failed')` and use for example `throw new Error('could not post to ${address} while sending ${txType}')`.

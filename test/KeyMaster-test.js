@@ -1,9 +1,9 @@
-import KeyMaster from 'src/helpers/KeyMaster'
-import User from 'src/model/User'
-import AppConfig from 'src/constants/config'
-import Wallet from 'src/model/Wallet'
-import MockHelper from 'test/api/helpers/MockHelper'
-import AppConstants from 'src/constants/constants'
+import KeyMaster from '../src/helpers/KeyMaster'
+import User from '../src/model/User'
+import AppConfig from '../src/constants/config'
+import Wallet from '../src/model/Wallet'
+import MockHelper from './api/helpers/MockHelper'
+import AppConstants from '../src/constants/constants'
 import chai, { expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 import sinon from 'sinon'
@@ -270,7 +270,6 @@ describe('KeyMaster', () => {
       chainId,
       numberOfAccounts
     )
-    console.log('OBJECT', JSON.stringify(firstTimeUser, null, 2))
     expect(firstTimeUser).to.deep.equal({
       userId: 'TAC-3PY',
       wallets: {
@@ -394,8 +393,8 @@ describe('KeyMaster', () => {
       const wallet = new Wallet()
       user.wallets[user.userId] = wallet
       await KeyMaster.createNewAccount(wallet)
-    } catch (error) {
-      expect(error.toString()).to.equal(errorNewAccountUser)
+    } catch (e) {
+      expect(e.toString()).to.equal(errorNewAccountUser)
     }
   })
 
@@ -406,7 +405,6 @@ describe('KeyMaster', () => {
       AppConfig.NUMBER_OF_KEYS_TO_GRAB_ON_RECOVERY
     )
 
-    console.log('ADDRESSES HERE', addresses)
     expect(Object.keys(addresses).length).to.equal(
       AppConfig.NUMBER_OF_KEYS_TO_GRAB_ON_RECOVERY
     )
@@ -416,8 +414,8 @@ describe('KeyMaster', () => {
   it('getRootAddresses has an error', async () => {
     try {
       await KeyMaster.getRootAddresses(null)
-    } catch (error) {
-      expect(error.toString()).to.equal(errorGetRootAddresses)
+    } catch (e) {
+      expect(e.toString()).to.equal(errorGetRootAddresses)
     }
   })
 
@@ -436,8 +434,8 @@ describe('KeyMaster', () => {
   it('getBIP44Addresses has an error', async () => {
     try {
       await KeyMaster.getBIP44Addresses(null)
-    } catch (error) {
-      expect(error.toString()).to.equal(errorGetBIP44Addresses)
+    } catch (e) {
+      expect(e.toString()).to.equal(errorGetBIP44Addresses)
     }
   })
 
@@ -576,7 +574,7 @@ describe('KeyMaster', () => {
       }
     }
 
-    const wallet = await KeyMaster.createAccountFromPath(
+    await KeyMaster.createAccountFromPath(
       user.wallets['a7bff20a'],
       `/44'/20036'/100/20`
     )

@@ -5,6 +5,9 @@ import AppConstants from '../constants/constants'
 import Wallet from '../model/Wallet'
 import DataFormatHelper from '../api/helpers/DataFormatHelper'
 import KeyPathHelper from '../api/helpers/KeyPathHelper'
+import LoggerHelper from './LoggerHelper'
+const l = LoggerHelper.curryLogger('KeyMaster')
+
 
 /**
  * This function will return an array of addresses that can be
@@ -34,10 +37,9 @@ const getRootAddresses = async (rootPrivateKey, startIndex, endIndex) => {
         addresses[address] = `/${i}`
       }
     }
-  } catch (error) {
-    throw new Error(
-      `problem encountered creating root addresses: ${error.message}`
-    )
+  } catch (e) {
+    l.debug(`could not create root addresses: ${e.message}`)
+    throw new Error(`problem encountered creating root addresses: ${e.message}`)
   }
 
   return addresses
@@ -73,9 +75,10 @@ const getBIP44Addresses = async (rootPrivateKey, startIndex, endIndex) => {
         addresses[address] = KeyPathHelper.accountCreationKeyPath + `/${i}`
       }
     }
-  } catch (error) {
+  } catch (e) {
+    l.debug(`could not create BIP44 addresses: ${e.message}`)
     throw new Error(
-      `problem encountered creating BIP44 addresses: ${error.message}`
+      `problem encountered creating BIP44 addresses: ${e.message}`
     )
   }
 
@@ -117,7 +120,7 @@ const createFirstTimeUser = async (
     user.wallets[DataFormatHelper.create8CharHash(userId)] = wallet
   }
 
-  console.log(`User initially created is: ${JSON.stringify(user)}`)
+  l.info(`created user: ${JSON.stringify(user)}`)
   return user
 }
 
@@ -189,7 +192,7 @@ const createWallet = async (
     )
   }
 
-  console.log(`Wallet created is: ${JSON.stringify(wallet)}`)
+  l.info(`wallet created: ${JSON.stringify(wallet)}`)
 
   return wallet
 }
@@ -436,7 +439,7 @@ const _createAccounts = async (
       recoveryPhraseBytes
     )
   }
-  console.log(`Accounts created: ${JSON.stringify(wallet.accounts)}`)
+  l.info(`accounts created: ${JSON.stringify(wallet.accounts)}`)
 }
 
 export default {

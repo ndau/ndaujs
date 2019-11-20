@@ -107,8 +107,8 @@ describe('NotifyTransaction', () => {
       const gotTx = await notifyTransaction.create()
       expect(gotTx).to.deep.equal(wantTx)
       await notifyTransaction.sign()
-    } catch (error) {
-      expect(error.toString()).to.equal('Error: testing sign error')
+    } catch (e) {
+      expect(e.toString()).to.equal('Error: testing sign error')
     }
   })
 })

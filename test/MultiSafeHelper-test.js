@@ -171,16 +171,16 @@ describe('Multisafe', () => {
       // original password is gone
       await MultiSafeHelper.getDefaultUser(newPassword)
       expect('should never get here').to.not.be.ok
-    } catch (err) {
-      expect(err).to.exist
+    } catch (e) {
+      expect(e).to.exist
     }
 
     try {
       // original password is gone
       await MultiSafeHelper.getDefaultUser(encryptionPassword)
       expect('should never get here').to.not.be.ok
-    } catch (err) {
-      expect(err).to.exist
+    } catch (e) {
+      expect(e).to.exist
     }
   })
 

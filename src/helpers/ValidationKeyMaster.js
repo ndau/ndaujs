@@ -2,6 +2,8 @@ import KeyPathHelper from '../api/helpers/KeyPathHelper'
 import KeyMaster from '../helpers/KeyMaster'
 import DataFormatHelper from '../api/helpers/DataFormatHelper'
 import AppConfig from '../constants/config'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('ValidationKeyMaster')
 
 /**
  * This method will generate a key object based on either
@@ -189,10 +191,11 @@ const getValidationKeys = async (wallet, account, startIndex, endIndex) => {
       const legacyKey1 = await _generateLegacy1ValidationKey(wallet, account, i)
       keys[legacyKey1.publicKey] = legacyKey1
     }
-  } catch (error) {
+  } catch (e) {
+    l.debug(`could not create keys: ${e.message}`)
     throw new Error(
       `problem encountered creating object of validation public and private keys: ${
-        error.message
+        e.message
       }`
     )
   }
@@ -228,10 +231,10 @@ const recoveryValidationKey = async (wallet, account, validationKeys) => {
     account.validationKeys &&
     account.validationKeys.length === 0
   ) {
-    console.log(
+    l.info(
       `Attempting to find the private key for the public validation key we have...`
     )
-    console.log(`This is for ${wallet.walletId} address ${account.address}`)
+    l.info(`This is for ${wallet.walletId} address ${account.address}`)
     for (const validationKey of validationKeys) {
       let startIndex = AppConfig.VALIDATION_KEY_SEARCH_START_INDEX
       let endIndex = AppConfig.NUMBER_OF_KEYS_TO_GRAB_ON_RECOVERY
@@ -277,7 +280,7 @@ const _checkValidationKeys = (
   const validationPublicKeys = Object.keys(validationKeys)
   for (const validationPublicKey of validationPublicKeys) {
     if (validationKey === validationPublicKey) {
-      console.log('Found a match, adding validation keys to the wallet')
+      l.info('Found a match, adding validation keys to the wallet')
       addThisValidationKey(
         account,
         wallet,

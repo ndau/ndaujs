@@ -1,4 +1,7 @@
 import AccountAPI from '../api/AccountAPI'
+import LoggerHelper from '../helpers/LoggerHelper'
+const l = LoggerHelper.curryLogger('Wallet')
+
 
 // Please be aware that to remain backwards compatible we must
 // always add to or deprecate items. We CANNOT remove anything
@@ -127,7 +130,7 @@ class Wallet {
         account.addressData.balance > 0 &&
         !account.addressData.validationKeys
       ) {
-        console.log(
+        l.info(
           `Sending SetValidation transaction for ${
             account.addressData.nickname
           }`
@@ -138,11 +141,9 @@ class Wallet {
         )
         await setValidationTransaction.createSignPrevalidateSubmit()
       }
-    } catch (error) {
+    } catch (e) {
       if (account.addressData.balance) {
-        console.log(
-          `Issue encountered performing SetValidation: ${JSON.stringify(error)}`
-        )
+        l.error(`could not perform SetValidation: ${e.message}`)
       }
     }
   }
@@ -154,7 +155,7 @@ class Wallet {
         (account.addressData.validationKeys &&
           account.addressData.validationKeys.length > 0)
       ) {
-        console.log(
+        l.info(
           `Sending Delegate transaction for ${account.addressData.nickname}`
         )
         const delegateTransaction = new DelegateTransaction(
@@ -164,10 +165,8 @@ class Wallet {
         )
         await delegateTransaction.createSignPrevalidateSubmit()
       }
-    } catch (error) {
-      console.log(
-        `Issue encountered perfroming Delegate: ${JSON.stringify(error)}`
-      )
+    } catch (e) {
+      l.info(`could not perfrom Delegate: ${e.message}`)
     }
   }
 

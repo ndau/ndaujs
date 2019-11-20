@@ -1,6 +1,7 @@
 import GeneralStore from '../src/stores/GeneralStore'
 import CryptoStore from '../src/stores/CryptoStore'
 import MockAsyncStorage from 'mock-async-storage'
+import LoggerHelper from '../src/helpers/LoggerHelper'
 import crypto from 'crypto'
 const expect = require('chai').expect
 const ndaujs = require('../src/keyaddress/address')
@@ -10,7 +11,11 @@ const ndaujs = require('../src/keyaddress/address')
 GeneralStore.setStore(new MockAsyncStorage())
 CryptoStore.setStore(crypto.randomBytes)
 
-describe('Address related functions', () => {
+// Sets the log level to errors only
+LoggerHelper.setLevel(LoggerHelper.LEVEL_INFO)
+LoggerHelper.setLogger(console)
+
+global.NDAUJS_LOG_LEVEL = describe('Address related functions', () => {
   describe('#truncateAddress', () => {
     it('should return the string back if less than 19 characters', () => {
       expect(ndaujs.truncateAddress('123asd')).to.equal('123asd')
