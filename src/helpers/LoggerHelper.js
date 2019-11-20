@@ -31,12 +31,7 @@ class LoggerHelper {
 
     this._logData = new CircularArray(Config.MAX_LOG_ENTRIES)
 
-    if (!LoggerHelper.instance) {
-      this.setLevel(LoggerHelper.LEVEL_INFO)
-      LoggerHelper.instance = this
-    }
-
-    return LoggerHelper.instance
+    this.setLevel(LoggerHelper.LEVEL_INFO)
   }
 
   setLevel (level) {
