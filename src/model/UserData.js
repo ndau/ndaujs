@@ -1,9 +1,10 @@
-import AccountAPIHelper from '../api/helpers/AccountAPIHelper'
 import OrderAPI from '../api/OrderAPI'
 import MultiSafeHelper from '../helpers/MultiSafeHelper'
 import UserStore from '../stores/UserStore'
 import NdauStore from '../stores/NdauStore'
 import LoggerHelper from '../helpers/LoggerHelper'
+import Wallet from '../model/Wallet'
+
 const l = LoggerHelper.curryLogger('UserData')
 
 // ATTENTION - DO NOT REMOVE THIS COMMENTED CODE!
@@ -12,6 +13,8 @@ const l = LoggerHelper.curryLogger('UserData')
 
 const loadUserData = async user => {
   if (!user) return
+
+  l.debug('Loading user data...')
 
   const walletKeys = Object.keys(user.wallets)
 
