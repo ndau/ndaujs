@@ -28,9 +28,8 @@ const loadUserData = async user => {
 
   for (const walletKey of walletKeys) {
     const wallet = user.wallets[walletKey]
-    const dataFound = await AccountAPIHelper.populateWalletWithAddressData(
-      wallet
-    )
+    const w = new Wallet().fromObject(wallet)
+    const dataFound = await w.populateWalletWithAddressData(wallet)
 
     // after the data is loaded successfully then save the user
     const password = await UserStore.getPassword()
