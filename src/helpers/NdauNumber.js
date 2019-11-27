@@ -1,4 +1,4 @@
-import { formatNapuForDisplay } from '../keyaddress/address'
+import { formatNapuForDisplay } from '../../index'
 import DataFormatHelper from '../api/helpers/DataFormatHelper'
 import AppConfig from '../constants/config'
 import AppConstants from '../constants/constants'
