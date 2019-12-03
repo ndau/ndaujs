@@ -28,10 +28,10 @@ const _generateLegacy1ValidationKey = async (wallet, account, index) => {
   if (!index) {
     index = DataFormatHelper.getNextPathIndex(
       wallet,
-      KeyPathHelper.legacyValidationKeyPath1()
+      KeyPathHelper.legacyValidationKeyPath1
     )
   }
-  const keyPath = KeyPathHelper.legacyValidationKeyPath1() + `/${index}`
+  const keyPath = KeyPathHelper.legacyValidationKeyPath1 + `/${index}`
 
   const validationPrivateKey = await Keyaddr.deriveFrom(
     wallet.keys[account.ownershipKey].privateKey,

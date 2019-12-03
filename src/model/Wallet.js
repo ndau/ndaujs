@@ -1,7 +1,7 @@
 import AccountAPI from '../api/AccountAPI'
 import LoggerHelper from '../helpers/LoggerHelper'
+import ValidationKeyMaster from '../helpers/ValidationKeyMaster'
 const l = LoggerHelper.curryLogger('Wallet')
-
 
 // Please be aware that to remain backwards compatible we must
 // always add to or deprecate items. We CANNOT remove anything
@@ -68,9 +68,9 @@ class Wallet {
         const walletAccount = this.accounts[walletAccountKey]
         if (walletAccountKey === accountKey) {
           walletAccount.addressData = addressDataItem
-          await addPrivateValidationKeyIfNotPresent(walletAccount)
-          await sendSetValidationTransactionIfNeeded(walletAccount)
-          await sendDelegateTransactionIfNeeded(walletAccount)
+          await this.addPrivateValidationKeyIfNotPresent(walletAccount)
+          await this.sendSetValidationTransactionIfNeeded(walletAccount)
+          await this.sendDelegateTransactionIfNeeded(walletAccount)
 
           break
         }
