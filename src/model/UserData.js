@@ -1,9 +1,10 @@
-import AccountAPIHelper from '../api/helpers/AccountAPIHelper'
 import OrderAPI from '../api/OrderAPI'
 import MultiSafeHelper from '../helpers/MultiSafeHelper'
 import UserStore from '../stores/UserStore'
 import NdauStore from '../stores/NdauStore'
 import LoggerHelper from '../helpers/LoggerHelper'
+import Wallet from '../model/Wallet'
+
 const l = LoggerHelper.curryLogger('UserData')
 
 // ATTENTION - DO NOT REMOVE THIS COMMENTED CODE!
@@ -12,6 +13,8 @@ const l = LoggerHelper.curryLogger('UserData')
 
 const loadUserData = async user => {
   if (!user) return
+
+  l.debug('Loading user data...')
 
   const walletKeys = Object.keys(user.wallets)
 
@@ -28,9 +31,8 @@ const loadUserData = async user => {
 
   for (const walletKey of walletKeys) {
     const wallet = user.wallets[walletKey]
-    const dataFound = await AccountAPIHelper.populateWalletWithAddressData(
-      wallet
-    )
+    const w = new Wallet().fromObject(wallet)
+    const dataFound = await w.populateWalletWithAddressData(wallet)
 
     // after the data is loaded successfully then save the user
     const password = await UserStore.getPassword()
