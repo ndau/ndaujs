@@ -1,3 +1,13 @@
+/* ----- ---- --- -- -
+ * Copyright 2020 The Axiom Foundation. All Rights Reserved.
+ *
+ * Licensed under the Apache License 2.0 (the "License").  You may not use
+ * this file except in compliance with the License.  You can obtain a copy
+ * in the file LICENSE in the source distribution or at
+ * https://www.apache.org/licenses/LICENSE-2.0.txt
+ * - -- --- ---- -----
+ */
+
 // This class allows listeners to replace an earlier call to react-native's alerts.
 // In order to use the alert, add a listener function to this class by calling `setupStore.addListener(yourFunction)` and handle the alert inside the body of `yourFunction`.
 class SetupStore {
