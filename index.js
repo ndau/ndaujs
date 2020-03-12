@@ -53,7 +53,7 @@ module.exports = {
   // In versions >1.3.0 here is where you will be exposing your
   // classes/helpers that are within the src folder. At present
   // we only support ES6 consumers as the code pooped down is not
-  // transpiled yet. There is an issue in oneiro-ndev/ndaujs which is
+  // transpiled yet. There is an issue in ndau/ndaujs which is
   // issue #12.
   APIAddressHelper,
   WalletStore,

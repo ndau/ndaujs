@@ -3,7 +3,7 @@ This is a common JavaScript repository. This will contain any code that can be s
 
 To use this repository you must add is as a private repository within your `package.json`. To do that simply run this command:
 
-`npm install oneiro-ndev/ndaujs#master`
+`npm install ndau/ndaujs#master`
 
 This will add the repo to your `package.json`. See below for the available functions.
 
