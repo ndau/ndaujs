@@ -23,6 +23,7 @@ const toUint8Array = b => {
 
 const root = global || window
 if (!root.Keyaddr) {
+  console.log('starting wasm')
   const instantiateStreaming = (source, importObject) => {
     importObject = importObject || {}
     return source
@@ -38,16 +39,17 @@ if (!root.Keyaddr) {
       })
   }
 
-  before(async () => {
+  const start = async function () {
     const go = new Go()
+    console.log('starting Go')
     return instantiateStreaming(
       readFile(`${__dirname}/keyaddr.wasm`),
       go.importObject
     )
-      .then(function (result) {
+    .then(function (result) {
         go.run(result.instance)
-      })
-      .then(() => {
+    })
+    .then(() => {
         root.Keyaddr = {
           newKey: promisify(KeyaddrNS.newKey),
           wordsToBytes: promisify(KeyaddrNS.wordsToBytes),
@@ -58,11 +60,14 @@ if (!root.Keyaddr) {
           sign: promisify(KeyaddrNS.sign),
           hardenedChild: promisify(KeyaddrNS.hardenedChild),
           newKey: promisify(KeyaddrNS.newKey),
-          exit: promisify(KeyaddrNS.exit)
+          exit: promisify(KeyaddrNS.exit),
+          fromString: promisify(KeyaddrNS.fromString),
+          newEdKey: promisify(KeyaddrNS.newEdKey)
         }
-      })
-      .catch(err => {
+    })
+    .catch(err => {
         console.error('Error loading WASM', err)
-      })
-  })
+    })
+  }
+  start()
 }

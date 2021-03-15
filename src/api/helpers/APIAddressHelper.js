@@ -74,5 +74,6 @@ export default {
   getTransactionSubmitAPIAddress,
   getAccountHistoryAPIAddress,
   getTransactionByHashAPIAddress,
-  RECOVERY
+  RECOVERY,
+  BLOCKCHAIN
 }

@@ -16,6 +16,8 @@ import AccountAPI from '../api/AccountAPI'
 import { ErrorsByMessage, Messages } from '../api/errors/BlockchainAPIError'
 import APIAddressHelper from '../api/helpers/APIAddressHelper'
 import LoggerHelper from '../helpers/LoggerHelper'
+import Wallet from '../model/Wallet'
+import Account from '../model/Account'
 const l = LoggerHelper.curryLogger('Transaction')
 
 export default class Transaction {
@@ -25,17 +27,18 @@ export default class Transaction {
         `transactionType (string) argument required to construct a tx`
       )
     }
-    if (!wallet || wallet.constructor !== Object) {
+    if (!wallet || wallet.constructor !== Wallet) {
       throw new Error(
         `wallet (object) argument required to construct a ${transactionType} tx`
       )
     }
-    if (!account || account.constructor !== Object) {
+    if (!account || account.constructor !== Account) {
       throw new Error(
         `account (object) argument required to construct a ${transactionType} tx`
       )
     }
 
+    this._sendType = APIAddressHelper.BLOCKCHAIN
     this.transactionType = transactionType
     this._wallet = wallet
     this._account = account
@@ -66,13 +69,17 @@ export default class Transaction {
       // but only if there are none present. This business logic may
       // change in the future, but for now, we only create one validation
       // key per account here
-      if (
-        this._account.validationKeys &&
-        this._account.validationKeys.length === 0 &&
-        (this._account.addressData &&
-          this._account.addressData.validationKeys === null)
-      ) {
-        await ValidationKeyMaster.addValidationKey(this._wallet, this._account)
+      console.log('account keys = ' + this._account.validationKeys)
+      console.log('account ad = ' + this._account.addressData)
+      if (!this._account.validationKeys || this._account.validationKeys.length === 0) 
+      {
+        //  await ValidationKeyMaster.addValidationKey(this._wallet, this._account)
+        console.log('adding validation key for account: ' + this._account)
+        ValidationKeyMaster.addThisValidationKey(this._account, this._wallet,
+            'npvtayjadtcbidzmaa5s4kqtm55ptjsmgumgzj6abinv2237eqndbxqzyriygpi8x8y662fd8ng8n47jbv88dgf8vwagvrue49uj8sxvmnsbqhqzkhmzmu8mxihh',
+            'npuba8jadtbbed7p33skh62p63x4udh76gnm7hiapg9ejx9ev7bmgy3ac6q7qwqzrgiey9qrtswb',
+            'foo'
+            )
       }
       if (
         !this._account.validationKeys ||
@@ -80,9 +87,9 @@ export default class Transaction {
       ) {
         throw Error('No validation keys present')
       }
-      if (isNaN(this._account.addressData.sequence)) {
-        throw ErrorsByMessage[Messages.SRC_NO_HISTORY]
-      }
+    //   if (isNaN(this._account.addressData.sequence)) {
+    //     throw ErrorsByMessage[Messages.SRC_NO_HISTORY]
+    //   }
       // If we have already done a create we have generated
       // a sequence. If this object is sent again we do not
       // want to genereate a new sequence as it will try to perform
@@ -102,6 +109,7 @@ export default class Transaction {
       this.addToJsonTransaction()
       return this._jsonTransaction
     } catch (e) {
+      console.log('transaction error: ' + e)
       this.handleError(e)
     }
   }
@@ -138,6 +146,7 @@ export default class Transaction {
       )
       this.addSignatureToJsonTransaction(signature)
     } catch (e) {
+      console.log('sign error: ' + e)
       this.handleError(e)
     }
   }
