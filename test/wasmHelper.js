@@ -58,11 +58,15 @@ if (!root.Keyaddr) {
           toPublic: promisify(KeyaddrNS.toPublic),
           child: promisify(KeyaddrNS.child),
           sign: promisify(KeyaddrNS.sign),
+          signEdB64: promisify(KeyaddrNS.signEdB64),
+          signEdText: promisify(KeyaddrNS.signEdText),
           hardenedChild: promisify(KeyaddrNS.hardenedChild),
           newKey: promisify(KeyaddrNS.newKey),
           exit: promisify(KeyaddrNS.exit),
           fromString: promisify(KeyaddrNS.fromString),
-          newEdKey: promisify(KeyaddrNS.newEdKey)
+          newEdKey: promisify(KeyaddrNS.newEdKey),
+          newEdKeyFromSeed: promisify(KeyaddrNS.newEdKeyFromSeed),
+          addrFromPublicKey: promisify(KeyaddrNS.addrFromPublicKey)
         }
     })
     .catch(err => {

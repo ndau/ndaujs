@@ -71,16 +71,6 @@ export default class Transaction {
       // key per account here
       console.log('account keys = ' + this._account.validationKeys)
       console.log('account ad = ' + this._account.addressData)
-      if (!this._account.validationKeys || this._account.validationKeys.length === 0) 
-      {
-        //  await ValidationKeyMaster.addValidationKey(this._wallet, this._account)
-        console.log('adding validation key for account: ' + this._account)
-        ValidationKeyMaster.addThisValidationKey(this._account, this._wallet,
-            'npvtayjadtcbidzmaa5s4kqtm55ptjsmgumgzj6abinv2237eqndbxqzyriygpi8x8y662fd8ng8n47jbv88dgf8vwagvrue49uj8sxvmnsbqhqzkhmzmu8mxihh',
-            'npuba8jadtbbed7p33skh62p63x4udh76gnm7hiapg9ejx9ev7bmgy3ac6q7qwqzrgiey9qrtswb',
-            'foo'
-            )
-      }
       if (
         !this._account.validationKeys ||
         this._account.validationKeys.length === 0
@@ -106,6 +96,7 @@ export default class Transaction {
           sequence
         }
       }
+      await this.createTransactionSpecific()
       this.addToJsonTransaction()
       return this._jsonTransaction
     } catch (e) {
@@ -128,11 +119,12 @@ export default class Transaction {
    * Sign the transaction for prevalidation and submission. You must
    * call `create` first before you call this method.
    */
-  async sign () {
+  async sign (privateKey) {
+    console.log('private key = ' + privateKey)
     // Here we get the ownership key to sign for SetValidation. This is
     // the ONLY time we use the ownershipKey. Any subsequent/other
     // transactions use the validationKey within the account
-    const privateKeyFromHash = this.privateKeyForSigning()
+//    const privateKeyFromHash = this.privateKeyForSigning()
 
     // Use the TxSignPrep to get it ready to send
     const preparedTransaction = new TxSignPrep().prepare(this._jsonTransaction)
@@ -140,8 +132,9 @@ export default class Transaction {
 
     try {
       // Get the signature to use in the transaction
-      const signature = await Keyaddr.sign(
-        privateKeyFromHash,
+      const signature = await Keyaddr.signEdB64(
+ //       privateKeyFromHash,
+        privateKey,
         base64EncodedPrepTx
       )
       this.addSignatureToJsonTransaction(signature)
@@ -260,4 +253,6 @@ export default class Transaction {
 
   // This is meant to be overridden to include the properties of the transaction to be signed.
   addToJsonTransaction () {}
+
+  async createTransactionSpecific () {}
 }
