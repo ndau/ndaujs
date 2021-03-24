@@ -52,7 +52,7 @@ export default class Transaction {
   /**
    * Create a transaction and store information internally
    */
-  async create () {
+  async create (ownershipKeys, validationKeys) {
     try {
       await this.createPrevalidateAddress()
     } catch (e) {
@@ -96,7 +96,7 @@ export default class Transaction {
           sequence
         }
       }
-      await this.createTransactionSpecific()
+      await this.createTransactionSpecific(ownershipKeys, validationKeys)
       this.addToJsonTransaction()
       return this._jsonTransaction
     } catch (e) {

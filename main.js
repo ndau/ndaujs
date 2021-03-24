@@ -5,10 +5,18 @@ import Transaction from './src/transactions/Transaction'
 import ValidationKeyMaster from './src/helpers/ValidationKeyMaster'
 import { CreateChildAccountTransaction } from './src/transactions/CreateChildAccountTransaction'
 
-require('./test/wasmHelper')
+//require('./test/wasmHelper')
+import { initKeyaddr } from './test/wasmHelper'
 
 // example creation, signing, and prevalidate of Transfer and CreateChildAccount TX
 const testTXs = async function() { // async function expression assigned to a variable
+    // init Keyaddr module, this gives us access to core Go routines
+    var foo = await initKeyaddr()
+
+    // new key generation from random seed
+    var edKey = await Keyaddr.newEdKey()
+    console.log('ed key = ' + JSON.stringify(edKey))
+
     // create new account, address will be used as source of Transfer
     var account = new Account()
     account.address = 'ndab9wi3ntgtmwa63pv6awzhw8ihsh3nkz9c2c8545k3mr27'
@@ -27,7 +35,7 @@ const testTXs = async function() { // async function expression assigned to a va
         1.0
     )
     console.log('adding validation key for account: ' + account)
-    // add new validation keys to this account (they get assigned to TX in create)
+    // add new validation keys to this account
     ValidationKeyMaster.addThisValidationKey(account, wallet,
         'npvtayjadtcbidzmaa5s4kqtm55ptjsmgumgzj6abinv2237eqndbxqzyriygpi8x8y662fd8ng8n47jbv88dgf8vwagvrue49uj8sxvmnsbqhqzkhmzmu8mxihh',
         'npuba8jadtbbed7p33skh62p63x4udh76gnm7hiapg9ejx9ev7bmgy3ac6q7qwqzrgiey9qrtswb',
@@ -46,11 +54,8 @@ const testTXs = async function() { // async function expression assigned to a va
     var edKeySeed = await Keyaddr.newEdKeyFromSeed('6d4a1e8eb29793c2618bc68adf4f5f98641eec6ba776006a4ad8203b46cbb796')
     console.log('ed seed key = ' + JSON.stringify(edKeySeed))
 
-    // new key generation from random seed
-    var edKey = await Keyaddr.newEdKey()
-    console.log('ed key = ' + JSON.stringify(edKey))
 
-    // create Child Account transaction, 
+    // create Child Account transaction, parent account is progenitor created by Oneiro
     var parentAccount = new Account()
     parentAccount.address = 'ndxey7295sv55cxssnxtvq666ua2ajkqs9n8cmhjz29ytijs'
     console.log('adding validation key for account: ' + account)
@@ -64,7 +69,16 @@ const testTXs = async function() { // async function expression assigned to a va
         wallet,
         parentAccount
     )
-    await createChildTransaction.create()
+    // create new ownership and validation keypairs for new child, this can also
+    // be done with a seed
+    var childOwnershipKeys = await Keyaddr.newEdKey()
+    var childValidationKeys = await Keyaddr.newEdKey()
+
+    // pass new ownership and validation keypairs into create, this will generate the child
+    // address from the public ownership key and sign it.  If you only want to pass in 
+    // the public keys, you could generate and sign the address out here and then pass
+    // that in also
+    await createChildTransaction.create(childOwnershipKeys, childValidationKeys)
     await createChildTransaction.sign(createChildTransaction.privateKeyForSigning())
     await createChildTransaction.prevalidate()
 }

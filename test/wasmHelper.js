@@ -22,56 +22,60 @@ const toUint8Array = b => {
 }
 
 const root = global || window
-if (!root.Keyaddr) {
-  console.log('starting wasm')
-  const instantiateStreaming = (source, importObject) => {
-    importObject = importObject || {}
-    return source
-      .then(response => Promise.resolve(toUint8Array(response)))
-      .then(arrayBuffer => Promise.resolve(new WebAssembly.Module(arrayBuffer)))
-      .then(mod => {
-        return WebAssembly.instantiate(mod, importObject).then(instance => {
-          return {
-            module: mod,
-            instance: instance
-          }
-        })
-      })
-  }
-
-  const start = async function () {
-    const go = new Go()
-    console.log('starting Go')
-    return instantiateStreaming(
-      readFile(`${__dirname}/keyaddr.wasm`),
-      go.importObject
-    )
-    .then(function (result) {
-        go.run(result.instance)
-    })
-    .then(() => {
-        root.Keyaddr = {
-          newKey: promisify(KeyaddrNS.newKey),
-          wordsToBytes: promisify(KeyaddrNS.wordsToBytes),
-          deriveFrom: promisify(KeyaddrNS.deriveFrom),
-          ndauAddress: promisify(KeyaddrNS.ndauAddress),
-          toPublic: promisify(KeyaddrNS.toPublic),
-          child: promisify(KeyaddrNS.child),
-          sign: promisify(KeyaddrNS.sign),
-          signEdB64: promisify(KeyaddrNS.signEdB64),
-          signEdText: promisify(KeyaddrNS.signEdText),
-          hardenedChild: promisify(KeyaddrNS.hardenedChild),
-          newKey: promisify(KeyaddrNS.newKey),
-          exit: promisify(KeyaddrNS.exit),
-          fromString: promisify(KeyaddrNS.fromString),
-          newEdKey: promisify(KeyaddrNS.newEdKey),
-          newEdKeyFromSeed: promisify(KeyaddrNS.newEdKeyFromSeed),
-          addrFromPublicKey: promisify(KeyaddrNS.addrFromPublicKey)
+const initKeyaddr = async function () {
+    if (!root.Keyaddr) {
+        console.log('starting wasm')
+        const instantiateStreaming = (source, importObject) => {
+            importObject = importObject || {}
+            return source
+            .then(response => Promise.resolve(toUint8Array(response)))
+            .then(arrayBuffer => Promise.resolve(new WebAssembly.Module(arrayBuffer)))
+            .then(mod => {
+                return WebAssembly.instantiate(mod, importObject).then(instance => {
+                    return {
+                        module: mod,
+                        instance: instance
+                    }
+                })
+            })
         }
-    })
-    .catch(err => {
-        console.error('Error loading WASM', err)
-    })
-  }
-  start()
+
+        const start = async function () {
+            const go = new Go()
+            console.log('starting Go')
+            return instantiateStreaming(
+                readFile(`${__dirname}/keyaddr.wasm`),
+                go.importObject
+            )
+            .then(function (result) {
+                go.run(result.instance)
+            })
+            .then(() => {
+                root.Keyaddr = {
+                    newKey: promisify(KeyaddrNS.newKey),
+                    wordsToBytes: promisify(KeyaddrNS.wordsToBytes),
+                    deriveFrom: promisify(KeyaddrNS.deriveFrom),
+                    ndauAddress: promisify(KeyaddrNS.ndauAddress),
+                    toPublic: promisify(KeyaddrNS.toPublic),
+                    child: promisify(KeyaddrNS.child),
+                    sign: promisify(KeyaddrNS.sign),
+                    signEdB64: promisify(KeyaddrNS.signEdB64),
+                    signEdText: promisify(KeyaddrNS.signEdText),
+                    hardenedChild: promisify(KeyaddrNS.hardenedChild),
+                    newKey: promisify(KeyaddrNS.newKey),
+                    exit: promisify(KeyaddrNS.exit),
+                    fromString: promisify(KeyaddrNS.fromString),
+                    newEdKey: promisify(KeyaddrNS.newEdKey),
+                    newEdKeyFromSeed: promisify(KeyaddrNS.newEdKeyFromSeed),
+                    addrFromPublicKey: promisify(KeyaddrNS.addrFromPublicKey)
+                }
+            })
+            .catch(err => {
+                console.error('Error loading WASM', err)
+            })
+        }
+        await start()
+    }
 }
+
+export { initKeyaddr }

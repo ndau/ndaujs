@@ -12,20 +12,22 @@ import DataFormatHelper from '../api/helpers/DataFormatHelper'
 import Transaction from './Transaction'
 
 export class CreateChildAccountTransaction extends Transaction {
-  constructor (wallet, account, destination, quantity) {
+  constructor (wallet, account) {
     super(wallet, account, 'CreateChildAccount')
   }
 
-  async createTransactionSpecific () {
-    this._newChildOwnershipKeys = await Keyaddr.newEdKey()
+  // pass in ownership and validation keys. Child address is generated from ownership
+  // public key and signed by ownership private key
+  async createTransactionSpecific (childOwnershipKeys, childValidationKeys) {
+    this._newChildOwnershipKeys = childOwnershipKeys
     this._child = await Keyaddr.addrFromPublicKey(this._newChildOwnershipKeys["pubkey"])
     this._child_sig = await Keyaddr.signEdText(this._newChildOwnershipKeys["privkey"],
                                     this._child)
-    this._newChildValidationKeys = await Keyaddr.newEdKey()
+    this._newChildValidationKeys = childValidationKeys
   }
 
+  // add fields required for TX prevalidation and submittal
   addToJsonTransaction () {
-    console.log('_newChildOwnershipKeys = ' + this._newChildOwnershipKeys["privkey"])
     this._jsonTransaction.target = this._account.address
     this._jsonTransaction.child = this._child
     this._jsonTransaction.child_ownership = this._newChildOwnershipKeys["pubkey"]
