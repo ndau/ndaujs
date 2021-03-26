@@ -307,5 +307,6 @@ const _checkValidationKeys = (
 
 export default {
   addValidationKey,
-  recoveryValidationKey
+  recoveryValidationKey,
+  addThisValidationKey
 }

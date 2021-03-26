@@ -31,10 +31,16 @@ const post = async (url, data, timeoutMS = config.API_DEFAULT_TIMEOUT_MS) => {
             data: data
           })}`
         )
+        console.log('before axios post, url = ' + url)
+        console.log('before axios post, data = ' + data)
         const response = await axios.post(url, data, { timeout: timeoutMS })
-        l.debug(`${url} response: ${JSON.stringify(response.data)}`)
+//        l.debug(`${url} response: ${JSON.stringify(response.data)}`)
+        console.log('response = ' + JSON.stringify(response.data))
         resolve(response.data)
       } catch (e) {
+        console.log('in catch, error = ' + JSON.stringify(e.response.data))
+        console.log('in catch, error = ' + e.response.status)
+        console.log('in catch, error = ' + e.response.headers)
         const safeStatus = e && e.response ? e.response.status : null
         l.debug(
           `post ${JSON.stringify({
@@ -67,11 +73,14 @@ const get = async (url, timeoutMS = config.API_DEFAULT_TIMEOUT_MS) => {
     const once = async () => {
       try {
         l.info(`get ${JSON.stringify({ url: url })}`)
+        console.log('before axios get, url = ' + url)
         const response = await axios.get(url, { timeout: timeoutMS })
 
-        l.debug(`Response is: ${JSON.stringify(response)}`)
+    //    l.debug(`Response is: ${JSON.stringify(response)}`)
+        console.log('response = ' + JSON.stringify(response.data))
         resolve(response.data)
       } catch (e) {
+        console.log('in catch, error = ' + e)
         const safeStatus = e && e.response ? e.response.status : null
         l.debug(
           `get ${JSON.stringify({
