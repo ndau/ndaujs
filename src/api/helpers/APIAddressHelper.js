@@ -8,7 +8,7 @@
  * - -- --- ---- -----
  */
 
-import ServiceDiscovery from '../ServiceDiscovery'
+import ServiceDiscovery from '../ServiceDiscovery.js'
 
 const PROTOCOL = 'https'
 
@@ -74,6 +74,5 @@ export default {
   getTransactionSubmitAPIAddress,
   getAccountHistoryAPIAddress,
   getTransactionByHashAPIAddress,
-  RECOVERY,
-  BLOCKCHAIN
+  RECOVERY
 }

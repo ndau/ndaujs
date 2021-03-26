@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import nodeCrypto from 'crypto';
+
 (() => {
 	// Map multiple JavaScript environments to a single common API,
 	// preferring web standards over Node.js API.
@@ -67,7 +69,6 @@
 	}
 
 	if (!global.crypto) {
-		const nodeCrypto = require("crypto");
 		global.crypto = {
 			getRandomValues(b) {
 				nodeCrypto.randomFillSync(b);

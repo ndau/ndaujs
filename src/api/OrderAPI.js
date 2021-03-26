@@ -8,10 +8,10 @@
  * - -- --- ---- -----
  */
 
-import APIAddressHelper from '../api/helpers/APIAddressHelper'
-import APICommunicationHelper from '../api/helpers/APICommunicationHelper'
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import LoggerHelper from '../helpers/LoggerHelper'
+import APIAddressHelper from '../api/helpers/APIAddressHelper.js'
+import APICommunicationHelper from '../api/helpers/APICommunicationHelper.js'
+import DataFormatHelper from '../api/helpers/DataFormatHelper.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('OrderAPI')
 
 const getMarketPrice = async user => {

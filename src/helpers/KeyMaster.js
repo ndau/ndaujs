@@ -8,14 +8,14 @@
  * - -- --- ---- -----
  */
 
-import User from '../model/User'
-import Key from '../model/Key'
-import Account from '../model/Account'
-import AppConstants from '../constants/constants'
-import Wallet from '../model/Wallet'
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import KeyPathHelper from '../api/helpers/KeyPathHelper'
-import LoggerHelper from './LoggerHelper'
+import User from '../model/User.js'
+import Key from '../model/Key.js'
+import Account from '../model/Account.js'
+import AppConstants from '../constants/constants.js'
+import Wallet from '../model/Wallet.js'
+import DataFormatHelper from '../api/helpers/DataFormatHelper.js'
+import KeyPathHelper from '../api/helpers/KeyPathHelper.js'
+import LoggerHelper from './LoggerHelper.js'
 const l = LoggerHelper.curryLogger('KeyMaster')
 
 

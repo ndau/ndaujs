@@ -8,13 +8,13 @@
  * - -- --- ---- -----
  */
 
-import KeyMaster from '../../helpers/KeyMaster'
-import AccountAPI from '../AccountAPI'
-import Constants from '../../constants/constants'
-import Config from '../../constants/config'
-import DataFormatHelper from './DataFormatHelper'
-import UserStore from '../../stores/UserStore'
-import UserData from '../../model/UserData'
+import KeyMaster from '../../helpers/KeyMaster.js'
+import AccountAPI from '../AccountAPI.js'
+import Constants from '../../constants/constants.js'
+import Config from '../../constants/config.js'
+import DataFormatHelper from './DataFormatHelper.js'
+import UserStore from '../../stores/UserStore.js'
+import UserData from '../../model/UserData.js'
 
 /**
  * First we check to see if there are a variable number of accounts existent

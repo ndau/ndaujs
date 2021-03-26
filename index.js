@@ -8,19 +8,24 @@
  * - -- --- ---- -----
  */
 
-const address = require('./src/keyaddress/address')
-const APIAddressHelper = require('./src/api/helpers/APIAddressHelper')
-const WalletStore = require('./src/stores/WalletStore')
-const UserStore = require('./src/stores/UserStore')
-const GeneralStore = require('./src/stores/GeneralStore')
-const i18next = require('i18next')
-const enLng = require('./src/i18n/en')
-const CryptoStore = require('./src/stores/CryptoStore')
-const SetupStore = require('./src/stores/SetupStore')
-const RecoveryPhraseHelper = require('./src/api/helpers/RecoveryPhraseHelper')
-const DataFormatHelper = require('./src/api/helpers/DataFormatHelper')
-const MultiSafeHelper = require('./src/helpers/MultiSafeHelper')
-const LoggerHelper = require('./src/helpers/LoggerHelper')
+import {truncateAddress, formatNapuForDisplay, parseNdau} from './src/keyaddress/address.js'
+import APIAddressHelper from './src/api/helpers/APIAddressHelper.js'
+import WalletStore from './src/stores/WalletStore.js'
+import  UserStore from  './src/stores/UserStore.js'
+import  GeneralStore from  './src/stores/GeneralStore.js'
+import  i18next from  'i18next'
+import  enLng from  './src/i18n/en.js'
+import  CryptoStore from  './src/stores/CryptoStore.js'
+import  SetupStore from  './src/stores/SetupStore.js'
+import  RecoveryPhraseHelper from  './src/api/helpers/RecoveryPhraseHelper.js'
+import  DataFormatHelper from  './src/api/helpers/DataFormatHelper.js'
+import  MultiSafeHelper from  './src/helpers/MultiSafeHelper.js'
+import  LoggerHelper from  './src/helpers/LoggerHelper.js'
+
+
+import Account from './src/model/Account.js'
+import { initKeyaddr } from './test/wasmHelper.js'
+
 
 // i18next is loaded asynchronously. Any code that requires i18next should wait
 // for the i18next event 'initialized' before running.
@@ -32,7 +37,7 @@ i18next.init({
   }
 })
 
-module.exports = {
+export default {
   // These functions existed in the first release of ndaujs.
   // These methods are deprecated as of version 1.3.0 in place
   // of the newer format described below
@@ -40,15 +45,15 @@ module.exports = {
   /**
    * @deprecated as of version 1.3.0
    */
-  truncateAddress: address.truncateAddress,
+  truncateAddress,
   /**
    * @deprecated as of version 1.3.0
    */
-  formatNapuForDisplay: address.formatNapuForDisplay,
+  formatNapuForDisplay,
   /**
    * @deprecated as of version 1.3.0
    */
-  parseNdau: address.parseNdau,
+  parseNdau,
 
   // In versions >1.3.0 here is where you will be exposing your
   // classes/helpers that are within the src folder. At present
@@ -66,3 +71,6 @@ module.exports = {
   MultiSafeHelper,
   LoggerHelper
 }
+
+export { Account }
+export { initKeyaddr }

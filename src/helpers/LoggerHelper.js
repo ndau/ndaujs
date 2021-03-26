@@ -8,8 +8,8 @@
  * - -- --- ---- -----
  */
 
-import CircularArray from '../api/helpers/CircularArray'
-import Config from '../constants/config'
+import CircularArray from '../api/helpers/CircularArray.js'
+import * as config from '../constants/config.js'
 /*
 This is a singleton but it generates loggers.
 Use it by instantiating and configuring it early in your code like so:
@@ -39,7 +39,7 @@ class LoggerHelper {
     this.LEVEL_DEBUG = 'D'
     this.LEVEL_ERROR = 'E'
 
-    this._logData = new CircularArray(Config.MAX_LOG_ENTRIES)
+    this._logData = new CircularArray(config.MAX_LOG_ENTRIES)
 
     if (!LoggerHelper.instance) {
       this.setLevel(LoggerHelper.LEVEL_INFO)

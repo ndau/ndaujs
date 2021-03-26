@@ -8,16 +8,16 @@
  * - -- --- ---- -----
  */
 
-import APIAddressHelper from '../api/helpers/APIAddressHelper'
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import BlockchainAPIError from '../api/errors/BlockchainAPIError'
-import APICommunicationHelper from '../api/helpers/APICommunicationHelper'
-import AsyncStorageHelper from '../helpers/AsyncStorageHelper'
-import WalletStore from '../stores/WalletStore'
-import LoggerHelper from '../helpers/LoggerHelper'
+import APIAddressHelper from '../api/helpers/APIAddressHelper.js'
+import DataFormatHelper from '../api/helpers/DataFormatHelper.js'
+import BlockchainAPIError from '../api/errors/BlockchainAPIError.js'
+import APICommunicationHelper from '../api/helpers/APICommunicationHelper.js'
+import AsyncStorageHelper from '../helpers/AsyncStorageHelper.js'
+import WalletStore from '../stores/WalletStore.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('AccountAPI')
 
-const _ = require('lodash')
+import 'lodash'
 
 const getAddressData = async addresses => {
   const accountAPI = await APIAddressHelper.getAccountsAPIAddress()

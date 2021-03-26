@@ -1,33 +1,46 @@
 {
-  "name": "ndaujs",
-  "version": "1.3.0",
-  "description": "A JavaScript common repository for ndau",
-  "main": "index.js",
-  "scripts": {
-    "test": "nyc --reporter=lcov --reporter=text mocha --check-coverage --recursive --require @babel/register"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ndau/ndaujs.git"
-  },
-  "keywords": [
-    "ndau"
+  "_args": [
+    [
+      "github:ndau/ndaujs#master",
+      "/Users/johnsgreenlandjr/ndaujs_test"
+    ]
   ],
-  "author": "Kristofer Pelchat",
-  "license": "MIT",
+  "_from": "github:ndau/ndaujs#master",
+  "_id": "ndaujs@github:ndau/ndaujs#7c10c88ed56fbee92917a90c73608ba1a9c4f55a",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/ndaujs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "github:ndau/ndaujs#master",
+    "rawSpec": "github:ndau/ndaujs#master",
+    "saveSpec": "github:ndau/ndaujs#master",
+    "fetchSpec": null,
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "github:ndau/ndaujs#7c10c88ed56fbee92917a90c73608ba1a9c4f55a",
+  "_spec": "github:ndau/ndaujs#master",
+  "_where": "/Users/johnsgreenlandjr/ndaujs_test",
+  "author": {
+    "name": "Kristofer Pelchat"
+  },
   "bugs": {
     "url": "https://github.com/ndau/ndaujs/issues"
   },
-  "homepage": "https://github.com/ndau/ndaujs#readme",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "base-64": "^0.1.0",
     "crypto-js": "^3.1.9-1",
     "i18next": "^19.0.0",
     "lodash.clonedeep": "^4.5.0",
     "moment": "^2.24.0"
   },
+  "description": "A JavaScript common repository for ndau",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
@@ -45,10 +58,26 @@
     "nyc": "^14.1.1",
     "sinon": "^7.5.0"
   },
+  "homepage": "https://github.com/ndau/ndaujs#readme",
+  "keywords": [
+    "ndau"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "ndaujs",
+  "type": "module",
   "nyc": {
     "branches": 80,
     "lines": 80,
     "functions": 80,
     "statements": 80
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndau/ndaujs.git"
+  },
+  "scripts": {
+    "test": "nyc --reporter=lcov --reporter=text mocha --check-coverage --recursive --require @babel/register"
+  },
+  "version": "1.3.0"
 }

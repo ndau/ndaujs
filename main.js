@@ -1,12 +1,12 @@
-import Account from './src/model/Account'
-import Wallet from './src/model/Wallet'
-import { TransferTransaction } from './src/transactions/TransferTransaction'
-import Transaction from './src/transactions/Transaction'
-import ValidationKeyMaster from './src/helpers/ValidationKeyMaster'
-import { CreateChildAccountTransaction } from './src/transactions/CreateChildAccountTransaction'
+
+import { Account } from 'ndaujs'
+import { Wallet } from 'ndaujs'
+import { TransferTransaction } from 'ndaujs'
+import { ValidationKeyMaster } from 'ndaujs'
+import { CreateChildAccountTransaction } from 'ndaujs'
 
 //require('./test/wasmHelper')
-import { initKeyaddr } from './test/wasmHelper'
+import { initKeyaddr } from 'ndaujs'
 
 // example creation, signing, and prevalidate of Transfer and CreateChildAccount TX
 const testTXs = async function() { // async function expression assigned to a variable

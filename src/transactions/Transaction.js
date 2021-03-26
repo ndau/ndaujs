@@ -16,8 +16,6 @@ import AccountAPI from '../api/AccountAPI'
 import { ErrorsByMessage, Messages } from '../api/errors/BlockchainAPIError'
 import APIAddressHelper from '../api/helpers/APIAddressHelper'
 import LoggerHelper from '../helpers/LoggerHelper'
-import Wallet from '../model/Wallet'
-import Account from '../model/Account'
 const l = LoggerHelper.curryLogger('Transaction')
 
 export default class Transaction {
@@ -27,18 +25,17 @@ export default class Transaction {
         `transactionType (string) argument required to construct a tx`
       )
     }
-    if (!wallet || wallet.constructor !== Wallet) {
+    if (!wallet || wallet.constructor !== Object) {
       throw new Error(
         `wallet (object) argument required to construct a ${transactionType} tx`
       )
     }
-    if (!account || account.constructor !== Account) {
+    if (!account || account.constructor !== Object) {
       throw new Error(
         `account (object) argument required to construct a ${transactionType} tx`
       )
     }
 
-    this._sendType = APIAddressHelper.BLOCKCHAIN
     this.transactionType = transactionType
     this._wallet = wallet
     this._account = account
@@ -52,7 +49,7 @@ export default class Transaction {
   /**
    * Create a transaction and store information internally
    */
-  async create (ownershipKeys, validationKeys) {
+  async create () {
     try {
       await this.createPrevalidateAddress()
     } catch (e) {
@@ -69,17 +66,23 @@ export default class Transaction {
       // but only if there are none present. This business logic may
       // change in the future, but for now, we only create one validation
       // key per account here
-      console.log('account keys = ' + this._account.validationKeys)
-      console.log('account ad = ' + this._account.addressData)
+      if (
+        this._account.validationKeys &&
+        this._account.validationKeys.length === 0 &&
+        (this._account.addressData &&
+          this._account.addressData.validationKeys === null)
+      ) {
+        await ValidationKeyMaster.addValidationKey(this._wallet, this._account)
+      }
       if (
         !this._account.validationKeys ||
         this._account.validationKeys.length === 0
       ) {
         throw Error('No validation keys present')
       }
-    //   if (isNaN(this._account.addressData.sequence)) {
-    //     throw ErrorsByMessage[Messages.SRC_NO_HISTORY]
-    //   }
+      if (isNaN(this._account.addressData.sequence)) {
+        throw ErrorsByMessage[Messages.SRC_NO_HISTORY]
+      }
       // If we have already done a create we have generated
       // a sequence. If this object is sent again we do not
       // want to genereate a new sequence as it will try to perform
@@ -96,11 +99,9 @@ export default class Transaction {
           sequence
         }
       }
-      await this.createTransactionSpecific(ownershipKeys, validationKeys)
       this.addToJsonTransaction()
       return this._jsonTransaction
     } catch (e) {
-      console.log('transaction error: ' + e)
       this.handleError(e)
     }
   }
@@ -119,12 +120,11 @@ export default class Transaction {
    * Sign the transaction for prevalidation and submission. You must
    * call `create` first before you call this method.
    */
-  async sign (privateKey) {
-    console.log('private key = ' + privateKey)
+  async sign () {
     // Here we get the ownership key to sign for SetValidation. This is
     // the ONLY time we use the ownershipKey. Any subsequent/other
     // transactions use the validationKey within the account
-//    const privateKeyFromHash = this.privateKeyForSigning()
+    const privateKeyFromHash = this.privateKeyForSigning()
 
     // Use the TxSignPrep to get it ready to send
     const preparedTransaction = new TxSignPrep().prepare(this._jsonTransaction)
@@ -132,14 +132,12 @@ export default class Transaction {
 
     try {
       // Get the signature to use in the transaction
-      const signature = await Keyaddr.signEdB64(
- //       privateKeyFromHash,
-        privateKey,
+      const signature = await Keyaddr.sign(
+        privateKeyFromHash,
         base64EncodedPrepTx
       )
       this.addSignatureToJsonTransaction(signature)
     } catch (e) {
-      console.log('sign error: ' + e)
       this.handleError(e)
     }
   }
@@ -253,6 +251,4 @@ export default class Transaction {
 
   // This is meant to be overridden to include the properties of the transaction to be signed.
   addToJsonTransaction () {}
-
-  async createTransactionSpecific () {}
 }

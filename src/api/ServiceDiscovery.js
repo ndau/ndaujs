@@ -8,10 +8,10 @@
  * - -- --- ---- -----
  */
 
-import ServiceDiscoveryError from './errors/ServiceDiscoveryError'
-import APICommunicationHelper from './helpers/APICommunicationHelper'
+import ServiceDiscoveryError from './errors/ServiceDiscoveryError.js'
+import APICommunicationHelper from './helpers/APICommunicationHelper.js'
 import moment from 'moment'
-import LoggerHelper from '../helpers/LoggerHelper'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('ServiceDiscovery')
 
 const AWS_S3_SERVICE_JSON =

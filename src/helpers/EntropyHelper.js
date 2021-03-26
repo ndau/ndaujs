@@ -8,9 +8,9 @@
  * - -- --- ---- -----
  */
 
-import SetupStore from '../stores/SetupStore'
+import SetupStore from '../stores/SetupStore.js'
 import Base64 from 'base-64'
-import CryptoStore from '../stores/CryptoStore'
+import CryptoStore from '../stores/CryptoStore.js'
 
 /**
  * This method will generate entropy and both return the value

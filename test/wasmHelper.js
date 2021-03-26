@@ -10,7 +10,10 @@
 
 import fs from 'fs'
 import { promisify } from 'util'
-require('./wasm_exec')
+import './wasm_exec.js'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
 const readFile = promisify(fs.readFile)
 
 const toUint8Array = b => {
@@ -22,7 +25,7 @@ const toUint8Array = b => {
 }
 
 const root = global || window
-const initKeyaddr = async function () {
+async function initKeyaddr () {
     if (!root.Keyaddr) {
         console.log('starting wasm')
         const instantiateStreaming = (source, importObject) => {
@@ -43,6 +46,8 @@ const initKeyaddr = async function () {
         const start = async function () {
             const go = new Go()
             console.log('starting Go')
+            const __filename = fileURLToPath(import.meta.url)
+            const __dirname = dirname(__filename)
             return instantiateStreaming(
                 readFile(`${__dirname}/keyaddr.wasm`),
                 go.importObject
