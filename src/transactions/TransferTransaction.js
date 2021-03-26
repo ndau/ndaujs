@@ -8,10 +8,10 @@
  * - -- --- ---- -----
  */
 
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import Transaction from './Transaction'
+import DataFormatHelper from '../api/helpers/DataFormatHelper.js'
+import Transaction from './Transaction.js'
 
-export class TransferTransaction extends Transaction {
+class TransferTransaction extends Transaction {
   constructor (wallet, account, destination, quantity) {
     super(wallet, account, 'Transfer')
 
@@ -47,3 +47,5 @@ export class TransferTransaction extends Transaction {
     this._jsonTransaction.source = this._account.address
   }
 }
+
+export default TransferTransaction

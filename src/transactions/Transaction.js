@@ -8,16 +8,14 @@
  * - -- --- ---- -----
  */
 
-import KeyMaster from '../helpers/KeyMaster'
-import ValidationKeyMaster from '../helpers/ValidationKeyMaster'
-import TransactionAPI from '../api/TransactionAPI'
-import TxSignPrep from '../model/TxSignPrep'
-import AccountAPI from '../api/AccountAPI'
-import { ErrorsByMessage, Messages } from '../api/errors/BlockchainAPIError'
-import APIAddressHelper from '../api/helpers/APIAddressHelper'
-import LoggerHelper from '../helpers/LoggerHelper'
-import Wallet from '../model/Wallet'
-import Account from '../model/Account'
+import KeyMaster from '../helpers/KeyMaster.js'
+import TransactionAPI from '../api/TransactionAPI.js'
+import TxSignPrep from '../model/TxSignPrep.js'
+import AccountAPI from '../api/AccountAPI.js'
+import APIAddressHelper from '../api/helpers/APIAddressHelper.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
+import Wallet from '../model/Wallet.js'
+import Account from '../model/Account.js'
 const l = LoggerHelper.curryLogger('Transaction')
 
 export default class Transaction {
@@ -69,8 +67,6 @@ export default class Transaction {
       // but only if there are none present. This business logic may
       // change in the future, but for now, we only create one validation
       // key per account here
-      console.log('account keys = ' + this._account.validationKeys)
-      console.log('account ad = ' + this._account.addressData)
       if (
         !this._account.validationKeys ||
         this._account.validationKeys.length === 0
@@ -120,11 +116,9 @@ export default class Transaction {
    * call `create` first before you call this method.
    */
   async sign (privateKey) {
-    console.log('private key = ' + privateKey)
     // Here we get the ownership key to sign for SetValidation. This is
     // the ONLY time we use the ownershipKey. Any subsequent/other
     // transactions use the validationKey within the account
-//    const privateKeyFromHash = this.privateKeyForSigning()
 
     // Use the TxSignPrep to get it ready to send
     const preparedTransaction = new TxSignPrep().prepare(this._jsonTransaction)
@@ -133,7 +127,6 @@ export default class Transaction {
     try {
       // Get the signature to use in the transaction
       const signature = await Keyaddr.signEdB64(
- //       privateKeyFromHash,
         privateKey,
         base64EncodedPrepTx
       )
@@ -220,6 +213,7 @@ export default class Transaction {
   }
 
   async createPrevalidateAddress () {
+    console.log('prevalidate send type: ' + this._sendType)
     const prevalidateAddressPre = await APIAddressHelper.getTransactionPrevalidateAPIAddress(
       this._sendType
     )

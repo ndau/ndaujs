@@ -24,6 +24,10 @@ import  LoggerHelper from  './src/helpers/LoggerHelper.js'
 
 
 import Account from './src/model/Account.js'
+import Wallet from './src/model/Wallet.js'
+import TransferTransaction from './src/transactions/TransferTransaction.js'
+import CreateChildAccountTransaction from './src/transactions/CreateChildAccountTransaction.js'
+import ValidationKeyMaster from './src/helpers/ValidationKeyMaster.js'
 import { initKeyaddr } from './test/wasmHelper.js'
 
 
@@ -72,5 +76,5 @@ export default {
   LoggerHelper
 }
 
-export { Account }
-export { initKeyaddr }
+export { Account, Wallet, TransferTransaction, CreateChildAccountTransaction, ValidationKeyMaster, initKeyaddr }
+

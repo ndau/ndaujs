@@ -8,10 +8,9 @@
  * - -- --- ---- -----
  */
 
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import Transaction from './Transaction'
+import Transaction from './Transaction.js'
 
-export class CreateChildAccountTransaction extends Transaction {
+class CreateChildAccountTransaction extends Transaction {
   constructor (wallet, account) {
     super(wallet, account, 'CreateChildAccount')
   }
@@ -38,3 +37,5 @@ export class CreateChildAccountTransaction extends Transaction {
     this._jsonTransaction.child_delegation_node = this._child
   }
 }
+
+export default CreateChildAccountTransaction

@@ -10,7 +10,7 @@
 
 import BlockchainAPIError from '../errors/BlockchainAPIError.js'
 import axios from 'axios'
-import '../../constants/config.js'
+import config from '../../constants/config.js'
 import LoggerHelper from '../../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('APICommunicationHelper')
 /**

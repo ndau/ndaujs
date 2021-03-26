@@ -8,10 +8,10 @@
  * - -- --- ---- -----
  */
 
-import APIAddressHelper from './helpers/APIAddressHelper'
-import BlockchainAPIError from './errors/BlockchainAPIError'
-import APICommunicationHelper from '../api/helpers/APICommunicationHelper'
-import LoggerHelper from '../helpers/LoggerHelper'
+import APIAddressHelper from './helpers/APIAddressHelper.js'
+import BlockchainAPIError from './errors/BlockchainAPIError.js'
+import APICommunicationHelper from '../api/helpers/APICommunicationHelper.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('TransactionAPI')
 
 const _postTransaction = async (submitAddress, transaction) => {

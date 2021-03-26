@@ -5,11 +5,10 @@ import { TransferTransaction } from 'ndaujs'
 import { ValidationKeyMaster } from 'ndaujs'
 import { CreateChildAccountTransaction } from 'ndaujs'
 
-//require('./test/wasmHelper')
 import { initKeyaddr } from 'ndaujs'
 
 // example creation, signing, and prevalidate of Transfer and CreateChildAccount TX
-const testTXs = async function() { // async function expression assigned to a variable
+const testTXs = async function() { 
     // init Keyaddr module, this gives us access to core Go routines
     var foo = await initKeyaddr()
 
@@ -24,7 +23,7 @@ const testTXs = async function() { // async function expression assigned to a va
     var wallet = new Wallet()
     wallet.walletId = 'foobar'
     wallet.walletName = 'foobar'
-    console.log('wallet.constructor is ' + wallet.constructor)
+
     console.log('wallet.constructor is object ' + (wallet.constructor === Wallet))
 
     // create new Transfer transaction: account, destination, and qty

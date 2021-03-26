@@ -56,6 +56,7 @@ const getBlockchainServiceNode = async (environment = TESTNET) => {
     ]
   } catch (e) {
     l.debug(`could not get blockchain service node: ${e.message}`)
+    console.log(`could not get blockchain service node: ${e.message}`)
     throw new ServiceDiscoveryError()
   }
 }
