@@ -1,30 +1,4 @@
 {
-  "_args": [
-    [
-      "github:ndau/ndaujs#master",
-      "/Users/johnsgreenlandjr/ndaujs_test"
-    ]
-  ],
-  "_from": "github:ndau/ndaujs#master",
-  "_id": "ndaujs@github:ndau/ndaujs#7c10c88ed56fbee92917a90c73608ba1a9c4f55a",
-  "_inBundle": false,
-  "_integrity": "",
-  "_location": "/ndaujs",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "git",
-    "raw": "github:ndau/ndaujs#master",
-    "rawSpec": "github:ndau/ndaujs#master",
-    "saveSpec": "github:ndau/ndaujs#master",
-    "fetchSpec": null,
-    "gitCommittish": "master"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "github:ndau/ndaujs#7c10c88ed56fbee92917a90c73608ba1a9c4f55a",
-  "_spec": "github:ndau/ndaujs#master",
-  "_where": "/Users/johnsgreenlandjr/ndaujs_test",
   "author": {
     "name": "Kristofer Pelchat"
   },
@@ -37,6 +11,7 @@
     "base-64": "^0.1.0",
     "crypto-js": "^3.1.9-1",
     "i18next": "^19.0.0",
+    "lodash": "^4.17.21",
     "lodash.clonedeep": "^4.5.0",
     "moment": "^2.24.0"
   },
