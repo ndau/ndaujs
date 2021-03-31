@@ -117,7 +117,7 @@ var _CreateChildAccountTransaction = _interopRequireDefault(require("./transacti
 
 var _ValidationKeyMaster = _interopRequireDefault(require("./helpers/ValidationKeyMaster.js"));
 
-var _wasmHelper = require("../test/wasmHelper.js");
+var _wasmHelper = require("./wasm/wasmHelper.js");
 
 cov_2qjvhakje5.s[0]++;
 
