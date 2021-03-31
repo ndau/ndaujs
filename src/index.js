@@ -28,7 +28,7 @@ import Wallet from './model/Wallet.js'
 import TransferTransaction from './transactions/TransferTransaction.js'
 import CreateChildAccountTransaction from './transactions/CreateChildAccountTransaction.js'
 import ValidationKeyMaster from './helpers/ValidationKeyMaster.js'
-import { initKeyaddr } from './test/wasmHelper.js'
+import { initKeyaddr } from '../test/wasmHelper.js'
 
 
 // i18next is loaded asynchronously. Any code that requires i18next should wait
