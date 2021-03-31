@@ -8,26 +8,26 @@
  * - -- --- ---- -----
  */
 
-import {truncateAddress, formatNapuForDisplay, parseNdau} from './src/keyaddress/address.js'
-import APIAddressHelper from './src/api/helpers/APIAddressHelper.js'
-import WalletStore from './src/stores/WalletStore.js'
-import  UserStore from  './src/stores/UserStore.js'
-import  GeneralStore from  './src/stores/GeneralStore.js'
+import {truncateAddress, formatNapuForDisplay, parseNdau} from './keyaddress/address.js'
+import APIAddressHelper from './api/helpers/APIAddressHelper.js'
+import WalletStore from './stores/WalletStore.js'
+import  UserStore from  './stores/UserStore.js'
+import  GeneralStore from  './stores/GeneralStore.js'
 import  i18next from  'i18next'
-import  enLng from  './src/i18n/en.js'
-import  CryptoStore from  './src/stores/CryptoStore.js'
-import  SetupStore from  './src/stores/SetupStore.js'
-import  RecoveryPhraseHelper from  './src/api/helpers/RecoveryPhraseHelper.js'
-import  DataFormatHelper from  './src/api/helpers/DataFormatHelper.js'
-import  MultiSafeHelper from  './src/helpers/MultiSafeHelper.js'
-import  LoggerHelper from  './src/helpers/LoggerHelper.js'
+import  enLng from  './i18n/en.js'
+import  CryptoStore from  './stores/CryptoStore.js'
+import  SetupStore from  './stores/SetupStore.js'
+import  RecoveryPhraseHelper from  './api/helpers/RecoveryPhraseHelper.js'
+import  DataFormatHelper from  './api/helpers/DataFormatHelper.js'
+import  MultiSafeHelper from  './helpers/MultiSafeHelper.js'
+import  LoggerHelper from  './helpers/LoggerHelper.js'
 
 
-import Account from './src/model/Account.js'
-import Wallet from './src/model/Wallet.js'
-import TransferTransaction from './src/transactions/TransferTransaction.js'
-import CreateChildAccountTransaction from './src/transactions/CreateChildAccountTransaction.js'
-import ValidationKeyMaster from './src/helpers/ValidationKeyMaster.js'
+import Account from './model/Account.js'
+import Wallet from './model/Wallet.js'
+import TransferTransaction from './transactions/TransferTransaction.js'
+import CreateChildAccountTransaction from './transactions/CreateChildAccountTransaction.js'
+import ValidationKeyMaster from './helpers/ValidationKeyMaster.js'
 import { initKeyaddr } from './test/wasmHelper.js'
 
 

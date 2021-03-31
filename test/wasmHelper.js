@@ -81,6 +81,7 @@ async function initKeyaddr () {
         }
         await start()
     }
+    return root.Keyaddr
 }
 
 export { initKeyaddr }
