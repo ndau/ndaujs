@@ -15,10 +15,31 @@ const PROTOCOL = 'https'
 const BLOCKCHAIN = 1
 const RECOVERY = 2
 
+var blockchainNode = null
+var protocol = null
+
 const getBlockchainNode = async () => {
-  return await ServiceDiscovery.getBlockchainServiceNode()
+    if (blockchainNode)
+        return blockchainNode
+    else
+        return await ServiceDiscovery.getBlockchainServiceNode()
+}
+  
+const setBlockchainNode = (node) => {
+    blockchainNode = node
+}
+  
+const setProtocol = (prot) => {
+    protocol = prot
 }
 
+const getProtocol =  () => {
+    if (protocol)
+        return protocol
+    else
+        return PROTOCOL    
+}
+  
 const getRecoveryNode = async () => {
   const node = await ServiceDiscovery.getRecoveryServiceNode()
   return node
@@ -27,7 +48,7 @@ const getRecoveryNode = async () => {
 const getNodeAddress = async type => {
   const node =
     type === RECOVERY ? await getRecoveryNode() : await getBlockchainNode()
-  return PROTOCOL + '://' + node
+  return getProtocol() + '://' + node
 }
 
 const getAccountsAPIAddress = async () => {
@@ -66,6 +87,8 @@ const getTransactionByHashAPIAddress = async transactionHash => {
 }
 
 export default {
+  setBlockchainNode,
+  setProtocol,
   getAccountAPIAddress,
   getAccountsAPIAddress,
   getMarketPriceAPIAddress,

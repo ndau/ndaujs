@@ -6,11 +6,19 @@ import { ValidationKeyMaster } from 'ndaujs'
 import { CreateChildAccountTransaction } from 'ndaujs'
 
 import { initKeyaddr } from 'ndaujs'
+import { APIAddressHelper } from 'ndaujs'
 
 // example creation, signing, and prevalidate of Transfer and CreateChildAccount TX
 const testTXs = async function() { 
     // init Keyaddr module, this gives us access to core Go routines
     var foo = await initKeyaddr()
+
+    // call "setProtocol" to set node comm protocol, defaults to "https" if not set,
+    // should probably only need to be set if accessing local node with "http"
+    // APIAddressHelper.setProtocol('http')
+
+    // set blockchain node to DNS name and port, if not set defaults to randomly selected node
+    APIAddressHelper.setBlockchainNode('testnet-0.ndau.tech:3030')
 
     // new key generation from random seed
     var edKey = await Keyaddr.newEdKey()

@@ -43,6 +43,12 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "APIAddressHelper", {
+  enumerable: true,
+  get: function get() {
+    return _APIAddressHelper["default"];
+  }
+});
 Object.defineProperty(exports, "Account", {
   enumerable: true,
   get: function get() {

@@ -76,5 +76,5 @@ export default {
   LoggerHelper
 }
 
-export { Account, Wallet, TransferTransaction, CreateChildAccountTransaction, ValidationKeyMaster, initKeyaddr }
+export { Account, Wallet, TransferTransaction, CreateChildAccountTransaction, ValidationKeyMaster, initKeyaddr, APIAddressHelper }
 
