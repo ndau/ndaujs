@@ -27,7 +27,7 @@ const toUint8Array = b => {
 const root = global || window
 async function initKeyaddr () {
     if (!root.Keyaddr) {
-        console.log('starting wasm')
+//        console.log('starting wasm')
         const instantiateStreaming = (source, importObject) => {
             importObject = importObject || {}
             return source
@@ -45,7 +45,7 @@ async function initKeyaddr () {
 
         const start = async function () {
             const go = new Go()
-            console.log('starting Go')
+//            console.log('starting Go')
             const __filename = fileURLToPath(import.meta.url)
             const __dirname = dirname(__filename)
             return instantiateStreaming(

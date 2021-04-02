@@ -2,7 +2,7 @@
 
 var cov_2956hpz6db = function () {
   var path = "/Users/johnsgreenlandjr/go/src/github.com/ndau/ndaujs/src/transactions/Transaction.js";
-  var hash = "916089c78b7f9b23a19c530f0b30c64edabc11ba";
+  var hash = "27aec46a868fdc5c15d28ce1221a11f33a568a18";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -630,16 +630,6 @@ var cov_2956hpz6db = function () {
       },
       "62": {
         start: {
-          line: 216,
-          column: 4
-        },
-        end: {
-          line: 216,
-          column: 59
-        }
-      },
-      "63": {
-        start: {
           line: 217,
           column: 34
         },
@@ -648,7 +638,7 @@ var cov_2956hpz6db = function () {
           column: 5
         }
       },
-      "64": {
+      "63": {
         start: {
           line: 220,
           column: 4
@@ -658,7 +648,7 @@ var cov_2956hpz6db = function () {
           column: 56
         }
       },
-      "65": {
+      "64": {
         start: {
           line: 223,
           column: 4
@@ -668,7 +658,7 @@ var cov_2956hpz6db = function () {
           column: 5
         }
       },
-      "66": {
+      "65": {
         start: {
           line: 231,
           column: 4
@@ -678,7 +668,7 @@ var cov_2956hpz6db = function () {
           column: 42
         }
       },
-      "67": {
+      "66": {
         start: {
           line: 235,
           column: 4
@@ -688,7 +678,7 @@ var cov_2956hpz6db = function () {
           column: 5
         }
       },
-      "68": {
+      "67": {
         start: {
           line: 236,
           column: 6
@@ -698,7 +688,7 @@ var cov_2956hpz6db = function () {
           column: 25
         }
       },
-      "69": {
+      "68": {
         start: {
           line: 237,
           column: 6
@@ -708,7 +698,7 @@ var cov_2956hpz6db = function () {
           column: 23
         }
       },
-      "70": {
+      "69": {
         start: {
           line: 238,
           column: 6
@@ -718,7 +708,7 @@ var cov_2956hpz6db = function () {
           column: 30
         }
       },
-      "71": {
+      "70": {
         start: {
           line: 239,
           column: 6
@@ -728,7 +718,7 @@ var cov_2956hpz6db = function () {
           column: 25
         }
       },
-      "72": {
+      "71": {
         start: {
           line: 241,
           column: 6
@@ -1571,8 +1561,7 @@ var cov_2956hpz6db = function () {
       "68": 0,
       "69": 0,
       "70": 0,
-      "71": 0,
-      "72": 0
+      "71": 0
     },
     f: {
       "0": 0,
@@ -1606,7 +1595,7 @@ var cov_2956hpz6db = function () {
       "11": [0, 0]
     },
     _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
-    hash: "916089c78b7f9b23a19c530f0b30c64edabc11ba"
+    hash: "27aec46a868fdc5c15d28ce1221a11f33a568a18"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -2096,19 +2085,17 @@ var Transaction = /*#__PURE__*/function () {
               case 0:
                 cov_2956hpz6db.f[9]++;
                 cov_2956hpz6db.s[62]++;
-                console.log('prevalidate send type: ' + this._sendType);
-                cov_2956hpz6db.s[63]++;
-                _context6.next = 6;
+                _context6.next = 4;
                 return _APIAddressHelper["default"].getTransactionPrevalidateAPIAddress(this._sendType);
 
-              case 6:
+              case 4:
                 prevalidateAddressPre = _context6.sent;
-                cov_2956hpz6db.s[64]++;
+                cov_2956hpz6db.s[63]++;
                 this._prevalidateAddress = prevalidateAddressPre + '/' + this.transactionType;
-                cov_2956hpz6db.s[65]++;
+                cov_2956hpz6db.s[64]++;
                 l.debug("prevalidate address: ".concat(this._prevalidateAddress, " send type ").concat(this._sendType));
 
-              case 11:
+              case 9:
               case "end":
                 return _context6.stop();
             }
@@ -2126,7 +2113,7 @@ var Transaction = /*#__PURE__*/function () {
     key: "getSignature",
     value: function getSignature() {
       cov_2956hpz6db.f[10]++;
-      cov_2956hpz6db.s[66]++;
+      cov_2956hpz6db.s[65]++;
       return this._jsonTransaction.signature;
     }
   }, {
@@ -2138,24 +2125,24 @@ var Transaction = /*#__PURE__*/function () {
             switch (_context7.prev = _context7.next) {
               case 0:
                 cov_2956hpz6db.f[11]++;
-                cov_2956hpz6db.s[67]++;
+                cov_2956hpz6db.s[66]++;
                 _context7.prev = 2;
-                cov_2956hpz6db.s[68]++;
+                cov_2956hpz6db.s[67]++;
                 _context7.next = 6;
                 return this.create();
 
               case 6:
-                cov_2956hpz6db.s[69]++;
+                cov_2956hpz6db.s[68]++;
                 _context7.next = 9;
                 return this.sign();
 
               case 9:
-                cov_2956hpz6db.s[70]++;
+                cov_2956hpz6db.s[69]++;
                 _context7.next = 12;
                 return this.prevalidate();
 
               case 12:
-                cov_2956hpz6db.s[71]++;
+                cov_2956hpz6db.s[70]++;
                 _context7.next = 15;
                 return this.submit();
 
@@ -2166,7 +2153,7 @@ var Transaction = /*#__PURE__*/function () {
               case 17:
                 _context7.prev = 17;
                 _context7.t0 = _context7["catch"](2);
-                cov_2956hpz6db.s[72]++;
+                cov_2956hpz6db.s[71]++;
                 this.handleError(_context7.t0);
 
               case 21:

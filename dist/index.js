@@ -2,7 +2,7 @@
 
 var cov_2qjvhakje5 = function () {
   var path = "/Users/johnsgreenlandjr/go/src/github.com/ndau/ndaujs/src/index.js";
-  var hash = "eb48feacc76c0de056b4bd90354ae9bc95c2f9d6";
+  var hash = "acfb75a73370e4cbe2bd88884989792f19fffc38";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -14,7 +14,7 @@ var cov_2qjvhakje5 = function () {
           column: 0
         },
         end: {
-          line: 42,
+          line: 41,
           column: 2
         }
       }
@@ -27,7 +27,7 @@ var cov_2qjvhakje5 = function () {
     f: {},
     b: {},
     _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
-    hash: "eb48feacc76c0de056b4bd90354ae9bc95c2f9d6"
+    hash: "acfb75a73370e4cbe2bd88884989792f19fffc38"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -130,8 +130,7 @@ cov_2qjvhakje5.s[0]++;
 // i18next is loaded asynchronously. Any code that requires i18next should wait
 // for the i18next event 'initialized' before running.
 _i18next["default"].init({
-  lng: 'en',
-  debug: true,
+  lng: 'en-US',
   resources: {
     en: _en["default"]["default"]
   }

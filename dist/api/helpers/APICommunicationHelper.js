@@ -2,7 +2,7 @@
 
 var cov_1sfguynfw5 = function () {
   var path = "/Users/johnsgreenlandjr/go/src/github.com/ndau/ndaujs/src/api/helpers/APICommunicationHelper.js";
-  var hash = "07a6986dc4937ea204b1a0e7433f22a336d785ba";
+  var hash = "dcb1beb25474655c1b8aca72ce5b25da4d5c069e";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -80,26 +80,6 @@ var cov_1sfguynfw5 = function () {
       },
       "7": {
         start: {
-          line: 34,
-          column: 8
-        },
-        end: {
-          line: 34,
-          column: 54
-        }
-      },
-      "8": {
-        start: {
-          line: 35,
-          column: 8
-        },
-        end: {
-          line: 35,
-          column: 56
-        }
-      },
-      "9": {
-        start: {
           line: 36,
           column: 25
         },
@@ -108,17 +88,7 @@ var cov_1sfguynfw5 = function () {
           column: 76
         }
       },
-      "10": {
-        start: {
-          line: 38,
-          column: 8
-        },
-        end: {
-          line: 38,
-          column: 66
-        }
-      },
-      "11": {
+      "8": {
         start: {
           line: 39,
           column: 8
@@ -128,37 +98,37 @@ var cov_1sfguynfw5 = function () {
           column: 30
         }
       },
+      "9": {
+        start: {
+          line: 41,
+          column: 8
+        },
+        end: {
+          line: 41,
+          column: 80
+        }
+      },
+      "10": {
+        start: {
+          line: 42,
+          column: 8
+        },
+        end: {
+          line: 42,
+          column: 68
+        }
+      },
+      "11": {
+        start: {
+          line: 43,
+          column: 8
+        },
+        end: {
+          line: 43,
+          column: 70
+        }
+      },
       "12": {
-        start: {
-          line: 41,
-          column: 8
-        },
-        end: {
-          line: 41,
-          column: 75
-        }
-      },
-      "13": {
-        start: {
-          line: 42,
-          column: 8
-        },
-        end: {
-          line: 42,
-          column: 61
-        }
-      },
-      "14": {
-        start: {
-          line: 43,
-          column: 8
-        },
-        end: {
-          line: 43,
-          column: 62
-        }
-      },
-      "15": {
         start: {
           line: 44,
           column: 27
@@ -168,7 +138,7 @@ var cov_1sfguynfw5 = function () {
           column: 69
         }
       },
-      "16": {
+      "13": {
         start: {
           line: 45,
           column: 8
@@ -178,7 +148,7 @@ var cov_1sfguynfw5 = function () {
           column: 9
         }
       },
-      "17": {
+      "14": {
         start: {
           line: 52,
           column: 8
@@ -188,7 +158,7 @@ var cov_1sfguynfw5 = function () {
           column: 9
         }
       },
-      "18": {
+      "15": {
         start: {
           line: 53,
           column: 10
@@ -198,7 +168,7 @@ var cov_1sfguynfw5 = function () {
           column: 23
         }
       },
-      "19": {
+      "16": {
         start: {
           line: 54,
           column: 10
@@ -208,7 +178,7 @@ var cov_1sfguynfw5 = function () {
           column: 53
         }
       },
-      "20": {
+      "17": {
         start: {
           line: 56,
           column: 10
@@ -218,7 +188,7 @@ var cov_1sfguynfw5 = function () {
           column: 72
         }
       },
-      "21": {
+      "18": {
         start: {
           line: 60,
           column: 4
@@ -228,7 +198,7 @@ var cov_1sfguynfw5 = function () {
           column: 10
         }
       },
-      "22": {
+      "19": {
         start: {
           line: 70,
           column: 12
@@ -238,7 +208,7 @@ var cov_1sfguynfw5 = function () {
           column: 1
         }
       },
-      "23": {
+      "20": {
         start: {
           line: 71,
           column: 20
@@ -248,7 +218,7 @@ var cov_1sfguynfw5 = function () {
           column: 42
         }
       },
-      "24": {
+      "21": {
         start: {
           line: 72,
           column: 2
@@ -258,7 +228,7 @@ var cov_1sfguynfw5 = function () {
           column: 4
         }
       },
-      "25": {
+      "22": {
         start: {
           line: 73,
           column: 17
@@ -268,7 +238,7 @@ var cov_1sfguynfw5 = function () {
           column: 5
         }
       },
-      "26": {
+      "23": {
         start: {
           line: 74,
           column: 6
@@ -278,7 +248,7 @@ var cov_1sfguynfw5 = function () {
           column: 7
         }
       },
-      "27": {
+      "24": {
         start: {
           line: 75,
           column: 8
@@ -288,17 +258,7 @@ var cov_1sfguynfw5 = function () {
           column: 53
         }
       },
-      "28": {
-        start: {
-          line: 76,
-          column: 8
-        },
-        end: {
-          line: 76,
-          column: 53
-        }
-      },
-      "29": {
+      "25": {
         start: {
           line: 77,
           column: 25
@@ -308,17 +268,7 @@ var cov_1sfguynfw5 = function () {
           column: 69
         }
       },
-      "30": {
-        start: {
-          line: 80,
-          column: 8
-        },
-        end: {
-          line: 80,
-          column: 66
-        }
-      },
-      "31": {
+      "26": {
         start: {
           line: 81,
           column: 8
@@ -328,7 +278,7 @@ var cov_1sfguynfw5 = function () {
           column: 30
         }
       },
-      "32": {
+      "27": {
         start: {
           line: 83,
           column: 8
@@ -338,7 +288,7 @@ var cov_1sfguynfw5 = function () {
           column: 45
         }
       },
-      "33": {
+      "28": {
         start: {
           line: 84,
           column: 27
@@ -348,7 +298,7 @@ var cov_1sfguynfw5 = function () {
           column: 69
         }
       },
-      "34": {
+      "29": {
         start: {
           line: 85,
           column: 8
@@ -358,7 +308,7 @@ var cov_1sfguynfw5 = function () {
           column: 9
         }
       },
-      "35": {
+      "30": {
         start: {
           line: 92,
           column: 8
@@ -368,7 +318,7 @@ var cov_1sfguynfw5 = function () {
           column: 9
         }
       },
-      "36": {
+      "31": {
         start: {
           line: 93,
           column: 10
@@ -378,7 +328,7 @@ var cov_1sfguynfw5 = function () {
           column: 23
         }
       },
-      "37": {
+      "32": {
         start: {
           line: 94,
           column: 10
@@ -388,7 +338,7 @@ var cov_1sfguynfw5 = function () {
           column: 53
         }
       },
-      "38": {
+      "33": {
         start: {
           line: 96,
           column: 10
@@ -398,7 +348,7 @@ var cov_1sfguynfw5 = function () {
           column: 72
         }
       },
-      "39": {
+      "34": {
         start: {
           line: 100,
           column: 4
@@ -904,12 +854,7 @@ var cov_1sfguynfw5 = function () {
       "31": 0,
       "32": 0,
       "33": 0,
-      "34": 0,
-      "35": 0,
-      "36": 0,
-      "37": 0,
-      "38": 0,
-      "39": 0
+      "34": 0
     },
     f: {
       "0": 0,
@@ -932,7 +877,7 @@ var cov_1sfguynfw5 = function () {
       "9": [0, 0]
     },
     _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
-    hash: "07a6986dc4937ea204b1a0e7433f22a336d785ba"
+    hash: "dcb1beb25474655c1b8aca72ce5b25da4d5c069e"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -1010,66 +955,63 @@ var post = /*#__PURE__*/function () {
                                     l.info("post ".concat(JSON.stringify({
                                       url: url,
                                       data: data
-                                    })));
+                                    }))); //        console.log('before axios post, url = ' + url)
+                                    //        console.log('before axios post, data = ' + data)
+
                                     cov_1sfguynfw5.s[7]++;
-                                    console.log('before axios post, url = ' + url);
-                                    cov_1sfguynfw5.s[8]++;
-                                    console.log('before axios post, data = ' + data);
-                                    cov_1sfguynfw5.s[9]++;
-                                    _context.next = 12;
+                                    _context.next = 8;
                                     return _axios["default"].post(url, data, {
                                       timeout: timeoutMS
                                     });
 
-                                  case 12:
+                                  case 8:
                                     response = _context.sent;
-                                    cov_1sfguynfw5.s[10]++;
+                                    cov_1sfguynfw5.s[8]++;
                                     //        l.debug(`${url} response: ${JSON.stringify(response.data)}`)
-                                    console.log('response = ' + JSON.stringify(response.data));
-                                    cov_1sfguynfw5.s[11]++;
+                                    //        console.log('response = ' + JSON.stringify(response.data))
                                     resolve(response.data);
-                                    _context.next = 32;
+                                    _context.next = 26;
                                     break;
 
-                                  case 19:
-                                    _context.prev = 19;
+                                  case 13:
+                                    _context.prev = 13;
                                     _context.t0 = _context["catch"](2);
-                                    cov_1sfguynfw5.s[12]++;
-                                    console.log('in catch, error = ' + JSON.stringify(_context.t0.response.data));
+                                    cov_1sfguynfw5.s[9]++;
+                                    console.log('in catch, error data = ' + JSON.stringify(_context.t0.response.data));
+                                    cov_1sfguynfw5.s[10]++;
+                                    console.log('in catch, error status = ' + _context.t0.response.status);
+                                    cov_1sfguynfw5.s[11]++;
+                                    console.log('in catch, error headers = ' + _context.t0.response.headers);
+                                    safeStatus = (cov_1sfguynfw5.s[12]++, (cov_1sfguynfw5.b[2][0]++, _context.t0) && (cov_1sfguynfw5.b[2][1]++, _context.t0.response) ? (cov_1sfguynfw5.b[1][0]++, _context.t0.response.status) : (cov_1sfguynfw5.b[1][1]++, null));
                                     cov_1sfguynfw5.s[13]++;
-                                    console.log('in catch, error = ' + _context.t0.response.status);
-                                    cov_1sfguynfw5.s[14]++;
-                                    console.log('in catch, error = ' + _context.t0.response.headers);
-                                    safeStatus = (cov_1sfguynfw5.s[15]++, (cov_1sfguynfw5.b[2][0]++, _context.t0) && (cov_1sfguynfw5.b[2][1]++, _context.t0.response) ? (cov_1sfguynfw5.b[1][0]++, _context.t0.response.status) : (cov_1sfguynfw5.b[1][1]++, null));
-                                    cov_1sfguynfw5.s[16]++;
                                     l.debug("post ".concat(JSON.stringify({
                                       status: safeStatus,
                                       url: url,
                                       response: _context.t0.response
                                     })));
-                                    cov_1sfguynfw5.s[17]++;
+                                    cov_1sfguynfw5.s[14]++;
 
                                     if ((cov_1sfguynfw5.b[4][0]++, safeStatus >= 500) && (cov_1sfguynfw5.b[4][1]++, retriesLeft)) {
                                       cov_1sfguynfw5.b[3][0]++;
-                                      cov_1sfguynfw5.s[18]++;
+                                      cov_1sfguynfw5.s[15]++;
                                       retriesLeft--;
-                                      cov_1sfguynfw5.s[19]++;
+                                      cov_1sfguynfw5.s[16]++;
                                       setTimeout(once, _config["default"].API_RETRY_DELAY_MS);
                                     } else {
                                       cov_1sfguynfw5.b[3][1]++;
-                                      cov_1sfguynfw5.s[20]++;
+                                      cov_1sfguynfw5.s[17]++;
                                       reject(new _BlockchainAPIError["default"]({
                                         err: _context.t0,
                                         status: safeStatus
                                       }));
                                     }
 
-                                  case 32:
+                                  case 26:
                                   case "end":
                                     return _context.stop();
                                 }
                               }
-                            }, _callee, null, [[2, 19]]);
+                            }, _callee, null, [[2, 13]]);
                           }));
 
                           return function once() {
@@ -1077,7 +1019,7 @@ var post = /*#__PURE__*/function () {
                           };
                         }();
 
-                        cov_1sfguynfw5.s[21]++;
+                        cov_1sfguynfw5.s[18]++;
                         once();
 
                       case 5:
@@ -1113,7 +1055,7 @@ var post = /*#__PURE__*/function () {
  */
 
 
-cov_1sfguynfw5.s[22]++;
+cov_1sfguynfw5.s[19]++;
 
 var get = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(url) {
@@ -1126,8 +1068,8 @@ var get = /*#__PURE__*/function () {
           case 0:
             timeoutMS = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : (cov_1sfguynfw5.b[5][0]++, _config["default"].API_DEFAULT_TIMEOUT_MS);
             cov_1sfguynfw5.f[3]++;
-            retriesLeft = (cov_1sfguynfw5.s[23]++, _config["default"].API_MAX_RETRIES);
-            cov_1sfguynfw5.s[24]++;
+            retriesLeft = (cov_1sfguynfw5.s[20]++, _config["default"].API_MAX_RETRIES);
+            cov_1sfguynfw5.s[21]++;
             return _context6.abrupt("return", new Promise( /*#__PURE__*/function () {
               var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(resolve, reject) {
                 var once;
@@ -1136,7 +1078,7 @@ var get = /*#__PURE__*/function () {
                     switch (_context5.prev = _context5.next) {
                       case 0:
                         cov_1sfguynfw5.f[4]++;
-                        cov_1sfguynfw5.s[25]++;
+                        cov_1sfguynfw5.s[22]++;
 
                         once = /*#__PURE__*/function () {
                           var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4() {
@@ -1146,65 +1088,63 @@ var get = /*#__PURE__*/function () {
                                 switch (_context4.prev = _context4.next) {
                                   case 0:
                                     cov_1sfguynfw5.f[5]++;
-                                    cov_1sfguynfw5.s[26]++;
+                                    cov_1sfguynfw5.s[23]++;
                                     _context4.prev = 2;
-                                    cov_1sfguynfw5.s[27]++;
+                                    cov_1sfguynfw5.s[24]++;
                                     l.info("get ".concat(JSON.stringify({
                                       url: url
-                                    })));
-                                    cov_1sfguynfw5.s[28]++;
-                                    console.log('before axios get, url = ' + url);
-                                    cov_1sfguynfw5.s[29]++;
-                                    _context4.next = 10;
+                                    }))); //        console.log('before axios get, url = ' + url)
+
+                                    cov_1sfguynfw5.s[25]++;
+                                    _context4.next = 8;
                                     return _axios["default"].get(url, {
                                       timeout: timeoutMS
                                     });
 
-                                  case 10:
+                                  case 8:
                                     response = _context4.sent;
-                                    cov_1sfguynfw5.s[30]++;
+                                    cov_1sfguynfw5.s[26]++;
                                     //    l.debug(`Response is: ${JSON.stringify(response)}`)
-                                    console.log('response = ' + JSON.stringify(response.data));
-                                    cov_1sfguynfw5.s[31]++;
+                                    //        console.log('response = ' + JSON.stringify(response.data))
                                     resolve(response.data);
-                                    _context4.next = 26;
+                                    _context4.next = 22;
                                     break;
 
-                                  case 17:
-                                    _context4.prev = 17;
+                                  case 13:
+                                    _context4.prev = 13;
                                     _context4.t0 = _context4["catch"](2);
-                                    cov_1sfguynfw5.s[32]++;
+                                    cov_1sfguynfw5.s[27]++;
                                     console.log('in catch, error = ' + _context4.t0);
-                                    safeStatus = (cov_1sfguynfw5.s[33]++, (cov_1sfguynfw5.b[7][0]++, _context4.t0) && (cov_1sfguynfw5.b[7][1]++, _context4.t0.response) ? (cov_1sfguynfw5.b[6][0]++, _context4.t0.response.status) : (cov_1sfguynfw5.b[6][1]++, null));
-                                    cov_1sfguynfw5.s[34]++;
+                                    safeStatus = (cov_1sfguynfw5.s[28]++, (cov_1sfguynfw5.b[7][0]++, _context4.t0) && (cov_1sfguynfw5.b[7][1]++, _context4.t0.response) ? (cov_1sfguynfw5.b[6][0]++, _context4.t0.response.status) : (cov_1sfguynfw5.b[6][1]++, null));
+                                    cov_1sfguynfw5.s[29]++;
                                     l.debug("get ".concat(JSON.stringify({
                                       status: safeStatus,
                                       url: url,
                                       response: _context4.t0.response
                                     })));
-                                    cov_1sfguynfw5.s[35]++;
+                                    cov_1sfguynfw5.s[30]++;
 
                                     if ((cov_1sfguynfw5.b[9][0]++, safeStatus >= 500) && (cov_1sfguynfw5.b[9][1]++, retriesLeft)) {
                                       cov_1sfguynfw5.b[8][0]++;
-                                      cov_1sfguynfw5.s[36]++;
+                                      cov_1sfguynfw5.s[31]++;
                                       retriesLeft--;
-                                      cov_1sfguynfw5.s[37]++;
+                                      cov_1sfguynfw5.s[32]++;
                                       setTimeout(once, _config["default"].API_RETRY_DELAY_MS);
                                     } else {
                                       cov_1sfguynfw5.b[8][1]++;
-                                      cov_1sfguynfw5.s[38]++;
+                                      cov_1sfguynfw5.s[33]++;
                                       reject(new _BlockchainAPIError["default"]({
                                         err: _context4.t0,
                                         status: safeStatus
                                       }));
                                     }
 
-                                  case 26:
+                                  case 22:
                                   case "end":
                                     return _context4.stop();
                                 }
                               }
-                            }, _callee4, null, [[2, 17]]);
+                            }, _callee4, null, [[2, 13]]);
                           }));
 
                           return function once() {
@@ -1212,7 +1152,7 @@ var get = /*#__PURE__*/function () {
                           };
                         }();
 
-                        cov_1sfguynfw5.s[39]++;
+                        cov_1sfguynfw5.s[34]++;
                         once();
 
                       case 5:

@@ -53,7 +53,9 @@ const testTXs = async function() {
     // pass in private key to sign(), in this case its the key we added above, but doesn't have to be
     await transferTransaction.sign(transferTransaction.privateKeyForSigning())
     // prevalidate TX to see if values are OK
-    await transferTransaction.prevalidate()
+    var response = await transferTransaction.prevalidate()
+    console.log('response = ' + JSON.stringify(response))
+
     // if the prevalidate above is successful, we can submit
     // await transferTransaction.submit()
 
@@ -87,7 +89,8 @@ const testTXs = async function() {
     // that in also
     await createChildTransaction.create(childOwnershipKeys, childValidationKeys)
     await createChildTransaction.sign(createChildTransaction.privateKeyForSigning())
-    await createChildTransaction.prevalidate()
+    response = await createChildTransaction.prevalidate()
+    console.log('response = ' + JSON.stringify(response))
 }
 
 testTXs()

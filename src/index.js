@@ -34,8 +34,7 @@ import { initKeyaddr } from './wasm/wasmHelper.js'
 // i18next is loaded asynchronously. Any code that requires i18next should wait
 // for the i18next event 'initialized' before running.
 i18next.init({
-  lng: 'en',
-  debug: true,
+  lng: 'en-US',
   resources: {
     en: enLng.default
   }

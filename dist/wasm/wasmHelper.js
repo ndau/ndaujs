@@ -2,7 +2,7 @@
 
 var cov_j5r8xko83 = function () {
   var path = "/Users/johnsgreenlandjr/go/src/github.com/ndau/ndaujs/src/wasm/wasmHelper.js";
-  var hash = "4ac979dd2b6052f9584b13fec90901c4eaf2f070";
+  var hash = "dc2cde598b61a4f4cd929d1ad7a226fe391c024c";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -100,16 +100,6 @@ var cov_j5r8xko83 = function () {
       },
       "9": {
         start: {
-          line: 30,
-          column: 8
-        },
-        end: {
-          line: 30,
-          column: 36
-        }
-      },
-      "10": {
-        start: {
           line: 31,
           column: 37
         },
@@ -118,7 +108,7 @@ var cov_j5r8xko83 = function () {
           column: 9
         }
       },
-      "11": {
+      "10": {
         start: {
           line: 32,
           column: 12
@@ -128,7 +118,7 @@ var cov_j5r8xko83 = function () {
           column: 45
         }
       },
-      "12": {
+      "11": {
         start: {
           line: 33,
           column: 12
@@ -138,7 +128,7 @@ var cov_j5r8xko83 = function () {
           column: 14
         }
       },
-      "13": {
+      "12": {
         start: {
           line: 34,
           column: 30
@@ -148,7 +138,7 @@ var cov_j5r8xko83 = function () {
           column: 69
         }
       },
-      "14": {
+      "13": {
         start: {
           line: 35,
           column: 33
@@ -158,7 +148,7 @@ var cov_j5r8xko83 = function () {
           column: 85
         }
       },
-      "15": {
+      "14": {
         start: {
           line: 37,
           column: 16
@@ -168,7 +158,7 @@ var cov_j5r8xko83 = function () {
           column: 18
         }
       },
-      "16": {
+      "15": {
         start: {
           line: 38,
           column: 20
@@ -178,7 +168,7 @@ var cov_j5r8xko83 = function () {
           column: 21
         }
       },
-      "17": {
+      "16": {
         start: {
           line: 46,
           column: 22
@@ -188,7 +178,7 @@ var cov_j5r8xko83 = function () {
           column: 9
         }
       },
-      "18": {
+      "17": {
         start: {
           line: 47,
           column: 23
@@ -198,17 +188,7 @@ var cov_j5r8xko83 = function () {
           column: 31
         }
       },
-      "19": {
-        start: {
-          line: 48,
-          column: 12
-        },
-        end: {
-          line: 48,
-          column: 38
-        }
-      },
-      "20": {
+      "18": {
         start: {
           line: 49,
           column: 31
@@ -218,7 +198,7 @@ var cov_j5r8xko83 = function () {
           column: 61
         }
       },
-      "21": {
+      "19": {
         start: {
           line: 50,
           column: 30
@@ -228,7 +208,7 @@ var cov_j5r8xko83 = function () {
           column: 49
         }
       },
-      "22": {
+      "20": {
         start: {
           line: 51,
           column: 12
@@ -238,7 +218,7 @@ var cov_j5r8xko83 = function () {
           column: 14
         }
       },
-      "23": {
+      "21": {
         start: {
           line: 56,
           column: 16
@@ -248,7 +228,7 @@ var cov_j5r8xko83 = function () {
           column: 39
         }
       },
-      "24": {
+      "22": {
         start: {
           line: 59,
           column: 16
@@ -258,7 +238,7 @@ var cov_j5r8xko83 = function () {
           column: 17
         }
       },
-      "25": {
+      "23": {
         start: {
           line: 79,
           column: 16
@@ -268,7 +248,7 @@ var cov_j5r8xko83 = function () {
           column: 56
         }
       },
-      "26": {
+      "24": {
         start: {
           line: 82,
           column: 8
@@ -278,7 +258,7 @@ var cov_j5r8xko83 = function () {
           column: 21
         }
       },
-      "27": {
+      "25": {
         start: {
           line: 84,
           column: 4
@@ -682,9 +662,7 @@ var cov_j5r8xko83 = function () {
       "22": 0,
       "23": 0,
       "24": 0,
-      "25": 0,
-      "26": 0,
-      "27": 0
+      "25": 0
     },
     f: {
       "0": 0,
@@ -705,7 +683,7 @@ var cov_j5r8xko83 = function () {
       "2": [0, 0]
     },
     _coverageSchema: "43e27e138ebf9cfc5966b082cf9a028302ed4184",
-    hash: "4ac979dd2b6052f9584b13fec90901c4eaf2f070"
+    hash: "dc2cde598b61a4f4cd929d1ad7a226fe391c024c"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -776,34 +754,33 @@ function _initKeyaddr() {
             cov_j5r8xko83.s[8]++;
 
             if (root.Keyaddr) {
-              _context2.next = 15;
+              _context2.next = 13;
               break;
             }
 
             cov_j5r8xko83.b[1][0]++;
             cov_j5r8xko83.s[9]++;
-            console.log('starting wasm');
-            cov_j5r8xko83.s[10]++;
 
+            //        console.log('starting wasm')
             instantiateStreaming = function instantiateStreaming(source, importObject) {
               cov_j5r8xko83.f[2]++;
-              cov_j5r8xko83.s[11]++;
+              cov_j5r8xko83.s[10]++;
               importObject = (cov_j5r8xko83.b[2][0]++, importObject) || (cov_j5r8xko83.b[2][1]++, {});
-              cov_j5r8xko83.s[12]++;
+              cov_j5r8xko83.s[11]++;
               return source.then(function (response) {
                 cov_j5r8xko83.f[3]++;
-                cov_j5r8xko83.s[13]++;
+                cov_j5r8xko83.s[12]++;
                 return Promise.resolve(toUint8Array(response));
               }).then(function (arrayBuffer) {
                 cov_j5r8xko83.f[4]++;
-                cov_j5r8xko83.s[14]++;
+                cov_j5r8xko83.s[13]++;
                 return Promise.resolve(new WebAssembly.Module(arrayBuffer));
               }).then(function (mod) {
                 cov_j5r8xko83.f[5]++;
-                cov_j5r8xko83.s[15]++;
+                cov_j5r8xko83.s[14]++;
                 return WebAssembly.instantiate(mod, importObject).then(function (instance) {
                   cov_j5r8xko83.f[6]++;
-                  cov_j5r8xko83.s[16]++;
+                  cov_j5r8xko83.s[15]++;
                   return {
                     module: mod,
                     instance: instance
@@ -812,7 +789,7 @@ function _initKeyaddr() {
               });
             };
 
-            cov_j5r8xko83.s[17]++;
+            cov_j5r8xko83.s[16]++;
 
             start = /*#__PURE__*/function () {
               var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
@@ -823,21 +800,20 @@ function _initKeyaddr() {
                     switch (_context.prev = _context.next) {
                       case 0:
                         cov_j5r8xko83.f[7]++;
-                        go = (cov_j5r8xko83.s[18]++, new Go());
-                        cov_j5r8xko83.s[19]++;
-                        console.log('starting Go');
-                        __filename = (cov_j5r8xko83.s[20]++, (0, _url.fileURLToPath)(meta.url));
-                        __dirname = (cov_j5r8xko83.s[21]++, (0, _path.dirname)(__filename));
-                        cov_j5r8xko83.s[22]++;
+                        go = (cov_j5r8xko83.s[17]++, new Go()); //            console.log('starting Go')
+
+                        __filename = (cov_j5r8xko83.s[18]++, (0, _url.fileURLToPath)(meta.url));
+                        __dirname = (cov_j5r8xko83.s[19]++, (0, _path.dirname)(__filename));
+                        cov_j5r8xko83.s[20]++;
                         return _context.abrupt("return", instantiateStreaming(readFile("".concat(__dirname, "/keyaddr.wasm")), go.importObject).then(function (result) {
                           cov_j5r8xko83.f[8]++;
-                          cov_j5r8xko83.s[23]++;
+                          cov_j5r8xko83.s[21]++;
                           go.run(result.instance);
                         }).then(function () {
                           var _root$Keyaddr;
 
                           cov_j5r8xko83.f[9]++;
-                          cov_j5r8xko83.s[24]++;
+                          cov_j5r8xko83.s[22]++;
                           root.Keyaddr = (_root$Keyaddr = {
                             newKey: (0, _util.promisify)(KeyaddrNS.newKey),
                             wordsToBytes: (0, _util.promisify)(KeyaddrNS.wordsToBytes),
@@ -852,11 +828,11 @@ function _initKeyaddr() {
                           }, (0, _defineProperty2["default"])(_root$Keyaddr, "newKey", (0, _util.promisify)(KeyaddrNS.newKey)), (0, _defineProperty2["default"])(_root$Keyaddr, "exit", (0, _util.promisify)(KeyaddrNS.exit)), (0, _defineProperty2["default"])(_root$Keyaddr, "fromString", (0, _util.promisify)(KeyaddrNS.fromString)), (0, _defineProperty2["default"])(_root$Keyaddr, "newEdKey", (0, _util.promisify)(KeyaddrNS.newEdKey)), (0, _defineProperty2["default"])(_root$Keyaddr, "newEdKeyFromSeed", (0, _util.promisify)(KeyaddrNS.newEdKeyFromSeed)), (0, _defineProperty2["default"])(_root$Keyaddr, "addrFromPublicKey", (0, _util.promisify)(KeyaddrNS.addrFromPublicKey)), _root$Keyaddr);
                         })["catch"](function (err) {
                           cov_j5r8xko83.f[10]++;
-                          cov_j5r8xko83.s[25]++;
+                          cov_j5r8xko83.s[23]++;
                           console.error('Error loading WASM', err);
                         }));
 
-                      case 8:
+                      case 6:
                       case "end":
                         return _context.stop();
                     }
@@ -869,22 +845,22 @@ function _initKeyaddr() {
               };
             }();
 
-            cov_j5r8xko83.s[26]++;
-            _context2.next = 13;
+            cov_j5r8xko83.s[24]++;
+            _context2.next = 11;
             return start();
 
-          case 13:
-            _context2.next = 16;
+          case 11:
+            _context2.next = 14;
             break;
 
-          case 15:
+          case 13:
             cov_j5r8xko83.b[1][1]++;
 
-          case 16:
-            cov_j5r8xko83.s[27]++;
+          case 14:
+            cov_j5r8xko83.s[25]++;
             return _context2.abrupt("return", root.Keyaddr);
 
-          case 18:
+          case 16:
           case "end":
             return _context2.stop();
         }

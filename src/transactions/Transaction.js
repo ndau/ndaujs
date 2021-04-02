@@ -213,7 +213,7 @@ export default class Transaction {
   }
 
   async createPrevalidateAddress () {
-    console.log('prevalidate send type: ' + this._sendType)
+//    console.log('prevalidate send type: ' + this._sendType)
     const prevalidateAddressPre = await APIAddressHelper.getTransactionPrevalidateAPIAddress(
       this._sendType
     )
