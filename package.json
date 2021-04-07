@@ -41,9 +41,9 @@
   "keywords": [
     "ndau"
   ],
-  "license": "MIT",
+  "license": "Apache License Version 2.0",
   "main": "dist/index.js",
-  "name": "ndaujs",
+  "name": "@ndau/ndaujs",
   "nyc": {
     "branches": 80,
     "lines": 80,
