@@ -8,8 +8,8 @@
  * - -- --- ---- -----
  */
 
-import constants from '../../constants/constants'
-import DataFormatHelper from './DataFormatHelper'
+import constants from '../../constants/constants.js'
+import DataFormatHelper from './DataFormatHelper.js'
 
 const accountCreationKeyPath = `/${constants.HARDENED_CHILD_BIP_44}'/${
   constants.NDAU_CONSTANT

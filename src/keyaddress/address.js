@@ -8,7 +8,7 @@
  * - -- --- ---- -----
  */
 
-const constants = require('../constants/constants')
+import constants from '../constants/constants.js'
 
 const setCharAt = (str, index, chr) => {
   if (index > str.length - 1) return str
@@ -55,7 +55,6 @@ const roundUp = (n, carry) => {
   return roundUp(n.slice(0, n.length - 1), last === '9') + newlast
 }
 
-module.exports = {
   /**
    * This function will take a string passed in and truncate
    * it down to 19 characters if it is more than that. This
@@ -65,12 +64,12 @@ module.exports = {
    * @param {string} address ndau address to be truncated
    * @returns {string} truncated string
    */
-  truncateAddress: address => {
+  const truncateAddress = address => {
     if (address && address.length > 19) {
       return `${address.slice(0, 8)}...${address.slice(-8)}`
     }
     return address
-  },
+  }
 
   /**
    * This takes a number of napu, which should be an integer, plus a
@@ -78,7 +77,7 @@ module.exports = {
    * which is the human-readable value in ndau, rounded to that
    * number of decimal digits. No floating point math is used.
    */
-  formatNapuForDisplay: (napu, digits, commas) => {
+  const formatNapuForDisplay = (napu, digits, commas) => {
     // trap for the unwary:
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
     // This function is being used here to say "is digits usable as a numeric value?"
@@ -130,13 +129,13 @@ module.exports = {
     // otherwise, we need to try rounding it
     let nextdigit = fs[digits]
     return roundUp(result, nextdigit >= '5')
-  },
+  }
 
   // This parses a string intended to be a number of ndau and converts it
   // safely to napu without using floating point. It returns the value of
   // the input string in napu. It will throw a string explaining the problem
   // if the value is unparseable.
-  parseNdau: s => {
+  const parseNdau = s => {
     // in order to have repeatable groupings, it's clearest to use multiple
     // regexps to support both '1.' and '.1' as valid numbers.
     const numpat1 = /^([-+]?)([0-9]+)(\.([0-9]*))?$/
@@ -171,4 +170,6 @@ module.exports = {
     }
     return napu
   }
-}
+
+  export {truncateAddress, formatNapuForDisplay, parseNdau}
+

@@ -8,12 +8,12 @@
  * - -- --- ---- -----
  */
 
-import OrderAPI from '../api/OrderAPI'
-import MultiSafeHelper from '../helpers/MultiSafeHelper'
-import UserStore from '../stores/UserStore'
-import NdauStore from '../stores/NdauStore'
-import LoggerHelper from '../helpers/LoggerHelper'
-import Wallet from '../model/Wallet'
+import OrderAPI from '../api/OrderAPI.js'
+import MultiSafeHelper from '../helpers/MultiSafeHelper.js'
+import UserStore from '../stores/UserStore.js'
+import NdauStore from '../stores/NdauStore.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
+import Wallet from '../model/Wallet.js'
 
 const l = LoggerHelper.curryLogger('UserData')
 
