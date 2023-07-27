@@ -1920,6 +1920,7 @@
     "locate-path" "^6.0.0"
     "path-exists" "^4.0.0"
 
+<<<<<<< HEAD
 "flat@^5.0.2":
   "integrity" "sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ=="
   "resolved" "https://registry.npmjs.org/flat/-/flat-5.0.2.tgz"
@@ -1929,6 +1930,12 @@
   "integrity" "sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.3.tgz"
   "version" "1.13.3"
+=======
+follow-redirects@^1.10.0:
+  version "1.14.8"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc"
+  integrity sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==
+>>>>>>> c7a37ce4745964afe1c24a539ab8699b9e2b7842
 
 "for-in@^1.0.2":
   "integrity" "sha1-gQaNKVqBQuwKxybG4iAMMPttXoA="

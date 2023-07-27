@@ -8,12 +8,12 @@
  * - -- --- ---- -----
  */
 
-import User from '../model/User'
-import KeyMaster from './KeyMaster'
-import AppConstants from '../constants/constants'
-import MultiSafe from '../model/MultiSafe'
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import LoggerHelper from '../helpers/LoggerHelper'
+import User from '../model/User.js'
+import KeyMaster from './KeyMaster.js'
+import AppConstants from '../constants/constants.js'
+import MultiSafe from '../model/MultiSafe.js'
+import DataFormatHelper from '../api/helpers/DataFormatHelper.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('MultiSafeHelper')
 
 // ATTENTION - DO NOT REMOVE THIS COMMENTED CODE!

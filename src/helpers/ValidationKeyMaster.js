@@ -8,11 +8,11 @@
  * - -- --- ---- -----
  */
 
-import KeyPathHelper from '../api/helpers/KeyPathHelper'
-import KeyMaster from '../helpers/KeyMaster'
-import DataFormatHelper from '../api/helpers/DataFormatHelper'
-import AppConfig from '../constants/config'
-import LoggerHelper from '../helpers/LoggerHelper'
+import KeyPathHelper from '../api/helpers/KeyPathHelper.js'
+import KeyMaster from '../helpers/KeyMaster.js'
+import DataFormatHelper from '../api/helpers/DataFormatHelper.js'
+import AppConfig from '../constants/config.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('ValidationKeyMaster')
 
 /**
@@ -307,5 +307,6 @@ const _checkValidationKeys = (
 
 export default {
   addValidationKey,
-  recoveryValidationKey
+  recoveryValidationKey,
+  addThisValidationKey
 }

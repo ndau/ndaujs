@@ -8,7 +8,7 @@
  * - -- --- ---- -----
  */
 
-import KeyMaster from './KeyMaster'
+import KeyMaster from './KeyMaster.js'
 import AccountAPI from '../api/AccountAPI'
 import AppConstants from '../constants/constants'
 import DataFormatHelper from '../api/helpers/DataFormatHelper'

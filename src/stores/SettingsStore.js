@@ -8,7 +8,7 @@
  * - -- --- ---- -----
  */
 
-import AsyncStorageHelper from '../helpers/AsyncStorageHelper'
+import AsyncStorageHelper from '../helpers/AsyncStorageHelper.js'
 
 class SettingsStore {
   constructor () {

@@ -9,9 +9,9 @@
  */
 
 import moment from 'moment'
-import AppConstants from '../constants/constants'
+import AppConstants from '../constants/constants.js'
 
-const _ = require('lodash')
+import 'lodash'
 
 const DATE_FORMAT = 'DD MMM YYYY'
 const DATE_FORMAT_LONG = 'MMMM DD, YYYY'

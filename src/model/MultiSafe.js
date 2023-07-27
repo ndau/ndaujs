@@ -8,10 +8,10 @@
  * - -- --- ---- -----
  */
 
-import GeneralStore from '../stores/GeneralStore'
+import GeneralStore from '../stores/GeneralStore.js'
 import CryptoJS from 'crypto-js'
-import EntropyHelper from '../helpers/EntropyHelper'
-import LoggerHelper from '../helpers/LoggerHelper'
+import EntropyHelper from '../helpers/EntropyHelper.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('MultiSafe')
 
 // we put these things on either end of the combination to make sure we know that we
