@@ -32,7 +32,7 @@
     "babel-plugin-transform-import-meta": "^1.0.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "mock-async-storage": "^2.2.0",
     "nyc": "^14.1.1",
     "sinon": "^7.5.0"
