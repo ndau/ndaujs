@@ -8,10 +8,10 @@
  * - -- --- ---- -----
  */
 
-import GeneralStore from '../stores/GeneralStore'
-import ServiceDiscovery from '../api/ServiceDiscovery'
-import SettingsStore from '../stores/SettingsStore'
-import LoggerHelper from '../helpers/LoggerHelper'
+import GeneralStore from '../stores/GeneralStore.js'
+import ServiceDiscovery from '../api/ServiceDiscovery.js'
+import SettingsStore from '../stores/SettingsStore.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('AsyncStorageHelper')
 
 const STORAGE_KEY_PREFIX = '@NdauGeneralStore:'

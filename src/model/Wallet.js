@@ -8,9 +8,9 @@
  * - -- --- ---- -----
  */
 
-import AccountAPI from '../api/AccountAPI'
-import LoggerHelper from '../helpers/LoggerHelper'
-import ValidationKeyMaster from '../helpers/ValidationKeyMaster'
+import AccountAPI from '../api/AccountAPI.js'
+import LoggerHelper from '../helpers/LoggerHelper.js'
+import ValidationKeyMaster from '../helpers/ValidationKeyMaster.js'
 const l = LoggerHelper.curryLogger('Wallet')
 
 // Please be aware that to remain backwards compatible we must

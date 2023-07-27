@@ -8,12 +8,12 @@
  * - -- --- ---- -----
  */
 
-import DateHelper from '../../helpers/DateHelper'
-import DataFormatHelper from './DataFormatHelper'
-import AppConstants from '../../constants/constants'
-import AppConfig from '../../constants/config'
+import DateHelper from '../../helpers/DateHelper.js'
+import DataFormatHelper from './DataFormatHelper.js'
+import AppConstants from '../../constants/constants.js'
+import AppConfig from '../../constants/config.js'
 import moment from 'moment'
-import LoggerHelper from '../../helpers/LoggerHelper'
+import LoggerHelper from '../../helpers/LoggerHelper.js'
 const l = LoggerHelper.curryLogger('AccountAPIHelper')
 
 const getEaiValueForDisplay = account => {

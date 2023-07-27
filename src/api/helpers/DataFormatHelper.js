@@ -8,12 +8,12 @@
  * - -- --- ---- -----
  */
 
-import AppConstants from '../../constants/constants'
-import AppConfig from '../../constants/config'
-import sha256 from 'crypto-js/sha256'
-import AccountAPIHelper from './AccountAPIHelper'
-import { formatNapuForDisplay, parseNdau } from '../../keyaddress/address'
-import DateHelper from '../../helpers/DateHelper'
+import AppConstants from '../../constants/constants.js'
+import AppConfig from '../../constants/config.js'
+import sha256 from 'crypto-js/sha256.js'
+import AccountAPIHelper from './AccountAPIHelper.js'
+import { formatNapuForDisplay, parseNdau } from '../../keyaddress/address.js'
+import DateHelper from '../../helpers/DateHelper.js'
 
 /**
  * This method will check to see if there is a AppConstants.TEMP_ID
